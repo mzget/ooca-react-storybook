@@ -13,11 +13,10 @@ import { TestStory } from '../TestStory';
 const TestStoryWithTheme = withMuiTheme(TestStory);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
+const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
 const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
 storiesOf('Welcome', module)
     .add('to Storybook', () => <Welcome showApp={linkTo('Button')}/>);
-storiesOf('Button', module)
-    .add('User-Primary-dialog-button', () => <Button onClick={action('clicked')}>Hello Button</Button>);
 storiesOf('OOCA-Storybook', module)
     .add('user-payment-summary-modal', () => <TestRSModal Local={'TH'} isProvider={false} AppointmentID={'1'}/>)
     .add('provider-payment-summary-modal', () => <TestRSModal Local={'TH'} isProvider={true} AppointmentID={'1'}/>);
@@ -25,8 +24,8 @@ storiesOf('OOCA-Storybook', module)
 storiesOf('OOCA-user-modals', module)
     .add('thumbup-dialog', () => <ThumbUpDialog isLocal={'EN'} isProvider={false} handMSGState={action('Thumb')}/>)
     .add('thumbup-dialog-TH', () => <ThumbUpDialog isLocal={'TH'} isProvider={false} handMSGState={action('Thumb')}/>)
-    .add('thankyou-dialog', () => <ThankyouDialog isLocal={'EN'} isProvider={false} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
-    .add('thankyou-dialog-TH', () => <ThankyouDialog isLocal={'TH'} isProvider={false} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
+    .add('thankyou-dialog', () => <ThankyouDialogWithTheme isLocal={'EN'} isProvider={false} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
+    .add('thankyou-dialog-TH', () => <ThankyouDialogWithTheme isLocal={'TH'} isProvider={false} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
     .add('problem-dialog', () => <ProblemDialogWithTheme _isLocal={'EN'} _isProvider={false} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('problem-dialog-TH', () => <ProblemDialogWithTheme _isLocal={'TH'} _isProvider={false} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('feedback-dialog', () => <FeedbackDialogWithTheme _isLocal={'EN'} _isProvider={false} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
@@ -36,11 +35,13 @@ storiesOf('OOCA-user-modals', module)
 storiesOf('OOCA-provider-modals', module)
     .add('thumbup-dialog', () => <ThumbUpDialog isLocal={'EN'} isProvider={true} handMSGState={action('Thumb')}/>)
     .add('thumbup-dialog-TH', () => <ThumbUpDialog isLocal={'TH'} isProvider={true} handMSGState={action('Thumb')}/>)
-    .add('thankyou-dialog', () => <ThankyouDialog isLocal={'EN'} isProvider={true} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
-    .add('thankyou-dialog-TH', () => <ThankyouDialog isLocal={'TH'} isProvider={true} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
+    .add('thankyou-dialog', () => <ThankyouDialogWithTheme isLocal={'EN'} isProvider={true} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
+    .add('thankyou-dialog-TH', () => <ThankyouDialogWithTheme isLocal={'TH'} isProvider={true} handleClose={action('handleClose')} handCallBack={action('handCallBack')}/>)
     .add('problem-dialog', () => <ProblemDialogWithTheme _isLocal={'EN'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('problem-dialog-TH', () => <ProblemDialogWithTheme _isLocal={'TH'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('feedback-dialog', () => <FeedbackDialogWithTheme _isLocal={'EN'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('feedback-dialog-TH', () => <FeedbackDialogWithTheme _isLocal={'TH'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)}/>)
     .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={true} onClose={action('close')}/>)
     .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={true} onClose={action('close')}/>);
+storiesOf('OOCA-Button', module)
+    .add('User-Primary-dialog-button', () => <Button onClick={action('clicked')}>Hello Button</Button>);

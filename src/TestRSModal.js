@@ -127,8 +127,6 @@ class TestRSModal extends Component {
   handCallBack() {
     if (!!_Property)
       _Property();
-
-    this.handleClose();
   }
 
   handMSGState(_state) {
@@ -187,18 +185,12 @@ class TestRSModal extends Component {
           <IndeterminateDialog isModal={true} isOpen={true}
             message={MSGSteateInfo.SendMSG[_isLocal]} />
         );
-        // <PaddingBox>
-        //   <Header>{MSGSteateInfo.SendMSG[_isLocal]}</Header>
-        //   <div style={{ padding: '0px 10px 0px 10px', marginBottom: '30px' }}>
-        //     <LinearProgress mode='indeterminate' />
-        //   </div>
-        // </PaddingBox>
       }
 
       case MSGSteate.Thank:
         {
           return (<ThankyouDialog isLocal={_isLocal} isProvider={_isProvider}
-            handCallBack={this.handCallBack}
+            handCallBack={this.handCallBack.bind(this)}
             handleClose={() => {
               this.handMSGState(MSGSteate.Note);
             }} />

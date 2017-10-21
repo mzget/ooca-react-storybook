@@ -1,7 +1,5 @@
 /* eslint-disable */
 import * as React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
 import { calcFontSize } from "../UxUtils";
 import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
@@ -40,14 +38,12 @@ export class ThankyouDialog extends React.Component {
     render() {
         const msgLabelFont = calcFontSize();
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
-        return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
-                <Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
-                    <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                        <LableDialog style={msgLabelFont}>
-                            {MSGSteateInfo.Thank[isLocal]}
-                        </LableDialog>
-                    </div>
-                </Dialog>
-            </MuiThemeProvider>);
+        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+                <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
+                    <LableDialog style={msgLabelFont}>
+                        {MSGSteateInfo.Thank[isLocal]}
+                    </LableDialog>
+                </div>
+            </Dialog>);
     }
 }
