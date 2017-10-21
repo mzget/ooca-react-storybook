@@ -7,6 +7,7 @@ import './css/App.css';
 import axios from 'axios';
 import { Config } from './Configs.js';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { defaultMuiTheme } from './components/MaterialUtils';
 import styled from 'styled-components';
 
 // import getMuiTheme from 'material-ui/styles/getMuiTheme';
@@ -87,7 +88,11 @@ class TestRSModal extends Component {
   //   },2000);
   // }
   render() {
-    return (<div className='message-panel'>{this.DisplayMessage(this.state.MessageState)}</div>);
+    return (
+      <MuiThemeProvider muiTheme={defaultMuiTheme}>
+        <div className='message-panel'>{this.DisplayMessage(this.state.MessageState)}</div>
+      </MuiThemeProvider>
+    );
   }
 
   DisplayMessage(_state) {

@@ -22,7 +22,6 @@ export const SecondaryDialogButton = styled.div.attrs({
     color: #0057b8;
 `;
 export const DialogHeader = styled.h2.attrs({ className: 'text-center' }) `
-    color: black;
     font-family: 'Prompt', sans-serif;
 `;
 export const LableDialog = styled.label.attrs({
