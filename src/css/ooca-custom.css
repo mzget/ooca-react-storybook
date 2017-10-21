@@ -1,0 +1,49 @@
+
+.button-primary {
+    height: 3.75rem;
+    padding: 1.25rem;
+    background: #02c3b6;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    min-width: 150px;
+    margin-bottom: 1.25rem;
+  }
+  .button-primary:hover {
+    height: 3.75rem;
+    padding: 1.25rem;
+    background: #02d2c4;
+    color: #fff;
+    line-height: 1;
+    min-width: 150px;
+    margin-bottom: 1.25rem;
+  }
+  .provider-button-primary {
+    height: 3.75rem;
+    padding: 1.25rem;
+    background: #0478d7;
+    color: #fff;
+    font-size: 1.5rem;
+    font-weight: 700;
+    line-height: 1;
+    min-width: 150px;
+    margin-bottom: 1.25rem;
+  }
+  .provider-button-primary:hover {
+    height: 3.75rem;
+    padding: 1.25rem;
+    background: #1393fb;
+    color: #fff;
+    line-height: 1;
+    min-width: 150px;
+    margin-bottom: 1.25rem;
+  }
+  @media screen and (max-width: 920px) {
+    .button-primary {
+      font-size: 1.125rem;
+    }
+    .provider-button-primary {
+      font-size: 1.125rem;
+    }
+  }

@@ -1,0 +1,107 @@
+@-webkit-keyframes autofill {
+  to {
+    color: inherit;
+    background: transparent;
+  }
+}
+@-webkit-keyframes autofillDark {
+  to {
+    color: #fff;
+    background: transparent;
+  }
+}
+.dark .ooca-form-input input:-webkit-autofill,
+.dark .ooca-form-input input:-webkit-autofill:hover,
+.dark .ooca-form-input input:-webkit-autofill:focus,
+.dark .ooca-form-input textarea:-webkit-autofill,
+.dark .ooca-form-input textarea:-webkit-autofill:hover,
+.dark .ooca-form-input textarea:-webkit-autofill:focus,
+.dark .ooca-form-input select:-webkit-autofill,
+.dark .ooca-form-input select:-webkit-autofill:hover,
+.dark .ooca-form-input select:-webkit-autofill:focus {
+  -webkit-animation-name: autofillDark;
+  -webkit-animation-fill-mode: both;
+}
+.ooca-form-input {
+  margin-bottom: 1.5625rem;
+}
+.ooca-form-input .input-icon {
+  line-height: 0;
+}
+.ooca-form-input .input-label {
+  padding-top: 0;
+  height: 1.125rem;
+  line-height: 1.125rem;
+  display: block;
+}
+.ooca-form-input .float-label {
+  margin-bottom: 0.75rem;
+}
+.ooca-form-input input:not(.no-style) {
+  padding: 0;
+  margin-bottom: 0;
+  width: 100%;
+}
+.ooca-form-input input.input-align-dynamic {
+  text-align: right;
+}
+@media screen and (max-width: 920px) {
+  .ooca-form-input input.input-align-dynamic {
+    text-align: left;
+  }
+}
+.ooca-form-input input::placeholder {
+  color: rgba(74,74,74,0.5);
+}
+.ooca-form-input input:not(.no-style),
+.ooca-form-input input:not(.no-style):hover,
+.ooca-form-input input:not(.no-style):focus,
+.ooca-form-input input:not(.no-style)[disabled],
+.ooca-form-input input:not(.no-style).disabled {
+  border: none;
+  background: none;
+}
+.ooca-form-input input:-webkit-autofill,
+.ooca-form-input input:-webkit-autofill:hover,
+.ooca-form-input input:-webkit-autofill:focus,
+.ooca-form-input textarea:-webkit-autofill,
+.ooca-form-input textarea:-webkit-autofill:hover,
+.ooca-form-input textarea:-webkit-autofill:focus,
+.ooca-form-input select:-webkit-autofill,
+.ooca-form-input select:-webkit-autofill:hover,
+.ooca-form-input select:-webkit-autofill:focus {
+  -webkit-animation-name: autofill;
+  -webkit-animation-fill-mode: both;
+}
+.ooca-form-input .input-wrapper {
+  padding-bottom: 0.25rem;
+  border-bottom: 1px solid rgba(74,74,74,0.2);
+}
+.ooca-form-input .input-wrapper label {
+  white-space: nowrap;
+}
+.ooca-form-input .input-wrapper.has-error {
+  border-bottom: 1px solid #db2828;
+}
+.ooca-form-input .input-wrapper img {
+  width: 30px;
+  height: 30px;
+}
+.ooca-form-input .input-wrapper >*:not(:last-child) {
+  margin-right: 1rem;
+}
+.ooca-form-input .input-suffix {
+  white-space: nowrap;
+}
+.ooca-form-input input[type='password'] {
+  font-size: 18px !important;
+}
+.dark .ooca-form-input input::placeholder {
+  color: rgba(255,255,255,0.5);
+}
+.dark .ooca-form-input .input-wrapper:not(.has-error) {
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.ooca-form-input.input-uppercase input {
+  text-transform: uppercase;
+}
