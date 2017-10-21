@@ -6,13 +6,13 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
 
+import { MSGSteate } from '../AppUtils';
+import { PaddingBox } from '../StyleComponents/Styles';
+import { DialogHeader } from '../StyleComponents/DialogContentStyles';
+
 import IconDown from '../../Images/down_icon.png';
 import IconUp from '../../Images/up_icon.png';
 import { MSGSteateInfo, SendInfo, FeedbackInfo, options } from '../Localized/MessageInfo';
-
-import { MSGSteate } from '../AppUtils';
-import { PaddingBox } from '../StyleComponents/Styles';
-import { DialogHeader } from './DialogContent';
 
 let thumbGap = 50;
 let isSmall = window.innerWidth < 800;

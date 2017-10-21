@@ -2,7 +2,13 @@ import * as React from 'react';
 
 import Dialog from 'material-ui/Dialog';
 import { PaddingBox, PrimaryButton, TextArea } from "../StyleComponents/Styles";
-import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader, LableDialog, ListDialogItem } from './DialogContent';
+import {
+    PrimaryDialogButton,
+    SecondaryDialogButton,
+    DialogHeader,
+    LableDialog,
+    ListDialogItem
+} from '../StyleComponents/DialogContentStyles';
 
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';

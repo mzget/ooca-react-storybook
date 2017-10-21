@@ -12,8 +12,10 @@ import { action } from '@storybook/addon-actions';
 import { WithNotes } from '@storybook/addon-notes';
 
 import {
-  PleaseNoteDialog, ThumbUpDialog,
-  ProblemDialog, FeedbackDialog,
+  PleaseNoteDialog,
+  ThumbUpDialog,
+  ProblemDialog,
+  FeedbackDialog,
   ThankyouDialog,
   withMuiTheme
 } from "../components/index";
@@ -23,6 +25,8 @@ import { TestStory } from '../TestStory';
 
 const TestStoryWithTheme = withMuiTheme(TestStory);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
+const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
+const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
 
 storiesOf('Welcome', module)
   .add('to Storybook', () => <Welcome showApp={linkTo('Button')} />);
@@ -46,14 +50,14 @@ storiesOf('OOCA-user-modals', module)
   .add('problem-dialog-TH', () => <ProblemDialogWithTheme _isLocal={'TH'} _isProvider={false}
     SendFeedback={() => action('send')}
     handMSGState={(state) => action(state)} />)
-  .add('feedback-dialog', () => <FeedbackDialog _isLocal={'EN'} _isProvider={false}
+  .add('feedback-dialog', () => <FeedbackDialogWithTheme _isLocal={'EN'} _isProvider={false}
     SendFeedback={() => action('send')}
     handMSGState={(state) => action(state)} />)
-  .add('feedback-dialog-TH', () => <FeedbackDialog _isLocal={'TH'} _isProvider={false}
+  .add('feedback-dialog-TH', () => <FeedbackDialogWithTheme _isLocal={'TH'} _isProvider={false}
     SendFeedback={() => action('send')}
     handMSGState={(state) => action(state)} />)
-  .add('pleasenote-dialog', () => <PleaseNoteDialog _isLocal={'EN'} isProvider={false} onClose={action('close')} />)
-  .add('pleasenote-dialog-TH', () => <PleaseNoteDialog _isLocal={'TH'} isProvider={false} onClose={action('close')} />);
+  .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={false} onClose={action('close')} />)
+  .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={false} onClose={action('close')} />);
 
 storiesOf('OOCA-provider-modals', module)
   .add('thumbup-dialog', () => <ThumbUpDialog isLocal={'EN'} isProvider={true} handMSGState={action('Thumb')} />)
@@ -66,7 +70,11 @@ storiesOf('OOCA-provider-modals', module)
   .add('problem-dialog-TH', () => <ProblemDialogWithTheme _isLocal={'TH'} _isProvider={true}
     SendFeedback={() => action('send')}
     handMSGState={(state) => action(state)} />)
-  .add('feedback-dialog', () => <FeedbackDialog _isLocal={'EN'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)} />)
-  .add('feedback-dialog-TH', () => <FeedbackDialog _isLocal={'TH'} _isProvider={true} SendFeedback={() => action('send')} handMSGState={(state) => action(state)} />)
-  .add('pleasenote-dialog', () => <PleaseNoteDialog _isLocal={'EN'} isProvider={true} onClose={action('close')} />)
-  .add('pleasenote-dialog-TH', () => <PleaseNoteDialog _isLocal={'TH'} isProvider={true} onClose={action('close')} />);
+  .add('feedback-dialog', () => <FeedbackDialogWithTheme _isLocal={'EN'} _isProvider={true}
+    SendFeedback={() => action('send')}
+    handMSGState={(state) => action(state)} />)
+  .add('feedback-dialog-TH', () => <FeedbackDialogWithTheme _isLocal={'TH'} _isProvider={true}
+    SendFeedback={() => action('send')}
+    handMSGState={(state) => action(state)} />)
+  .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={true} onClose={action('close')} />)
+  .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={true} onClose={action('close')} />);

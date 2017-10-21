@@ -4,7 +4,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
 import { calcFontSize } from "../UxUtils";
-import { PrimaryDialogButton, LableDialog } from './DialogContent';
+import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
 import { MSGSteateInfo } from '../Localized/MessageInfo';
 import { WordingInfo } from '../Localized/WordingInfo';
 export class ThankyouDialog extends React.Component {
