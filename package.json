@@ -26,7 +26,7 @@
     "@storybook/react": "3.2.12",
     "@types/material-ui": "^0.18.3",
     "@types/node": "^8.0.45",
-    "@types/react": "^16.0.16",
+    "@types/react": "^16.0.17",
     "@types/storybook__react": "^3.0.5",
     "tslint": "^5.8.0",
     "typescript": "^2.5.3",
