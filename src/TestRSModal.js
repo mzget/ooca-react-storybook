@@ -33,7 +33,8 @@ import { ThumbUpDialog } from './components/ThumbUpDialog';
 import { FeedbackDialog } from './components/FeedbackDialog';
 import { PleaseNoteDialog } from './components/PleaseNoteDialog';
 import IndeterminateDialog from './components/IndeterminateDialog';
-import { ProblemDialog, ThankyouDialog } from "./components/";
+import { ProblemDialog } from "./components/ProblemDialog";
+import { ThankyouDialog } from "./components/ThankyouDialog";
 
 const MSGSteate = { Quality: 'Quality', Feedback: 'Feedback', Problem: 'Problem', Thank: 'Thank', SendMSG: 'SendMSG', SendFail: 'SendFail', Note: 'Note' };
 var _isLocal;

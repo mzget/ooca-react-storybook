@@ -68,7 +68,9 @@ export class ProblemDialog extends React.Component {
         })}
                         </div>
                         {(this.state.anchorOrigin.vertical === options.other) ?
-            <TextArea hintText={WordingInfo.Recommend[_isLocal]} floatingLabelText={WordingInfo.Feedback[_isLocal]} fullWidth={true} rows={2} onChange={(e, _value) => { FeedbackInfo.problem_other = _value; }}/>
+            <TextArea hintText={WordingInfo.Recommend[_isLocal]} floatingLabelText={WordingInfo.Feedback[_isLocal]} fullWidth={true} rows={2} onChange={(_event) => {
+                FeedbackInfo.problem_other = _event.target.value;
+            }}/>
             :
                 undefined}
                     </div>

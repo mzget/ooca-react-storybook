@@ -123,7 +123,9 @@ export class ProblemDialog extends React.Component<{
                                     floatingLabelText={WordingInfo.Feedback[_isLocal]}
                                     fullWidth={true}
                                     rows={2}
-                                    onChange={(e: Event, _value: any) => { FeedbackInfo.problem_other = _value; }} />
+                                    onChange={(_event: any) => { 
+                                        FeedbackInfo.problem_other = _event.target.value;
+                                    }} />
                                 :
                                 undefined
                         }
