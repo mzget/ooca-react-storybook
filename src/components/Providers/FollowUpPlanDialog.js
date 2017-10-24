@@ -2,13 +2,16 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-import { black } from 'material-ui/styles/colors';
+import { grey800 } from 'material-ui/styles/colors';
 import { PrimaryDialogButton, DialogHeader, ContentDialog } from '../../StyleComponents/DialogContentStyles';
+import { calcFontSize } from "../../UxUtils";
 import { WordingInfo, ProviderLocalized } from '../../Localized/WordingInfo';
 const styles = {
     radioButton: {
         marginBottom: 16,
-        color: black
+        fontSize: calcFontSize(),
+        color: grey800,
+        fontFamily: ''
     },
 };
 export class FollowUpPlanDialog extends React.Component {
@@ -34,8 +37,9 @@ export class FollowUpPlanDialog extends React.Component {
                         </div>
                         <ContentDialog>
                             <RadioButtonGroup name="followUp" style={{ textAlign: 'left' }}>
-                                <RadioButton value="light" label="Simple" style={styles.radioButton}/>
-                                <RadioButton value="not_light" label="Selected by default" style={styles.radioButton}/>
+                                <RadioButton value="follow0" label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]} labelStyle={styles.radioButton}/>
+                                <RadioButton value="follow1" label={ProviderLocalized.FollowUp.FollowUpChoices[1][isLocal]} labelStyle={styles.radioButton}/>
+                                <RadioButton value="follow2" label={ProviderLocalized.FollowUp.FollowUpChoices[2][isLocal]} labelStyle={styles.radioButton}/>
                             </RadioButtonGroup>
                         </ContentDialog>
                     </div>
