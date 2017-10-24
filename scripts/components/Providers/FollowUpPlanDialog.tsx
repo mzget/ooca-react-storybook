@@ -1,6 +1,8 @@
 //@ts-check
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
+import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
+import { black } from 'material-ui/styles/colors';
 
 import {
     PrimaryDialogButton,
@@ -9,6 +11,12 @@ import {
 } from '../../StyleComponents/DialogContentStyles';
 import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo';
 
+const styles = {
+    radioButton: {
+        marginBottom: 16,
+        color: black
+    },
+};
 export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { open: boolean }> {
     constructor(props) {
         super(props);
@@ -45,6 +53,18 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                             </DialogHeader>
                         </div>
                         <ContentDialog>
+                            <RadioButtonGroup name="followUp" style={{ textAlign: 'left' }}>
+                                <RadioButton
+                                    value="light"
+                                    label="Simple"
+                                    style={styles.radioButton}
+                                />
+                                <RadioButton
+                                    value="not_light"
+                                    label="Selected by default"
+                                    style={styles.radioButton}
+                                />
+                            </RadioButtonGroup>
                         </ContentDialog>
                     </div>
                 </Dialog>
