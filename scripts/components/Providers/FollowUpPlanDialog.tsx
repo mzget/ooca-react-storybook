@@ -7,9 +7,9 @@ import {
     DialogHeader,
     ContentDialog
 } from '../../StyleComponents/DialogContentStyles';
-import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
+import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo';
 
-export class FollowUpPlanDialog extends React.Component<{ isLocal: boolean }, { open: boolean }> {
+export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { open: boolean }> {
     constructor(props) {
         super(props);
 
@@ -31,7 +31,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: boolean }, { 
                             provider={true}
                             style={{ width: '100%' }}
                             onClick={() => { }}>
-                            {ProviderLocalized.FollowUpPlanHeader[isLocal]}
+                            {WordingInfo.Submit[isLocal]}
                         </PrimaryDialogButton>
                     ]}
                     modal={true}
@@ -41,6 +41,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: boolean }, { 
                     <div>
                         <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
                             <DialogHeader>
+                                {ProviderLocalized.FollowUp.FollowUpPlanHeader[isLocal]}
                             </DialogHeader>
                         </div>
                         <ContentDialog>

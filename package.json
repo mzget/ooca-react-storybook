@@ -3,10 +3,13 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "axios": "^0.17.0",
     "bulma": "^0.6.0",
     "material-ui": "^0.19.4",
     "react": "^16.0.0",
+    "react-collapse": "^4.0.3",
     "react-dom": "^16.0.0",
+    "react-motion": "^0.5.2",
     "react-scripts": "1.0.14",
     "styled-components": "^2.2.1"
   },
