@@ -5,7 +5,7 @@ const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
 export class FollowUp extends React.Component {
     render() {
         return (<div>
-                <FollowUpPlanDialogWithTheme />
+                <FollowUpPlanDialogWithTheme isLocal={this.props.isLocal}/>
             </div>);
     }
 }

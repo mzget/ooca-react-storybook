@@ -1,4 +1,5 @@
 /* eslint-disable */
+//@ts-check
 export const WordingInfo = {
   Skip: { TH: 'ข้าม', EN: 'Skip', },
   Submit: { TH: 'ส่ง', EN: 'Submit', },

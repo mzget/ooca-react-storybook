@@ -87,7 +87,7 @@ storiesOf('OOCA-provider-modals/Feedback', module)
   .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={true} onClose={action('close')} />);
 
 storiesOf('OOCA-provider-modals/FollowUp', module)
-  .add('FollowModal', () => <FollowUp />);
+  .add('FollowModal', () => <FollowUp isLocal={'TH'} />);
 
 storiesOf('OOCA-Button', module)
   .add('User-Primary-dialog-button', () => <Button onClick={action('clicked')}>Hello Button</Button>);

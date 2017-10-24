@@ -1,3 +1,4 @@
+//@ts-check
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 
@@ -8,7 +9,7 @@ import {
 } from '../../StyleComponents/DialogContentStyles';
 import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
 
-export class FollowUpPlanDialog extends React.Component<any, { open: boolean }> {
+export class FollowUpPlanDialog extends React.Component<{ isLocal: boolean }, { open: boolean }> {
     constructor(props) {
         super(props);
 
@@ -18,6 +19,7 @@ export class FollowUpPlanDialog extends React.Component<any, { open: boolean }> 
     }
 
     render() {
+        const { isLocal } = this.props;
         return (
             <div>
                 <Dialog
@@ -28,7 +30,9 @@ export class FollowUpPlanDialog extends React.Component<any, { open: boolean }> 
                         <PrimaryDialogButton
                             provider={true}
                             style={{ width: '100%' }}
-                            onClick={() => { }} />
+                            onClick={() => { }}>
+                            {ProviderLocalized.FollowUpPlanHeader[isLocal]}
+                        </PrimaryDialogButton>
                     ]}
                     modal={true}
                     open={this.state.open}

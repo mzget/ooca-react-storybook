@@ -6,11 +6,11 @@ import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo
 
 const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
 
-export class FollowUp extends React.Component<any, any> {
+export class FollowUp extends React.Component<{ isLocal: boolean }, any> {
     render() {
         return (
             <div>
-                <FollowUpPlanDialogWithTheme />
+                <FollowUpPlanDialogWithTheme isLocal={this.props.isLocal} />
             </div>
         );
     }
