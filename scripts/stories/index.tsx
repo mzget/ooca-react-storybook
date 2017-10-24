@@ -19,6 +19,7 @@ import {
   ThankyouDialog,
   withMuiTheme
 } from "../components/index";
+import { FollowUp } from '../components/Providers/FollowUp';
 
 import TestRSModal from '../TestRSModal';
 import { TestStory } from '../TestStory';
@@ -61,7 +62,7 @@ storiesOf('OOCA-user-modals', module)
   .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={false} onClose={action('close')} />)
   .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={false} onClose={action('close')} />);
 
-storiesOf('OOCA-provider-modals', module)
+storiesOf('OOCA-provider-modals/Feedback', module)
   .add('thumbup-dialog', () => <ThumbUpDialog isLocal={'EN'} isProvider={true} handMSGState={action('Thumb')} />)
   .add('thumbup-dialog-TH', () => <ThumbUpDialog isLocal={'TH'} isProvider={true} handMSGState={action('Thumb')} />)
   .add('thankyou-dialog', () => <ThankyouDialogWithTheme isLocal={'EN'} isProvider={true}
@@ -85,6 +86,8 @@ storiesOf('OOCA-provider-modals', module)
   .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={true} onClose={action('close')} />)
   .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={true} onClose={action('close')} />);
 
+storiesOf('OOCA-provider-modals/FollowUp', module)
+  .add('FollowModal', () => <FollowUp />);
 
 storiesOf('OOCA-Button', module)
   .add('User-Primary-dialog-button', () => <Button onClick={action('clicked')}>Hello Button</Button>);
