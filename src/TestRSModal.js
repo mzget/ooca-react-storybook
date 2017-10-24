@@ -209,8 +209,14 @@ class TestRSModal extends Component {
   }
 
   SendFeedback() {
-    const Feedback_API = (!!_BaseURL) ? `${_BaseURL}appointments/${_AppointmentID}/provider-feedback` : `${Config().api_feedback}/${(!!_AppointmentID) ? _AppointmentID : '1'}/provider-feedback`;
-
+    //const Feedback_API = (!!_BaseURL) ? `${_BaseURL}appointments/${_AppointmentID}/provider-feedback` : `${Config().api_feedback}/${(!!_AppointmentID) ? _AppointmentID : '1'}/provider-feedback`;
+    const postInfo = {
+      baseURL:( (!!_BaseURL) ? _BaseURL : Config().api_feedback ),
+      appointmentID: (!!_AppointmentID) ? _AppointmentID : 1,
+      apiTail: ( _isProvider ? 'provider' : 'user' )+'-feedback'
+    }
+    const Feedback_API = `${postInfo.baseURL}appointments/${postInfo.appointmentID}/${postInfo.apiTail}`
+    
     console.log("### FeedbackInfo :", FeedbackInfo, ' api : ', Feedback_API);
     const header = { 'Content-Type': 'application/json', 'Authorization': _Token }; //Authorization':`Bearer${'jwt token'}`
     const request = axios({ url: Feedback_API, method: 'POST', headers: header, data: FeedbackInfo, dataType: 'json', });
