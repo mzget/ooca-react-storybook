@@ -20,7 +20,8 @@
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -c .storybook -o .out",
-    "deploy": "firebase deploy"
+    "deploy": "firebase deploy",
+    "local": "cd .out/ python -m SimpleHTTPServer"
   },
   "devDependencies": {
     "@storybook/addon-actions": "3.2.12",
