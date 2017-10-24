@@ -32,11 +32,19 @@ export const Loc = {
 }
 
 export const ProviderLocalized = {
-  PleaseNote: { TH: 'โปรดทราบ', EN: 'Please note' },
+  PleaseNote: {
+    TH: 'โปรดทราบ',
+    EN: 'Please note'
+  },
   PleaseNoteDetail: {
     TH: `กรุณาส่งบันทึกสรุปการสนทนาให้ลูกค้าภายใน 15 วันหลังการปรึกษา หากเกินเวลาที่กำหนดจะไม่สามารถ
-    เรียกเก็บเงินจากลูกค้าได้`, EN: `Please submit the visit note to your client within 15 days after the session.
+    เรียกเก็บเงินจากลูกค้าได้`,
+    EN: `Please submit the visit note to your client within 15 days after the session.
   Otherwise service fee will not be collected.` },
+  FollowUpPlanHeader: {
+    TH: `โปรดเลือกการติดตามผลขั้นตอนต่อไป สำหรับลูกค้ารายนี้`,
+    EN: `What's the next step for this client ?`
+  }
 }
 
 export const SumaryAppointmet = {}
