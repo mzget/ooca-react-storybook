@@ -4,12 +4,12 @@ import Dialog from 'material-ui/Dialog';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
 import { grey800 } from 'material-ui/styles/colors';
 import { PrimaryDialogButton, DialogHeader, ContentDialog } from '../../StyleComponents/DialogContentStyles';
-import { calcFontSize } from "../../UxUtils";
+import { getFontSize } from "../../UxUtils";
 import { WordingInfo, ProviderLocalized } from '../../Localized/WordingInfo';
 const styles = {
     radioButton: {
         marginBottom: 16,
-        fontSize: calcFontSize(),
+        fontSize: getFontSize(),
         color: grey800,
         fontFamily: ''
     },
