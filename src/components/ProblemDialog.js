@@ -2,14 +2,15 @@ import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { PaddingBox, TextArea } from "../StyleComponents/Styles";
 import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader, ListDialogItem } from '../StyleComponents/DialogContentStyles';
+import { getFontSize } from '../UxUtils';
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
 import { MSGSteate } from '../AppUtils';
 const InputRadio = (props) => {
     return (<div className="control">
-            <label className="radio">
-                <input type="radio" name={props.name} style={{ display: 'inline-block' }} value={props.value} checked={props.checked} onClick={props.onClick}/>
-                <ListDialogItem style={{ paddingLeft: 10, display: 'inline-block' }}>
+            <label className="radio" style={{ display: 'flex', marginBottom: 10 }}>
+                <input type="radio" name={props.name} style={{ display: 'inline-block', marginRight: 10, fontSize: 32 }} value={props.value} checked={props.checked} onClick={props.onClick}/>
+                <ListDialogItem style={{ paddingLeft: 10, display: 'inline-block', fontSize: getFontSize() }}>
                     {props.text}
                 </ListDialogItem>
             </label>
@@ -58,7 +59,7 @@ export class ProblemDialog extends React.Component {
                         </DialogHeader>
                     </div>
                     <div style={{ paddingTop: '15px', marginBottom: '25px', padding: '0px 40px 0px 40px' }}>
-                        <div style={{ width: '50%', minWidth: '250px', textAlign: '-webkit-left' }}>
+                        <div style={{ width: '100%', minWidth: '250px', textAlign: '-webkit-left' }}>
                             {[
             { text: WordingInfo.VideoProblem[_isLocal], options: options.not_completed },
             { text: WordingInfo.VideoConnection[_isLocal], options: options.unstable },

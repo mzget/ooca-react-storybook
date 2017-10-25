@@ -29,7 +29,8 @@ export class ThankyouDialog extends React.Component {
                     handCallBack();
                 }}>
                             {WordingInfo.CallBack[isLocal]}
-                        </PrimaryDialogButton> : null}
+                        </PrimaryDialogButton>
+                : null}
 
             </div>
         ];

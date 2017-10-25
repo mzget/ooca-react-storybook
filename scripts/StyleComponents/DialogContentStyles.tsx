@@ -37,5 +37,4 @@ export const ContentDialog = styled.p.attrs({
 }) ``;
 export const ListDialogItem = styled.div.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
-    font-size: 14px;
 `;

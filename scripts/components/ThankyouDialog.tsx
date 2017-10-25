@@ -3,6 +3,7 @@
 import * as React from 'react';
 
 import Dialog from 'material-ui/Dialog';
+import { white, black } from 'material-ui/styles/colors';
 
 import { calcFontSize } from "../UxUtils";
 import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
@@ -41,7 +42,8 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
                                 handCallBack();
                             }} >
                             {WordingInfo.CallBack[isLocal]}
-                        </PrimaryDialogButton> : null
+                        </PrimaryDialogButton>
+                        : null
                 }
 
             </div>

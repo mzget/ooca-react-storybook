@@ -2,8 +2,8 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { RadioButton, RadioButtonGroup } from 'material-ui/RadioButton';
-// import FontIcon from 'material-ui/FontIcon';
-import { black, grey800, blue900 } from 'material-ui/styles/colors';
+import FontIcon from 'material-ui/FontIcon';
+import { black, grey500, grey900, blue900 } from 'material-ui/styles/colors';
 import { Collapse } from 'react-collapse';
 
 import {
@@ -16,9 +16,9 @@ import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo
 
 const styles = {
     radioButton: {
-        marginBottom: 16,
+        marginBottom: 10,
         fontSize: getFontSize(),
-        color: grey800,
+        color: grey900,
         fontFamily: 'Prompt'
     },
 };
@@ -89,6 +89,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                                 value="follow0"
                                 label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]}
                                 labelStyle={styles.radioButton}
+                                uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                 onClick={this.onValueChange}
                                 checked={(this.state.value.match("follow0")) ? true : false}
                             />
@@ -98,12 +99,14 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                                         value="follow01"
                                         label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]}
                                         labelStyle={styles.radioButton}
+                                        uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                         onClick={this.onValueChange}
                                         checked={(this.state.value == "follow01") ? true : false}
                                     />
                                     <RadioButton
                                         value="follow02"
                                         label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]}
+                                        uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                         labelStyle={styles.radioButton}
                                         onClick={this.onValueChange}
                                         checked={(this.state.value == "follow02") ? true : false}
@@ -111,6 +114,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                                     <RadioButton
                                         value="follow03"
                                         label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]}
+                                        uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                         labelStyle={styles.radioButton}
                                         onClick={this.onValueChange}
                                         checked={(this.state.value == "follow03") ? true : false}
@@ -121,6 +125,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                                 value="follow1"
                                 label={ProviderLocalized.FollowUp.FollowUpChoices[1][isLocal]}
                                 labelStyle={styles.radioButton}
+                                uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                 onClick={this.onValueChange}
                                 checked={(this.state.value == "follow1") ? true : false}
                             />
@@ -128,6 +133,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string }, { o
                                 value="follow2"
                                 label={ProviderLocalized.FollowUp.FollowUpChoices[2][isLocal]}
                                 labelStyle={styles.radioButton}
+                                uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }} >radio_button_unchecked</FontIcon>}
                                 onClick={this.onValueChange}
                                 checked={(this.state.value == "follow2") ? true : false}
                             />

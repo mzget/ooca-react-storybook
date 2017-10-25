@@ -9,7 +9,7 @@ import {
     LableDialog,
     ListDialogItem
 } from '../StyleComponents/DialogContentStyles';
-
+import { getFontSize } from '../UxUtils';
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
 
@@ -18,14 +18,14 @@ import { MSGSteate } from '../AppUtils';
 const InputRadio = (props: any) => {
     return (
         <div className="control">
-            <label className="radio">
+            <label className="radio" style={{ display: 'flex', marginBottom: 10 }}>
                 <input type="radio" name={props.name}
-                    style={{ display: 'inline-block' }}
+                    style={{ display: 'inline-block', marginRight: 10, fontSize: 32 }}
                     value={props.value}
                     checked={props.checked}
                     onClick={props.onClick}
                 />
-                <ListDialogItem style={{ paddingLeft: 10, display: 'inline-block' }}>
+                <ListDialogItem style={{ paddingLeft: 10, display: 'inline-block', fontSize: getFontSize() }}>
                     {props.text}
                 </ListDialogItem>
             </label>
@@ -101,7 +101,7 @@ export class ProblemDialog extends React.Component<{
                     </div>
                     <div style={{ paddingTop: '15px', marginBottom: '25px', padding: '0px 40px 0px 40px' }}>
                         <div style={
-                            { width: '50%', minWidth: '250px', textAlign: '-webkit-left' }
+                            { width: '100%', minWidth: '250px', textAlign: '-webkit-left' }
                         }>
                             {[
                                 { text: WordingInfo.VideoProblem[_isLocal], options: options.not_completed },
@@ -123,7 +123,7 @@ export class ProblemDialog extends React.Component<{
                                     floatingLabelText={WordingInfo.Feedback[_isLocal]}
                                     fullWidth={true}
                                     rows={2}
-                                    onChange={(_event: any) => { 
+                                    onChange={(_event: any) => {
                                         FeedbackInfo.problem_other = _event.target.value;
                                     }} />
                                 :
