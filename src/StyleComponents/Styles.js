@@ -13,4 +13,4 @@ export const PaddingBox = styled.div.attrs({ className: 'App-MessageBox' }) `
     padding: 20px 10px 20px 10px;
 `;
 export const Panel = styled.div.attrs({ className: 'panel' }) ``;
-export const TextArea = styled.textarea.attrs({ cols: 30, rows: 4, className: 'textarea full-width bottom-space' }) `outline: none; -webkit-tap-highlight-color:transparent; margin-top: 10px; font-size: 0.9rem;`;
+export const TextArea = styled.textarea.attrs({ cols: 30, rows: 4, className: 'textarea full-width bottom-space' }) `outline: none; -webkit-tap-highlight-color:transparent; font-size: 0.9rem;`;

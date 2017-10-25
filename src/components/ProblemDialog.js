@@ -53,12 +53,10 @@ export class ProblemDialog extends React.Component {
                     </div>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <PaddingBox>
-                    <div style={{ paddingTop: '20px', marginBottom: '20px' }}>
-                        <DialogHeader>
-                            {MSGSteateInfo.Problem[_isLocal]}
-                        </DialogHeader>
-                    </div>
-                    <div style={{ paddingTop: '15px', marginBottom: '25px', padding: '0px 40px 0px 40px' }}>
+                    <DialogHeader>
+                        {MSGSteateInfo.Problem[_isLocal]}
+                    </DialogHeader>
+                    <div style={{ paddingTop: '15px', padding: '0px 40px 0px 40px' }}>
                         <div style={{ width: '100%', minWidth: '250px', textAlign: '-webkit-left' }}>
                             {[
             { text: WordingInfo.VideoProblem[_isLocal], options: options.not_completed },

@@ -8,7 +8,8 @@ import { Button, Welcome } from '@storybook/react/demo';
 import { linkTo } from '@storybook/addon-links';
 import { action } from '@storybook/addon-actions';
 import { PleaseNoteDialog, ThumbUpDialog, ProblemDialog, FeedbackDialog, ThankyouDialog, withMuiTheme } from "../components/index";
-import { FollowUp } from '../components/Providers/FollowUp';
+import { FollowUpPlanDialog } from '../components/Providers/FollowUpPlanDialog';
+import { FollowUpSuccessDialog } from '../components/Providers/FollowUpSuccessDialog';
 import TestRSModal from '../TestRSModal';
 import { TestStory } from '../TestStory';
 const TestStoryWithTheme = withMuiTheme(TestStory);
@@ -16,6 +17,8 @@ const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
 const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
+const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
+const FollowUpSuccessDialogWithTheme = withMuiTheme(FollowUpSuccessDialog);
 storiesOf('Welcome', module)
     .add('to Storybook', () => <Welcome showApp={linkTo('Button')}/>);
 storiesOf('OOCA-Storybook', module)
@@ -45,7 +48,9 @@ storiesOf('OOCA-provider-modals/Feedback', module)
     .add('pleasenote-dialog', () => <PleaseNoteDialogWithTheme _isLocal={'EN'} isProvider={true} onClose={action('close')}/>)
     .add('pleasenote-dialog-TH', () => <PleaseNoteDialogWithTheme _isLocal={'TH'} isProvider={true} onClose={action('close')}/>);
 storiesOf('OOCA-provider-modals/FollowUp', module)
-    .add('FollowModal', () => <FollowUp isLocal={'EN'} onSubmit={(value) => { console.log(value); action(value); }}/>)
-    .add('FollowModal-TH', () => <FollowUp isLocal={'TH'} onSubmit={(value) => { console.log(value); action(value); }}/>);
+    .add('FollowModal', () => <FollowUpPlanDialogWithTheme isLocal={'EN'} onSubmit={(value) => { console.log(value); action(value); }}/>)
+    .add('FollowModal-TH', () => <FollowUpPlanDialogWithTheme isLocal={'TH'} onSubmit={(value) => { console.log(value); action(value); }}/>)
+    .add('FollowUpSuccess', () => <FollowUpSuccessDialogWithTheme isLocal={'EN'} isProvider={true} onClose={(value) => { console.log(value); action(value); }}/>)
+    .add('FollowUpSuccess-TH', () => <FollowUpSuccessDialogWithTheme isLocal={'TH'} isProvider={true} onClose={(value) => { console.log(value); action(value); }}/>);
 storiesOf('OOCA-Button', module)
     .add('User-Primary-dialog-button', () => <Button onClick={action('clicked')}>Hello Button</Button>);

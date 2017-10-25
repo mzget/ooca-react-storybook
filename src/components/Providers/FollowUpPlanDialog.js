@@ -45,38 +45,35 @@ export class FollowUpPlanDialog extends React.Component {
     }
     getSubChoices(id, value) {
         const { isLocal } = this.props;
-        return (<RadioButton value={value} label={ProviderLocalized.FollowUp.FollowUpSubChoices[id][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == value) ? true : false}/>);
+        return (<RadioButton key={id} value={value} label={ProviderLocalized.FollowUp.FollowUpSubChoices[id][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == value) ? true : false}/>);
     }
     render() {
         const { isLocal, onSubmit } = this.props;
-        return (<div>
-                <Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={true} style={{ width: '100%' }} onClick={() => {
+                this.setState({ open: false });
                 onSubmit(this.state.value);
             }}>
-                            {WordingInfo.Submit[isLocal]}
-                        </PrimaryDialogButton>
+                        {WordingInfo.Submit[isLocal]}
+                    </PrimaryDialogButton>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }} autoScrollBodyContent={true}>
-                    <div>
-                        <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                            <DialogHeader>
-                                {ProviderLocalized.FollowUp.FollowUpPlanHeader[isLocal]}
-                            </DialogHeader>
-                        </div>
-                        <div style={{ textAlign: 'left' }}>
-                            <RadioButton value="follow0" label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value.match("follow0")) ? true : false}/>
-                            <Collapse isOpened={this.state.isCollapse}>
-                                <div style={{ marginLeft: 32 }}>
-                                    {this.subChoices.map((element, id, arr) => {
+                <div>
+                    <DialogHeader>
+                        {ProviderLocalized.FollowUp.FollowUpPlanHeader[isLocal]}
+                    </DialogHeader>
+                    <div style={{ textAlign: 'left' }}>
+                        <RadioButton value="follow0" label={ProviderLocalized.FollowUp.FollowUpChoices[0][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value.match("follow0")) ? true : false}/>
+                        <Collapse isOpened={this.state.isCollapse}>
+                            <div style={{ marginLeft: 32 }}>
+                                {this.subChoices.map((element, id, arr) => {
             return this.getSubChoices(id, element);
         })}
-                                </div>
-                            </Collapse>
-                            <RadioButton value="follow1" label={ProviderLocalized.FollowUp.FollowUpChoices[1][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == "follow1") ? true : false}/>
-                            <RadioButton value="follow2" label={ProviderLocalized.FollowUp.FollowUpChoices[2][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == "follow2") ? true : false}/>
-                        </div>
+                            </div>
+                        </Collapse>
+                        <RadioButton value="follow1" label={ProviderLocalized.FollowUp.FollowUpChoices[1][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == "follow1") ? true : false}/>
+                        <RadioButton value="follow2" label={ProviderLocalized.FollowUp.FollowUpChoices[2][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == "follow2") ? true : false}/>
                     </div>
-                </Dialog>
-            </div>);
+                </div>
+            </Dialog>);
     }
 }

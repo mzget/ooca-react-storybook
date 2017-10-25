@@ -5,8 +5,8 @@ import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { white, black } from 'material-ui/styles/colors';
 
-import { calcFontSize } from "../UxUtils";
-import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
+import { calcFontSize, getFontSize } from "../UxUtils";
+import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
 import { } from '../StyleComponents/Styles';
 
 import { MSGSteateInfo, SendInfo, FeedbackInfo, options } from '../Localized/MessageInfo';
@@ -53,7 +53,6 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
     }
 
     render() {
-        const msgLabelFont = calcFontSize();
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
 
         return (
@@ -67,9 +66,9 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
                 onRequestClose={() => { this.setState({ open: false }) }}
             >
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                    <LableDialog style={msgLabelFont}>
+                    <ContentDialog fontsize={17}>
                         {MSGSteateInfo.Thank[isLocal]}
-                    </LableDialog>
+                    </ContentDialog>
                 </div>
             </Dialog>
         );

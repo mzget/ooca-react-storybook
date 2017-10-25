@@ -30,7 +30,9 @@ export const LableDialog = styled.label.attrs({
 }) ``;
 export const ContentDialog = styled.p.attrs({
     className: 'MSG-Lable'
-}) ``;
+}) `
+    font-size: ${props => props.fontsize ? `${props.fontsize}px` : '17px'};
+`;
 export const ListDialogItem = styled.div.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
 `;

@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
 
+import { getFontSize } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
 import { PaddingBox } from '../StyleComponents/Styles';
 import { DialogHeader } from '../StyleComponents/DialogContentStyles';
@@ -79,11 +80,9 @@ export class ThumbUpDialog extends React.Component<{ handMSGState: (data: string
                     onRequestClose={() => { this.setState({ open: false }) }}
                 >
                     <PaddingBox>
-                        <div style={{ paddingTop: '20px', marginBottom: '40px' }}>
-                            <DialogHeader>
-                                {MSGSteateInfo.Quality[isLocal]}
-                            </DialogHeader>
-                        </div>
+                        <DialogHeader fontsize={getFontSize()}>
+                            {MSGSteateInfo.Quality[isLocal]}
+                        </DialogHeader>
                         <div>
                             {
                                 this.renderThumb(isProvider)

@@ -2,7 +2,7 @@
 
 export function getFontSize() {
     let isSmall = window.innerWidth < 800;
-    return isSmall ? 17 : 24
+    return isSmall ? 14 : 24
 };
 
 export function calcFontSize() {

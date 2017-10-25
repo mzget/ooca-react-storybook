@@ -1,10 +1,11 @@
-/* eslint-disable */
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { calcFontSize, getFontSize } from "../UxUtils";
-import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
-import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
-export class PleaseNoteDialog extends React.Component {
+import FontIcon from 'material-ui/FontIcon';
+import { grey500 } from 'material-ui/styles/colors';
+import { getFontSize } from "../../UxUtils";
+import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../../StyleComponents/DialogContentStyles';
+import { WordingInfo, Loc } from '../../Localized/WordingInfo';
+export class FollowUpSuccessDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -12,26 +13,23 @@ export class PleaseNoteDialog extends React.Component {
         };
     }
     render() {
-        const { _isLocal, isProvider, onClose } = this.props;
-        const msgLabelFont = calcFontSize();
+        const { isLocal, isProvider, onClose } = this.props;
+        let imgStyle = { width: '128', height: '128' };
         return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
                 onClose();
             }}>
-                        {WordingInfo.Close[_isLocal]}
+                        {WordingInfo.Close[isLocal]}
                     </PrimaryDialogButton>,
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div>
+                    <FontIcon className="material-icons" style={{ fontSize: 96 }} color={grey500}>check_circle</FontIcon>
                     <DialogHeader>
-                        {(isProvider == true)
-            ? ProviderLocalized.PleaseNote[_isLocal]
-            : Loc.PleaseNote[_isLocal]}
+                        {WordingInfo.Success[isLocal]}
                     </DialogHeader>
                     <ContentDialog fontsize={getFontSize()}>
-                        {(isProvider == true) ?
-            ProviderLocalized.PleaseNoteDetail[_isLocal] :
-            Loc.PleaseNoteDetail[_isLocal]}
+                        {Loc.FeedbackSuccess[isLocal]}
                     </ContentDialog>
                 </div>
             </Dialog>);

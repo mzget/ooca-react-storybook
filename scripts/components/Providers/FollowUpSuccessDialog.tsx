@@ -1,15 +1,15 @@
-/* eslint-disable */
 import * as React from 'react';
-
 import Dialog from 'material-ui/Dialog';
+import FontIcon from 'material-ui/FontIcon';
+import { grey500, white, black } from 'material-ui/styles/colors';
 
-import { calcFontSize, getFontSize } from "../UxUtils";
-import { } from '../StyleComponents/Styles';
-import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
+import { getFontSize } from "../../UxUtils";
+import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../../StyleComponents/DialogContentStyles';
+import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo';
 
-import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
+import IconUp from '../../../Images/up_icon.png';
 
-export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProvider: boolean, onClose: () => void }, { open: boolean }> {
+export class FollowUpSuccessDialog extends React.Component<{ isLocal: string, isProvider: boolean, onClose: () => void }, { open: boolean }> {
     constructor(props: any) {
         super(props);
 
@@ -19,8 +19,8 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
     }
 
     render() {
-        const { _isLocal, isProvider, onClose } = this.props;
-        const msgLabelFont = calcFontSize();
+        const { isLocal, isProvider, onClose } = this.props;
+        let imgStyle = { width: '128', height: '128' };
 
         return (
             <Dialog
@@ -29,13 +29,15 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[
-                    <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }}
+                    <PrimaryDialogButton
+                        provider={isProvider}
+                        style={{ width: '100%', textAlign: 'center' }}
                         onClick={() => {
                             this.setState({ open: false });
                             onClose();
                         }}
                     >
-                        {WordingInfo.Close[_isLocal]}
+                        {WordingInfo.Close[isLocal]}
                     </PrimaryDialogButton>,
                 ]}
                 modal={true}
@@ -43,16 +45,13 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
                 onRequestClose={() => { this.setState({ open: false }) }}
             >
                 <div>
+                    <FontIcon className="material-icons" style={{ fontSize: 96 }} color={grey500}>check_circle</FontIcon>
                     <DialogHeader>
-                        {(isProvider == true)
-                            ? ProviderLocalized.PleaseNote[_isLocal]
-                            : Loc.PleaseNote[_isLocal]}
+                        {WordingInfo.Success[isLocal]}
                     </DialogHeader>
                     <ContentDialog fontsize={getFontSize()}>
                         {
-                            (isProvider == true) ?
-                                ProviderLocalized.PleaseNoteDetail[_isLocal] :
-                                Loc.PleaseNoteDetail[_isLocal]
+                            Loc.FeedbackSuccess[isLocal]
                         }
                     </ContentDialog>
                 </div>

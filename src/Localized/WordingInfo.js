@@ -11,6 +11,7 @@ export const WordingInfo = {
     VideoConnection: { TH: 'มีปัญหาการเชื่อมต่อ Video Call', EN: 'Video Call has unstable connection', },
     Others: { TH: 'อื่นๆ', EN: 'Others', },
     Close: { TH: 'ปิด', EN: 'Close', },
+    Success: { TH: 'สำเร็จ', EN: 'Success' }
 };
 export const Loc = {
     Quality: { TH: 'โปรดให้คะแนนคุณภาพบริการ', EN: 'Please rate our service', },
@@ -29,6 +30,10 @@ export const Loc = {
         TH: `ค่าบริการปรึกษาจะถูกชำระเมื่อคุณได้รับบันทึกสรุปการสนทนา`, EN: `The consultation fee will be paid after
      you've received a visit note summary from our consultant`
     },
+    FeedbackSuccess: {
+        TH: 'ส่งคำแนะนำเรียบร้อยแล้ว',
+        EN: 'Your recommendation has been submitted'
+    }
 };
 export const ProviderLocalized = {
     PleaseNote: {
