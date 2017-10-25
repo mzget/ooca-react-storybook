@@ -57,6 +57,18 @@ export const ProviderLocalized = {
                 TH: 'แจ้งลูกค้าให้เข้ารับการรักษาที่โรงพยาบาล',
                 EN: 'Refer client to the nearest hospital'
             }
+        ],
+        FollowUpSubChoices: [
+            {
+                TH: 'นัดหมายในสัปดาห์ถัดไป',
+                EN: 'Next week'
+            }, {
+                TH: 'นัดหมายในสองสัปดาห์ถัดไป',
+                EN: 'Next two week'
+            }, {
+                TH: 'นัดหมายในเดือนถัดไป',
+                EN: 'Next month'
+            }
         ]
     }
 };
