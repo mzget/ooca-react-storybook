@@ -2,17 +2,12 @@
 
 import React, { Component } from 'react';
 import './css/App.css';
-//import './css/app-ooca.css';
+import './css/ooca-custom.css';
 
 import axios from 'axios';
 import { Config } from './Configs.js';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import { defaultMuiTheme } from './components/MaterialUtils';
+import { withMuiTheme } from './components/MaterialUtils';
 import styled from 'styled-components';
-
-// import getMuiTheme from 'material-ui/styles/getMuiTheme';
-// import FlatButton from 'material-ui/FlatButton';
-// import ContentAdd from 'material-ui/svg-icons/content/add';
 
 import Dialog from 'material-ui/Dialog';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -60,6 +55,11 @@ const InputRadio = (props) => {
   );
 }
 
+const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
+const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
+const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
+const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
+
 class TestRSModal extends Component {
   constructor(props) {
     super(props);
@@ -90,9 +90,9 @@ class TestRSModal extends Component {
   // }
   render() {
     return (
-      <MuiThemeProvider muiTheme={defaultMuiTheme}>
-        <div className='message-panel'>{this.DisplayMessage(this.state.MessageState)}</div>
-      </MuiThemeProvider>
+      <div className='message-panel'>
+        {this.DisplayMessage(this.state.MessageState)}
+      </div>
     );
   }
 
@@ -131,7 +131,9 @@ class TestRSModal extends Component {
   }
 
   handMSGState(_state) {
-    this.setState({ MessageState: _state })
+    this.setState({ MessageState: _state }, () => {
+      console.log('state', this.state.MessageState);
+    })
   }
 
   handFeedbackInfo() {
@@ -164,7 +166,7 @@ class TestRSModal extends Component {
       case MSGSteate.Feedback:
         {
           return (
-            <FeedbackDialog _isLocal={_isLocal}
+            <FeedbackDialogWithTheme _isLocal={_isLocal}
               _isProvider={_isProvider}
               SendFeedback={this.SendFeedback.bind(this)}
               handMSGState={this.handMSGState.bind(this)}
@@ -173,7 +175,7 @@ class TestRSModal extends Component {
       case MSGSteate.Problem:
         {
           return (
-            <ProblemDialog
+            <ProblemDialogWithTheme
               _isLocal={_isLocal}
               _isProvider={_isProvider}
               SendFeedback={this.SendFeedback.bind(this)}
@@ -190,7 +192,7 @@ class TestRSModal extends Component {
 
       case MSGSteate.Thank:
         {
-          return (<ThankyouDialog isLocal={_isLocal} isProvider={_isProvider}
+          return (<ThankyouDialogWithTheme isLocal={_isLocal} isProvider={_isProvider}
             handCallBack={this.handCallBack.bind(this)}
             handleClose={() => {
               this.handMSGState(MSGSteate.Note);
@@ -198,7 +200,7 @@ class TestRSModal extends Component {
           );
         }
       case MSGSteate.Note: {
-        return (<PleaseNoteDialog _isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
+        return (<PleaseNoteDialogWithTheme _isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
           this.handMSGState('');
         }} />);
       }
@@ -209,7 +211,13 @@ class TestRSModal extends Component {
   }
 
   SendFeedback() {
-    const Feedback_API = (!!_BaseURL) ? `${_BaseURL}appointments/${_AppointmentID}/provider-feedback` : `${Config().api_feedback}/${(!!_AppointmentID) ? _AppointmentID : '1'}/provider-feedback`;
+    //const Feedback_API = (!!_BaseURL) ? `${_BaseURL}appointments/${_AppointmentID}/provider-feedback` : `${Config().api_feedback}/${(!!_AppointmentID) ? _AppointmentID : '1'}/provider-feedback`;
+    const postInfo = {
+      baseURL: ((!!_BaseURL) ? _BaseURL : Config().api_feedback),
+      appointmentID: (!!_AppointmentID) ? _AppointmentID : 1,
+      apiTail: (_isProvider ? 'provider' : 'user') + '-feedback'
+    }
+    const Feedback_API = `${postInfo.baseURL}appointments/${postInfo.appointmentID}/${postInfo.apiTail}`
 
     console.log("### FeedbackInfo :", FeedbackInfo, ' api : ', Feedback_API);
     const header = { 'Content-Type': 'application/json', 'Authorization': _Token }; //Authorization':`Bearer${'jwt token'}`
