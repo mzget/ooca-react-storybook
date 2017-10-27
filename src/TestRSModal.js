@@ -30,8 +30,20 @@ import { PleaseNoteDialog } from './components/PleaseNoteDialog';
 import IndeterminateDialog from './components/IndeterminateDialog';
 import { ProblemDialog } from "./components/ProblemDialog";
 import { ThankyouDialog } from "./components/ThankyouDialog";
+import { FollowUp } from './components/Providers/FollowUp';
+// import { FollowUpPlanDialog } from "./components/Providers/FollowUpPlanDialog";
+// import { FollowUpSuccessDialog } from './components/Providers/FollowUpSuccessDialog';
 
-const MSGSteate = { Quality: 'Quality', Feedback: 'Feedback', Problem: 'Problem', Thank: 'Thank', SendMSG: 'SendMSG', SendFail: 'SendFail', Note: 'Note' };
+const MSGSteate = {
+  Quality: 'Quality',
+  Feedback: 'Feedback',
+  Problem: 'Problem',
+  Thank: 'Thank',
+  SendMSG: 'SendMSG',
+  SendFail: 'SendFail',
+  Note: 'Note',
+  FollowUp: 'FollowUp'
+};
 var _isLocal;
 var _isProvider = false;
 var _AppointmentID;
@@ -59,6 +71,7 @@ const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
 const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
+const FollowUpDialogWithTheme = withMuiTheme(FollowUp);
 
 class TestRSModal extends Component {
   constructor(props) {
@@ -100,6 +113,7 @@ class TestRSModal extends Component {
     let visibleState = [MSGSteate.Quality, MSGSteate.Feedback, MSGSteate.SendMSG, MSGSteate.SendFail];
     if (_isProvider) {
       visibleState.push(MSGSteate.Note);
+      visibleState.push(MSGSteate.FollowUp);
     }
     let _isActive = visibleState.indexOf(_state) != -1;
     //1 (_state===MSGSteate.Feedback)||(_state===MSGSteate.SendMSG)||(_state===MSGSteate.Quality)
@@ -201,8 +215,16 @@ class TestRSModal extends Component {
         }
       case MSGSteate.Note: {
         return (<PleaseNoteDialogWithTheme _isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
-          this.handMSGState('');
+          if (_isProvider) {
+            this.handMSGState(MSGSteate.FollowUp);
+          }
+          else {
+            this.handMSGState('');
+          }
         }} />);
+      }
+      case MSGSteate.FollowUp: {
+        return <FollowUpDialogWithTheme />;
       }
       default: {
         return null;
@@ -236,6 +258,10 @@ class TestRSModal extends Component {
       //this.handMSGState(MSGSteate.Fail);
       this.handFeedbackInfo();
     })
+  }
+
+  submitFollowPlan() {
+
   }
 }
 
