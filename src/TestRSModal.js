@@ -219,12 +219,12 @@ class TestRSModal extends Component {
     }
     const Feedback_API = `${postInfo.baseURL}appointments/${postInfo.appointmentID}/${postInfo.apiTail}`
 
-    console.log("### FeedbackInfo :", FeedbackInfo, ' api : ', Feedback_API);
+    console.log("### FeedbackInfo :", JSON.stringify(FeedbackInfo), ' api : ', Feedback_API);
     const header = { 'Content-Type': 'application/json', 'Authorization': _Token }; //Authorization':`Bearer${'jwt token'}`
     const request = axios({ url: Feedback_API, method: 'POST', headers: header, data: FeedbackInfo, dataType: 'json', });
 
     request.then((response) => {
-      console.log("[API] FeedbackInfo : ", response);
+      console.log("FeedbackInfo success: ", response);
       if (this.state.MessageState === MSGSteate.SendMSG)
         this.handMSGState(MSGSteate.Thank);
 
