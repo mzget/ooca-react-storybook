@@ -66,7 +66,7 @@ export class ProblemDialog extends React.Component<{
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: '90%' }}
                 bodyStyle={{ textAlign: 'center', padding: 0 }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[

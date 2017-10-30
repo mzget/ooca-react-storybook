@@ -57,7 +57,7 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: '90%' }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={this.getButton()}

@@ -24,7 +24,7 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: '90%' }}
                 titleStyle={{ fontWeight: 'bold', textAlign: 'center' }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}

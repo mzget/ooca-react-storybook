@@ -55,7 +55,7 @@ export class ThumbUpDialog extends React.Component {
     render() {
         const { handMSGState, isLocal, isProvider } = this.props;
         return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
-                <Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+                <Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                     <PaddingBox>
                         <DialogHeader fontsize={getFontSize()}>
                             {MSGSteateInfo.Quality[isLocal]}

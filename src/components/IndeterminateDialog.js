@@ -21,7 +21,7 @@ const IndeterminateDialog = (props) => {
             <Dialog modal={props.isModal === undefined ? true : props.isModal}
                 open={props.isOpen === undefined ? true : props.isOpen}
                 bodyStyle={{ padding: '20px 0px 0px 0px' }}
-                contentStyle={{ maxWidth: '500px', minHeight: '271px' }}
+                contentStyle={{ maxWidth: '90%', minHeight: '271px' }}
                 autoScrollBodyContent={true} >
                 <PaddingBox>
                     <Header>{props.message}</Header>

@@ -70,7 +70,7 @@ export class ThumbUpDialog extends React.Component<{ handMSGState: (data: string
         return (
             <MuiThemeProvider muiTheme={defaultMuiTheme}>
                 <Dialog
-                    contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                    contentStyle={{ maxWidth: '90%' }}
                     bodyStyle={{ textAlign: 'center', padding: 0 }}
                     actionsContainerStyle={{ padding: 0 }}
                     actions={[

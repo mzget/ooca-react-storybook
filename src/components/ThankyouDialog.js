@@ -30,7 +30,7 @@ export class ThankyouDialog extends React.Component {
     }
     render() {
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
                     <ContentDialog fontsize={17}>
                         {MSGSteateInfo.Thank[isLocal]}

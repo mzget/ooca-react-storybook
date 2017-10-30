@@ -49,8 +49,11 @@ export class FollowUpPlanDialog extends React.Component {
     }
     render() {
         const { isLocal, onSubmit } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
-            <PrimaryDialogButton provider={true} style={{ width: '100%' }} onClick={() => {
+        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+            <PrimaryDialogButton disabled={(this.state.value !== '') ? false : true} provider={true} style={{ width: '100%' }} onClick={() => {
+                if (this.state.value === '') {
+                    return;
+                }
                 this.setState({ open: false });
                 onSubmit(this.state.value);
             }}>

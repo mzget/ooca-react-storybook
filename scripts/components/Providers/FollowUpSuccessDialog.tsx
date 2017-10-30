@@ -24,7 +24,7 @@ export class FollowUpSuccessDialog extends React.Component<{ isLocal: string, is
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: '90%' }}
                 titleStyle={{ fontWeight: 'bold', textAlign: 'center' }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}

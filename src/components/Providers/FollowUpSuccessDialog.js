@@ -15,23 +15,23 @@ export class FollowUpSuccessDialog extends React.Component {
     render() {
         const { isLocal, isProvider, onClose } = this.props;
         let imgStyle = { width: '128', height: '128' };
-        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: '90%' }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
                 onClose();
             }}>
-                {WordingInfo.Close[isLocal]}
-            </PrimaryDialogButton>,
+                        {WordingInfo.Close[isLocal]}
+                    </PrimaryDialogButton>,
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
-            <div>
-                <FontIcon className="material-icons" style={{ fontSize: 96 }} color={grey500}>check_circle</FontIcon>
-                <DialogHeader>
-                    {WordingInfo.Success[isLocal]}
-                </DialogHeader>
-                <ContentDialog fontsize={getFontSize()}>
-                    {Loc.FeedbackSuccess[isLocal]}
-                </ContentDialog>
-            </div>
-        </Dialog>);
+                <div>
+                    <FontIcon className="material-icons" style={{ fontSize: 96 }} color={grey500}>check_circle</FontIcon>
+                    <DialogHeader>
+                        {WordingInfo.Success[isLocal]}
+                    </DialogHeader>
+                    <ContentDialog fontsize={getFontSize()}>
+                        {Loc.FeedbackSuccess[isLocal]}
+                    </ContentDialog>
+                </div>
+            </Dialog>);
     }
 }
