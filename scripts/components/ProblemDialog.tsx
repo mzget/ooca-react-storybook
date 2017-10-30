@@ -9,7 +9,7 @@ import {
     LableDialog,
     ListDialogItem
 } from '../StyleComponents/DialogContentStyles';
-import { getFontSize } from '../UxUtils';
+import { getFontSize, getDialogWidth } from '../UxUtils';
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
 
@@ -66,7 +66,7 @@ export class ProblemDialog extends React.Component<{
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '90%' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 bodyStyle={{ textAlign: 'center', padding: 0 }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[

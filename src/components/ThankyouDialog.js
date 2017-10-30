@@ -1,6 +1,7 @@
 /* eslint-disable */
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
+import { getDialogWidth } from "../UxUtils";
 import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
 import { MSGSteateInfo } from '../Localized/MessageInfo';
 import { WordingInfo } from '../Localized/WordingInfo';
@@ -30,7 +31,7 @@ export class ThankyouDialog extends React.Component {
     }
     render() {
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
                     <ContentDialog fontsize={17}>
                         {MSGSteateInfo.Thank[isLocal]}

@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader } from '../StyleComponents/DialogContentStyles';
+import { getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
 import { TextArea } from '../StyleComponents/Styles';
 import { WordingInfo } from '../Localized/WordingInfo';
@@ -14,7 +15,7 @@ export class FeedbackDialog extends React.Component {
     }
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <div>
             <SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
                 SendFeedback();

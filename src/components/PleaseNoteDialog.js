@@ -1,7 +1,7 @@
 /* eslint-disable */
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { calcFontSize, getFontSize } from "../UxUtils";
+import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
 import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
 export class PleaseNoteDialog extends React.Component {
@@ -14,7 +14,7 @@ export class PleaseNoteDialog extends React.Component {
     render() {
         const { _isLocal, isProvider, onClose } = this.props;
         const msgLabelFont = calcFontSize();
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
                 onClose();

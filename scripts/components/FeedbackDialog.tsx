@@ -8,6 +8,7 @@ import {
   DialogHeader
 } from '../StyleComponents/DialogContentStyles';
 
+import { getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
 import { TextArea, PaddingBox, Panel } from '../StyleComponents/Styles';
 
@@ -33,7 +34,7 @@ export class FeedbackDialog extends React.Component<{
 
     return (
       <Dialog
-        contentStyle={{ maxWidth: '90%' }}
+        contentStyle={{ maxWidth: getDialogWidth() }}
         bodyStyle={{ textAlign: 'center' }}
         actionsContainerStyle={{ padding: 0 }}
         actions={[

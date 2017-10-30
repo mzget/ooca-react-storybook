@@ -11,7 +11,7 @@ import {
     DialogHeader,
     ContentDialog
 } from '../../StyleComponents/DialogContentStyles';
-import { getFontSize } from "../../UxUtils";
+import { getFontSize, getDialogWidth } from "../../UxUtils";
 import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo';
 
 const styles = {
@@ -26,9 +26,10 @@ const styles = {
 // checkedIcon={ <FontIcon className="material-icons" >radio_button_checked</FontIcon>}
 // uncheckedIcon={<FontIcon className="material-icons" >radio_button_unchecked</FontIcon>}
 
-export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSubmit: (value: string) => void }, { open: boolean, value: string, isCollapse: boolean }> {
+export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSubmit: (value: string | undefined) => void }, { open: boolean, value: string, isCollapse: boolean }> {
 
     subChoices = ['follow01', 'follow02', 'follow03'];
+    choices = new Map<string, string>();
 
     constructor(props) {
         super(props);
@@ -39,8 +40,16 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSub
             isCollapse: false
         }
 
+        // next_week, two_week, next_month, no, hospital
+        this.choices.set('follow01', 'next_week');
+        this.choices.set('follow02', 'two_week');
+        this.choices.set('follow03', 'next_month');
+        this.choices.set('follow1', 'no');
+        this.choices.set('follow2', 'hospital');
+
         this.onValueChange = this.onValueChange.bind(this);
         this.getSubChoices = this.getSubChoices.bind(this);
+        this.submitFollowUp = this.submitFollowUp.bind(this);
     }
 
     componentDidCatch(error, info) {
@@ -74,11 +83,21 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSub
         );
     }
 
+    submitFollowUp() {
+        const { onSubmit } = this.props;
+        if (this.state.value === '') {
+            return;
+        }
+
+        this.setState({ open: false });
+        onSubmit(this.choices.get(this.state.value));
+    }
+
     render() {
-        const { isLocal, onSubmit } = this.props;
+        const { isLocal } = this.props;
         return (
             <Dialog
-                contentStyle={{ maxWidth: '90%' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[
@@ -86,14 +105,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSub
                         disabled={(this.state.value !== '') ? false : true}
                         provider={true}
                         style={{ width: '100%' }}
-                        onClick={() => {
-                            if (this.state.value === '') {
-                                return;
-                            }
-
-                            this.setState({ open: false });
-                            onSubmit(this.state.value);
-                        }}>
+                        onClick={this.submitFollowUp}>
                         {WordingInfo.Submit[isLocal]}
                     </PrimaryDialogButton>
                 ]}

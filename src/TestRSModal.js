@@ -27,7 +27,7 @@ import { PaddingBox, Header } from './components/ModalComps';
 import { ThumbUpDialog } from './components/ThumbUpDialog';
 import { FeedbackDialog } from './components/FeedbackDialog';
 import { PleaseNoteDialog } from './components/PleaseNoteDialog';
-import IndeterminateDialog from './components/IndeterminateDialog';
+import { IndeterminateDialog } from './components/IndeterminateDialog';
 import { ProblemDialog } from "./components/ProblemDialog";
 import { ThankyouDialog } from "./components/ThankyouDialog";
 import { FollowUpPlanDialog } from "./components/Providers/FollowUpPlanDialog";
@@ -230,7 +230,7 @@ class TestRSModal extends Component {
       }
       case MSGSteate.FollowUpFinish: {
         return <FollowUpSuccessDialogWithTheme isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
-          this.handMSGState(MSGSteate.FollowUpFinish);
+          this.handMSGState('');
         }} />
       }
       default: {
@@ -268,8 +268,29 @@ class TestRSModal extends Component {
   }
 
   submitFollowPlan(data) {
-    console.log('submitFollowUp', data);
-    this.handMSGState(MSGSteate.FollowUpFinish);
+    const postInfo = {
+      baseURL: ((!!_BaseURL) ? _BaseURL : Config().api_feedback),
+      appointmentID: (!!_AppointmentID) ? _AppointmentID : 1
+    }
+    const followUp_api = `${postInfo.baseURL}appointments/${postInfo.appointmentID}/followup`;
+
+    fetch(`${followUp_api}`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': _Token
+      },
+      body: JSON.stringify({
+        followup: data
+      })
+    }).then(response => response.json())
+      .then(result => {
+        console.log('followup finish', result);
+        this.handMSGState(MSGSteate.FollowUpFinish);
+      }).catch(err => {
+        console.warn('followup fail', err);
+        this.handMSGState(MSGSteate.FollowUpFinish);
+      });
   }
 }
 

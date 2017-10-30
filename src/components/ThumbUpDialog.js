@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
-import { getFontSize } from '../UxUtils';
+import { getFontSize, getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
 import { PaddingBox } from '../StyleComponents/Styles';
 import { DialogHeader } from '../StyleComponents/DialogContentStyles';
@@ -12,7 +12,7 @@ import IconDown from '../../Images/down_icon.png';
 import IconUp from '../../Images/up_icon.png';
 import { MSGSteateInfo, FeedbackInfo } from '../Localized/MessageInfo';
 let thumbGap = 50;
-let isSmall = window.innerWidth < 800;
+let isSmall = window.innerWidth < 840;
 const msgLabelFont = { fontSize: isSmall ? '17px' : '24px' };
 let size = isSmall ? 80 : 120;
 //   background: #0478d7;
@@ -55,7 +55,7 @@ export class ThumbUpDialog extends React.Component {
     render() {
         const { handMSGState, isLocal, isProvider } = this.props;
         return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
-                <Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+                <Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                     <PaddingBox>
                         <DialogHeader fontsize={getFontSize()}>
                             {MSGSteateInfo.Quality[isLocal]}

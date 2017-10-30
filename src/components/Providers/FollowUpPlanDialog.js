@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon';
 import { grey500, grey900 } from 'material-ui/styles/colors';
 import { Collapse } from 'react-collapse';
 import { PrimaryDialogButton, DialogHeader } from '../../StyleComponents/DialogContentStyles';
-import { getFontSize } from "../../UxUtils";
+import { getFontSize, getDialogWidth } from "../../UxUtils";
 import { WordingInfo, ProviderLocalized } from '../../Localized/WordingInfo';
 const styles = {
     radioButton: {
@@ -22,13 +22,21 @@ export class FollowUpPlanDialog extends React.Component {
     constructor(props) {
         super(props);
         this.subChoices = ['follow01', 'follow02', 'follow03'];
+        this.choices = new Map();
         this.state = {
             open: true,
             value: "",
             isCollapse: false
         };
+        // next_week, two_week, next_month, no, hospital
+        this.choices.set('follow01', 'next_week');
+        this.choices.set('follow02', 'two_week');
+        this.choices.set('follow03', 'next_month');
+        this.choices.set('follow1', 'no');
+        this.choices.set('follow2', 'hospital');
         this.onValueChange = this.onValueChange.bind(this);
         this.getSubChoices = this.getSubChoices.bind(this);
+        this.submitFollowUp = this.submitFollowUp.bind(this);
     }
     componentDidCatch(error, info) {
         console.log(error, info);
@@ -47,16 +55,18 @@ export class FollowUpPlanDialog extends React.Component {
         const { isLocal } = this.props;
         return (<RadioButton key={id} value={value} label={ProviderLocalized.FollowUp.FollowUpSubChoices[id][isLocal]} labelStyle={styles.radioButton} uncheckedIcon={<FontIcon className="material-icons" style={{ color: grey500 }}>radio_button_unchecked</FontIcon>} onClick={this.onValueChange} checked={(this.state.value == value) ? true : false}/>);
     }
+    submitFollowUp() {
+        const { onSubmit } = this.props;
+        if (this.state.value === '') {
+            return;
+        }
+        this.setState({ open: false });
+        onSubmit(this.choices.get(this.state.value));
+    }
     render() {
-        const { isLocal, onSubmit } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
-            <PrimaryDialogButton disabled={(this.state.value !== '') ? false : true} provider={true} style={{ width: '100%' }} onClick={() => {
-                if (this.state.value === '') {
-                    return;
-                }
-                this.setState({ open: false });
-                onSubmit(this.state.value);
-            }}>
+        const { isLocal } = this.props;
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+            <PrimaryDialogButton disabled={(this.state.value !== '') ? false : true} provider={true} style={{ width: '100%' }} onClick={this.submitFollowUp}>
                         {WordingInfo.Submit[isLocal]}
                     </PrimaryDialogButton>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }} autoScrollBodyContent={true}>

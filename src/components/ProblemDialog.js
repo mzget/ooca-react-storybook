@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { PaddingBox, TextArea } from "../StyleComponents/Styles";
 import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader, ListDialogItem } from '../StyleComponents/DialogContentStyles';
-import { getFontSize } from '../UxUtils';
+import { getFontSize, getDialogWidth } from '../UxUtils';
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
 import { MSGSteate } from '../AppUtils';
@@ -34,7 +34,7 @@ export class ProblemDialog extends React.Component {
     ;
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[
             <div>
                         <SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
                 this.setState({ open: false });

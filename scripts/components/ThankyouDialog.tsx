@@ -5,7 +5,7 @@ import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import { white, black } from 'material-ui/styles/colors';
 
-import { calcFontSize, getFontSize } from "../UxUtils";
+import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
 import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
 import { } from '../StyleComponents/Styles';
 
@@ -57,7 +57,7 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '90%' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={this.getButton()}

@@ -2,7 +2,7 @@ import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
 import FontIcon from 'material-ui/FontIcon';
 import { grey500 } from 'material-ui/styles/colors';
-import { getFontSize } from "../../UxUtils";
+import { getFontSize, getDialogWidth } from "../../UxUtils";
 import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../../StyleComponents/DialogContentStyles';
 import { WordingInfo, Loc } from '../../Localized/WordingInfo';
 export class FollowUpSuccessDialog extends React.Component {
@@ -15,7 +15,7 @@ export class FollowUpSuccessDialog extends React.Component {
     render() {
         const { isLocal, isProvider, onClose } = this.props;
         let imgStyle = { width: '128', height: '128' };
-        return (<Dialog contentStyle={{ maxWidth: '90%' }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
                 onClose();

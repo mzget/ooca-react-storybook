@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import FontIcon from 'material-ui/FontIcon';
 import { grey500, white, black } from 'material-ui/styles/colors';
 
-import { getFontSize } from "../../UxUtils";
+import { getFontSize, getDialogWidth } from "../../UxUtils";
 import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../../StyleComponents/DialogContentStyles';
 import { WordingInfo, Loc, ProviderLocalized } from '../../Localized/WordingInfo';
 
@@ -24,7 +24,7 @@ export class FollowUpSuccessDialog extends React.Component<{ isLocal: string, is
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '90%' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 titleStyle={{ fontWeight: 'bold', textAlign: 'center' }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
