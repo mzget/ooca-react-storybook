@@ -30,9 +30,8 @@ import { PleaseNoteDialog } from './components/PleaseNoteDialog';
 import IndeterminateDialog from './components/IndeterminateDialog';
 import { ProblemDialog } from "./components/ProblemDialog";
 import { ThankyouDialog } from "./components/ThankyouDialog";
-import { FollowUp } from './components/Providers/FollowUp';
-// import { FollowUpPlanDialog } from "./components/Providers/FollowUpPlanDialog";
-// import { FollowUpSuccessDialog } from './components/Providers/FollowUpSuccessDialog';
+import { FollowUpPlanDialog } from "./components/Providers/FollowUpPlanDialog";
+import { FollowUpSuccessDialog } from './components/Providers/FollowUpSuccessDialog';
 
 const MSGSteate = {
   Quality: 'Quality',
@@ -42,7 +41,8 @@ const MSGSteate = {
   SendMSG: 'SendMSG',
   SendFail: 'SendFail',
   Note: 'Note',
-  FollowUp: 'FollowUp'
+  FollowUp: 'FollowUp',
+  FollowUpFinish: 'FollowUpFinish'
 };
 var _isLocal;
 var _isProvider = false;
@@ -71,7 +71,8 @@ const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
 const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
-const FollowUpDialogWithTheme = withMuiTheme(FollowUp);
+const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
+const FollowUpSuccessDialogWithTheme = withMuiTheme(FollowUpSuccessDialog);
 
 class TestRSModal extends Component {
   constructor(props) {
@@ -93,6 +94,7 @@ class TestRSModal extends Component {
     _BaseURL = baseURL;
 
     this.handMSGState = this.handMSGState.bind(this);
+    this.submitFollowPlan = this.submitFollowPlan.bind(this);
   }
   // componentDidMount(){
   //   let self = this;
@@ -224,7 +226,12 @@ class TestRSModal extends Component {
         }} />);
       }
       case MSGSteate.FollowUp: {
-        return <FollowUpDialogWithTheme />;
+        return <FollowUpPlanDialogWithTheme isLocal={_isLocal} onSubmit={this.submitFollowPlan} />;
+      }
+      case MSGSteate.FollowUpFinish: {
+        return <FollowUpSuccessDialogWithTheme isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
+          this.handMSGState(MSGSteate.FollowUpFinish);
+        }} />
       }
       default: {
         return null;
@@ -260,8 +267,9 @@ class TestRSModal extends Component {
     })
   }
 
-  submitFollowPlan() {
-
+  submitFollowPlan(data) {
+    console.log('submitFollowUp', data);
+    this.handMSGState(MSGSteate.FollowUpFinish);
   }
 }
 

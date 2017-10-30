@@ -22,14 +22,7 @@ export class ThankyouDialog extends React.Component {
             }}>
                     {WordingInfo.Continue[isLocal]}
                 </PrimaryDialogButton>
-                {(isProvider) ?
-                <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
-                    this.setState({ open: false });
-                    handCallBack();
-                }}>
-                            {WordingInfo.CallBack[isLocal]}
-                        </PrimaryDialogButton>
-                : null}
+                
 
             </div>
         ];
