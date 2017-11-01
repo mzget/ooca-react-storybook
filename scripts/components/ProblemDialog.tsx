@@ -20,7 +20,7 @@ const InputRadio = (props: any) => {
         <div className="control">
             <label className="radio" style={{ display: 'flex', marginBottom: 10 }}>
                 <input type="radio" name={props.name}
-                    style={{ display: 'inline-block', marginRight: 10, fontSize: 32 }}
+                    style={{ display: 'inline-block', marginRight: 10, fontSize: getFontSize() }}
                     value={props.value}
                     checked={props.checked}
                     onClick={props.onClick}
@@ -67,7 +67,7 @@ export class ProblemDialog extends React.Component<{
         return (
             <Dialog
                 contentStyle={{ maxWidth: getDialogWidth() }}
-                bodyStyle={{ textAlign: 'center', padding: 0 }}
+                bodyStyle={{ textAlign: 'center', padding: 30 }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[
                     <div>
@@ -93,11 +93,11 @@ export class ProblemDialog extends React.Component<{
                 open={this.state.open}
                 onRequestClose={() => { this.setState({ open: false }) }}
             >
-                <PaddingBox>
+                <div>
                     <DialogHeader>
                         {MSGSteateInfo.Problem[_isLocal]}
                     </DialogHeader>
-                    <div style={{ paddingTop: '15px', padding: '0px 40px 0px 40px' }}>
+                    <div style={{ textAlign: 'left' }}>
                         <div style={
                             { width: '100%', minWidth: '250px', textAlign: '-webkit-left' }
                         }>
@@ -128,7 +128,7 @@ export class ProblemDialog extends React.Component<{
                                 undefined
                         }
                     </div>
-                </PaddingBox>
+                </div>
             </Dialog>
         );
     }

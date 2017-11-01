@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { PaddingBox, TextArea } from "../StyleComponents/Styles";
+import { TextArea } from "../StyleComponents/Styles";
 import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader, ListDialogItem } from '../StyleComponents/DialogContentStyles';
 import { getFontSize, getDialogWidth } from '../UxUtils';
 import { WordingInfo } from '../Localized/WordingInfo';
@@ -9,7 +9,7 @@ import { MSGSteate } from '../AppUtils';
 const InputRadio = (props) => {
     return (<div className="control">
             <label className="radio" style={{ display: 'flex', marginBottom: 10 }}>
-                <input type="radio" name={props.name} style={{ display: 'inline-block', marginRight: 10, fontSize: 32 }} value={props.value} checked={props.checked} onClick={props.onClick}/>
+                <input type="radio" name={props.name} style={{ display: 'inline-block', marginRight: 10, fontSize: getFontSize() }} value={props.value} checked={props.checked} onClick={props.onClick}/>
                 <ListDialogItem style={{ paddingLeft: 10, display: 'inline-block', fontSize: getFontSize() }}>
                     {props.text}
                 </ListDialogItem>
@@ -34,7 +34,7 @@ export class ProblemDialog extends React.Component {
     ;
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center', padding: 30 }} actionsContainerStyle={{ padding: 0 }} actions={[
             <div>
                         <SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
                 this.setState({ open: false });
@@ -52,11 +52,11 @@ export class ProblemDialog extends React.Component {
                         </PrimaryDialogButton>
                     </div>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
-                <PaddingBox>
+                <div>
                     <DialogHeader>
                         {MSGSteateInfo.Problem[_isLocal]}
                     </DialogHeader>
-                    <div style={{ paddingTop: '15px', padding: '0px 40px 0px 40px' }}>
+                    <div style={{ textAlign: 'left' }}>
                         <div style={{ width: '100%', minWidth: '250px', textAlign: '-webkit-left' }}>
                             {[
             { text: WordingInfo.VideoProblem[_isLocal], options: options.not_completed },
@@ -73,7 +73,7 @@ export class ProblemDialog extends React.Component {
             :
                 undefined}
                     </div>
-                </PaddingBox>
+                </div>
             </Dialog>);
     }
 }
