@@ -1,6 +1,6 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import FontIcon from 'material-ui/FontIcon';
+import SvgIcon from 'material-ui/SvgIcon';
 import { grey500 } from 'material-ui/styles/colors';
 import { getFontSize, getDialogWidth } from "../../UxUtils";
 import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../../StyleComponents/DialogContentStyles';
@@ -24,7 +24,11 @@ export class FollowUpSuccessDialog extends React.Component {
                     </PrimaryDialogButton>,
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div>
-                    <FontIcon className="material-icons" style={{ fontSize: 96 }} color={grey500}>check_circle</FontIcon>
+                    <SvgIcon style={{ color: grey500, width: 96, height: 96 }}>
+                        <svg>
+                            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                        </svg>
+                    </SvgIcon>
                     <DialogHeader>
                         {WordingInfo.Success[isLocal]}
                     </DialogHeader>
