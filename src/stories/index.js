@@ -8,9 +8,9 @@ import { linkTo } from "@storybook/addon-links";
 import { storiesOf } from "@storybook/react";
 import { Button, Welcome } from "@storybook/react/demo";
 import { FeedbackDialog, PleaseNoteDialog, ProblemDialog, ThankyouDialog, ThumbUpDialog, withMuiTheme, } from "../components/index";
-import { BlockVideoServiceDialog } from "../components/Providers/BlockVideoServiceDialog";
 import { FollowUpPlanDialog } from "../components/Providers/FollowUpPlanDialog";
 import { FollowUpSuccessDialog } from "../components/Providers/FollowUpSuccessDialog";
+import ProviderIndex from "../containers/ProviderIndex";
 import TestRSModal from "../TestRSModal";
 import { TestStory } from "../TestStory";
 const TestStoryWithTheme = withMuiTheme(TestStory);
@@ -18,7 +18,6 @@ const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
 const PleaseNoteDialogWithTheme = withMuiTheme(PleaseNoteDialog);
-const BlockVideoServiceDialogWithTheme = withMuiTheme(BlockVideoServiceDialog);
 const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
 const FollowUpSuccessDialogWithTheme = withMuiTheme(FollowUpSuccessDialog);
 storiesOf("Welcome", module)
@@ -54,7 +53,7 @@ storiesOf("OOCA-provider-modals/FollowUp", module)
     .add("FollowModal-TH", () => <FollowUpPlanDialogWithTheme isLocal={"TH"} onSubmit={(value) => { console.log(value); action(value); }}/>)
     .add("FollowUpSuccess", () => <FollowUpSuccessDialogWithTheme isLocal={"EN"} isProvider={true} onClose={(value) => { console.log(value); action(value); }}/>)
     .add("FollowUpSuccess-TH", () => <FollowUpSuccessDialogWithTheme isLocal={"TH"} isProvider={true} onClose={(value) => { console.log(value); action(value); }}/>)
-    .add("BlockVideoService", () => <BlockVideoServiceDialogWithTheme isLocal={"EN"}/>)
-    .add("BlockVideoService-TH", () => <BlockVideoServiceDialogWithTheme isLocal={"TH"}/>);
+    .add("BlockVideoService", () => <ProviderIndex Local={"EN"} Show={true} onClose={() => action("close")}/>)
+    .add("BlockVideoService-TH", () => <ProviderIndex Local={"TH"} Show={true} onClose={() => action("close")}/>);
 storiesOf("OOCA-Button", module)
     .add("User-Primary-dialog-button", () => <Button onClick={action("clicked")}>Hello Button</Button>);

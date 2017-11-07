@@ -8,13 +8,21 @@ import {
 } from "../../StyleComponents/DialogContentStyles";
 import { getDialogWidth, getFontSize } from "../../UxUtils";
 
-export class BlockVideoServiceDialog extends React.Component<{ isLocal, onClose: () => void }, any> {
+export class BlockVideoServiceDialog extends React.Component<
+    { isLocal: string, isShow: boolean, onClose: () => void },
+    any> {
     constructor(props) {
         super(props);
 
         this.state = {
-            open: true,
+            open: this.props.isShow,
         };
+    }
+
+    public componentWillReceiveProps(nextProps) {
+        if (nextProps.isShow !== this.props.isShow) {
+            this.setState({ open: nextProps.isShow });
+        }
     }
 
     public render() {
@@ -29,10 +37,7 @@ export class BlockVideoServiceDialog extends React.Component<{ isLocal, onClose:
                     <PrimaryDialogButton
                         provider={true}
                         style={{ width: "100%", textAlign: "center" }}
-                        onClick={() => {
-                            this.setState({ open: false });
-                            onClose();
-                        }}
+                        onClick={onClose}
                     >
                         {WordingInfo.Close[isLocal]}
                     </PrimaryDialogButton>,
