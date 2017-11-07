@@ -53,26 +53,26 @@ export const ProviderLocalized = {
         },
         FollowUpChoices: [
             {
-                TH: 'นัดหมายติดตามผลครั้งต่อไป',
-                EN: 'Make a follow up session'
+                TH: "นัดหมายติดตามผลครั้งต่อไป",
+                EN: "Make a follow up session"
             }, {
-                TH: 'ไม่ต้องนัดหมายเพิ่ม',
-                EN: 'No need to follow up'
+                TH: "ไม่ต้องนัดหมายเพิ่ม",
+                EN: "No need to follow up"
             }, {
-                TH: 'แจ้งลูกค้าให้เข้ารับการรักษาที่โรงพยาบาล',
-                EN: 'Refer client to the nearest hospital'
+                TH: "แจ้งลูกค้าให้เข้ารับการรักษาที่โรงพยาบาล",
+                EN: "Refer client to the nearest hospital"
             }
         ],
         FollowUpSubChoices: [
             {
-                TH: 'นัดหมายในสัปดาห์ถัดไป',
-                EN: 'Next week'
+                TH: "นัดหมายในสัปดาห์ถัดไป",
+                EN: "Next week"
             }, {
-                TH: 'นัดหมายในสองสัปดาห์ถัดไป',
-                EN: 'Next two week'
+                TH: "นัดหมายในสองสัปดาห์ถัดไป",
+                EN: "Next two week"
             }, {
-                TH: 'นัดหมายในเดือนถัดไป',
-                EN: 'Next month'
+                TH: "นัดหมายในเดือนถัดไป",
+                EN: "Next month"
             }
         ]
     }
@@ -91,4 +91,4 @@ export const SumaryAppointmet = {};
 //                    VideoProblem:{TH:'Video Call ยังไม่เสร็จสมบูรณ์',EN:'Video Call session wasn’t completed',},
 //                    VideoConnection:{TH:'มีปัญหาการเชื่อมต่อ Video Call',EN:'Video Call has unstable connection',},
 //                    Others:{TH:'อื่นๆ',EN:'Others',},
-//                   } 
+//                   }
