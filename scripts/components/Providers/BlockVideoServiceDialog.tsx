@@ -42,12 +42,9 @@ export class BlockVideoServiceDialog extends React.Component<{ isLocal, onClose:
                 onRequestClose={() => { this.setState({ open: false }); }}
             >
                 <div>
-                    <DialogHeader>
-                        {WordingInfo.Success[isLocal]}
-                    </DialogHeader>
-                    <ContentDialog fontsize={getFontSize()}>
+                    <ContentDialog fontsize={17}>
                         {
-                            Loc.FeedbackSuccess[isLocal]
+                            ProviderLocalized.BlockVideoService[isLocal]
                         }
                     </ContentDialog>
                 </div>

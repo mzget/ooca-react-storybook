@@ -1,8 +1,8 @@
 import Dialog from "material-ui/Dialog";
 import * as React from "react";
-import { Loc, WordingInfo } from "../../Localized/WordingInfo";
-import { ContentDialog, DialogHeader, PrimaryDialogButton, } from "../../StyleComponents/DialogContentStyles";
-import { getDialogWidth, getFontSize } from "../../UxUtils";
+import { ProviderLocalized, WordingInfo } from "../../Localized/WordingInfo";
+import { ContentDialog, PrimaryDialogButton, } from "../../StyleComponents/DialogContentStyles";
+import { getDialogWidth } from "../../UxUtils";
 export class BlockVideoServiceDialog extends React.Component {
     constructor(props) {
         super(props);
@@ -21,11 +21,8 @@ export class BlockVideoServiceDialog extends React.Component {
                     </PrimaryDialogButton>,
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div>
-                    <DialogHeader>
-                        {WordingInfo.Success[isLocal]}
-                    </DialogHeader>
-                    <ContentDialog fontsize={getFontSize()}>
-                        {Loc.FeedbackSuccess[isLocal]}
+                    <ContentDialog fontsize={17}>
+                        {ProviderLocalized.BlockVideoService[isLocal]}
                     </ContentDialog>
                 </div>
             </Dialog>);
