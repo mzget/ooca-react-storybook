@@ -5,12 +5,12 @@ export const WordingInfo = {
   Submit: { TH: 'ส่ง', EN: 'Submit', },
   Continue: { TH: 'ดำเนินการต่อ', EN: 'Continue', },
   CallBack: { TH: 'โทรกลับ', EN: 'Call back', },
-  Feedback: { TH: 'โปรดแสดงความคิดเห็นของคุณที่นี่', EN: 'Please enter your feedback', },
-  Recommend: { TH: 'เขียนคำแนะนำ', EN: 'Write recommendations', },
-  VideoProblem: { TH: 'Video Call ยังไม่เสร็จสมบูรณ์', EN: 'Video Call session wasn’t completed', },
-  VideoConnection: { TH: "มีปัญหาการเชื่อมต่อ Video Call", EN: "Video Call has unstable connection", },
-  Others: { TH: "อื่นๆ", EN: "Others", },
-  Close: { TH: "ปิด", EN: "Close", },
+  Feedback: { TH: 'โปรดแสดงความคิดเห็นของคุณที่นี่', EN: "Please enter your feedback", },
+  Recommend: { TH: "เขียนคำแนะนำ", EN: "Write recommendations", },
+  VideoProblem: { TH: "Video Call ยังไม่เสร็จสมบูรณ์", EN: "Video Call session wasn’t completed" },
+  VideoConnection: { TH: "มีปัญหาการเชื่อมต่อ Video Call", EN: "Video Call has unstable connection" },
+  Others: { TH: "อื่นๆ", EN: "Others" },
+  Close: { TH: "ปิด", EN: "Close" },
   Success: { TH: "สำเร็จ", EN: "Success" },
 };
 
@@ -78,8 +78,10 @@ export const ProviderLocalized = {
     ],
   },
   BlockVideoService: {
-    EN: `Video call service not available on mobile platform`,
-    TH: `บริการ วิดีโอคอล ยังไม่พร้อมใช้งาน บนแพลตฟอร์มโทรศัพท์มือถือ`,
+    EN: `Video call service not available on mobile platform.
+    Please use Chrome, Firefox browser on your computer.`,
+    TH: `บริการ วิดีโอคอล ยังไม่พร้อมใช้งาน บนแพลตฟอร์มโทรศัพท์มือถือ
+    กรุณาเข้าใช้งานจาก เบราว์เซอร์ Chrome, Firefox บน คอมพิวเตอร์`,
   },
 };
 

@@ -102,7 +102,9 @@ storiesOf("OOCA-provider-modals/FollowUp", module)
       onClose={(value) => { console.log(value); action(value); }} />)
   .add("FollowUpSuccess-TH", () =>
     <FollowUpSuccessDialogWithTheme isLocal={"TH"} isProvider={true}
-      onClose={(value) => { console.log(value); action(value); }} />)
+      onClose={(value) => { console.log(value); action(value); }} />);
+
+storiesOf("OOCA-Alerts", module)
   .add("BlockVideoService", () => <ProviderIndex Local={"EN"} Show={true} onClose={() => action("close")} />)
   .add("BlockVideoService-TH", () => <ProviderIndex Local={"TH"} Show={true} onClose={() => action("close")} />);
 
