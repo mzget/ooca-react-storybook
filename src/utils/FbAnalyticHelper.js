@@ -1,12 +1,14 @@
-/// <reference path='../../node_modules/immutable/dist/immutable.d.ts'/>
 import { Record } from "immutable";
 // const FB = window.FB;
 export const AnalyticConst = {
     LOG_APPOINTMENT: "appointment",
+    LOG_APPOINTMENT_DETAILS: "appointment_details",
+    LOG_DOCTOR_ID: "doctor",
 };
 const LogRecord = Record({
     content_id: AnalyticConst.LOG_APPOINTMENT,
     currency: "THB",
+    doctor: "",
     price: 0,
     visitDuration: 0,
 });
@@ -15,11 +17,14 @@ let newlog;
 export function logVisitDuration(duration) {
     newlog = initLogRecord.set("visitDuration", duration);
 }
+export function logDoctor(doctorId) {
+    newlog = newlog.set("doctor", doctorId);
+}
 export function logPrice(price) {
     newlog = newlog.set("price", price);
 }
 export function submitLog() {
-    logAddedToCartEvent(newlog.get("content_id"), newlog.get("visitDuration"), newlog.get("currency"), newlog.get("price"));
+    logAddedToCartEvent(newlog.get("content_id"), newlog.get("visitDuration"), newlog.get("currency"), newlog.get("price"), newlog.get("doctor"));
 }
 /**
  * This function will log AddedToCart App Event
@@ -29,13 +34,13 @@ export function submitLog() {
  * @param {string} currency
  * @param {number} price
  */
-function logAddedToCartEvent(contentId, contentType, currency, price) {
+function logAddedToCartEvent(contentId, contentType, currency, price, details) {
     const params = {};
-    // params[window.FB.AppEvents.ParameterNames.CONTENT] = contentData;
     params[window.FB.AppEvents.ParameterNames.CONTENT_ID] = contentId;
     params[window.FB.AppEvents.ParameterNames.CONTENT_TYPE] = contentType;
     params[window.FB.AppEvents.ParameterNames.CURRENCY] = currency;
-    console.log(window.FB.AppEvents.ParameterNames);
+    params[AnalyticConst.LOG_DOCTOR_ID] = details;
+    // console.log(window.FB.AppEvents.ParameterNames);
     console.log("logAddedToCartEvent", params);
     window.FB.AppEvents.logEvent(window.FB.AppEvents.EventNames.ADDED_TO_CART, price, params);
 }
