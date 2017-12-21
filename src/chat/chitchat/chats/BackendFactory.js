@@ -56,11 +56,11 @@ export class BackendFactory {
             try {
                 // @ get connector server.
                 let msg = {};
-                msg["uid"] = uid;
+                msg.uid = uid;
                 msg["x-api-key"] = getConfig().Stalk.apiKey;
                 msg["x-api-version"] = getConfig().Stalk.apiVersion;
                 msg["x-app-id"] = getConfig().Stalk.appId;
-                let connector = yield StalkFactory.geteEnter(this.stalk, msg);
+                const connector = yield StalkFactory.geteEnter(this.stalk, msg);
                 let params = { host: connector.host, port: connector.port, reconnect: false };
                 yield StalkFactory.handshake(this.stalk, params);
                 return yield connector;
@@ -73,7 +73,7 @@ export class BackendFactory {
     checkIn(user) {
         return __awaiter(this, void 0, void 0, function* () {
             let msg = {};
-            msg["user"] = user;
+            msg.user = user;
             msg["x-api-key"] = getConfig().Stalk.apiKey;
             msg["x-api-version"] = getConfig().Stalk.apiVersion;
             msg["x-app-id"] = getConfig().Stalk.appId;
@@ -92,8 +92,8 @@ export class BackendFactory {
      * @memberof BackendFactory
      */
     logout() {
-        let self = this;
-        let promise = new Promise(function exe(resolve, reject) {
+        const self = this;
+        const promise = new Promise(function exe(resolve, reject) {
             self.checkOut();
             if (!!self.pushDataListener) {
                 self.pushDataListener = null;

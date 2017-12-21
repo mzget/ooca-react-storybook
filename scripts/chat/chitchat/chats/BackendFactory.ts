@@ -91,7 +91,7 @@ export class BackendFactory {
     }
 
     /**
-     * @returns 
+     * @returns
      *
      * @memberof BackendFactory
      */

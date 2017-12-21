@@ -1,6 +1,6 @@
-import { IDictionary, StalkFactory } from "stalk-js";
-import { BackendFactory } from "../chitchat/chats/BackendFactory";
-import { ChitChatFactory } from "../chitchat/chats/ChitChatFactory";
+import { IDictionary, StalkFactory, ServerImplemented } from "stalk-js";
+import { BackendFactory } from "../../chats/BackendFactory";
+import { ChitChatFactory } from "../../chats/ChitChatFactory";
 const getConfig = () => ChitChatFactory.getInstance().config;
 
 export async function updateUser(user: any) {
@@ -8,13 +8,14 @@ export async function updateUser(user: any) {
         const backendFactory = BackendFactory.getInstance();
         const server = backendFactory.getServer();
 
-        const msg = {};
+        const msg = {} as IDictionary;
         msg.user = user;
         msg["x-api-key"] = getConfig().Stalk.apiKey;
         msg["x-api-version"] = getConfig().Stalk.apiVersion;
         msg["x-app-id"] = getConfig().Stalk.appId;
-        return await server.getLobby().updateUser(msg);
+
+        return await (server as ServerImplemented).getLobby().updateUser(msg);
     } catch (ex) {
-        throw new Error("updateUser fail: " + ex.message);
+        return ex.message;
     }
 }
