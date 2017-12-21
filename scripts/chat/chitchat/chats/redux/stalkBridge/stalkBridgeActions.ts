@@ -4,24 +4,21 @@
  * This is pure function action for redux app.
  */
 
+import { createAction } from "redux-actions";
+
 import { BackendFactory } from "../../BackendFactory";
 import * as StalkNotificationAction from "./stalkNotificationActions";
 import * as StalkPushActions from "./stalkPushActions";
 
-import { createAction } from "redux-actions";
-
 import { StalkAccount, RoomAccessData } from "../../../shared/Stalk";
 
+import { PushHandler } from "../../../actions/PushHandler";
 import { ChitChatFactory } from "../../ChitChatFactory";
 const getStore = () => ChitChatFactory.getInstance().store;
 
 export const getSessionToken = () => {
     const backendFactory = BackendFactory.getInstance();
     return getStore().getState().stalkReducer.stalkToken;
-};
-export const getRoomDAL = () => {
-    const backendFactory = BackendFactory.getInstance();
-    return backendFactory.dataManager.roomDAL;
 };
 const onGetContactProfileFail = (contact_id: string) => { };
 
@@ -52,9 +49,12 @@ export function stalkLogin(user: StalkAccount) {
                             backendFactory.getServerListener();
                             backendFactory.subscriptions();
                             StalkNotificationAction.regisNotifyNewMessageEvent();
-                            StalkPushActions.stalkPushInit();
+                            StalkPushActions.stalkPushInit(PushHandler);
 
-                            getStore().dispatch({ type: STALK_INIT_SUCCESS, payload: { token: result.token, user: user } });
+                            getStore().dispatch({
+                                type: STALK_INIT_SUCCESS,
+                                payload: { token: result.token, user: user }
+                            });
                         } else {
                             console.warn("Stalk subscription fail: ");
                             getStore().dispatch({ type: STALK_INIT_FAILURE, payload: "Realtime service unavailable." });

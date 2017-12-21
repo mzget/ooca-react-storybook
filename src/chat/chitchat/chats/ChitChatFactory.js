@@ -10,6 +10,9 @@ export class ChitChatFactory {
             ChitChatFactory.instance = new ChitChatFactory();
             return ChitChatFactory.instance;
         }
+        else {
+            return ChitChatFactory.instance;
+        }
     }
     initStore(_store) {
         this.store = _store;

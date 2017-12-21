@@ -11,19 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+import { createAction } from "redux-actions";
 import { BackendFactory } from "../../BackendFactory";
 import * as StalkNotificationAction from "./stalkNotificationActions";
 import * as StalkPushActions from "./stalkPushActions";
-import { createAction } from "redux-actions";
+import { PushHandler } from "../../../actions/PushHandler";
 import { ChitChatFactory } from "../../ChitChatFactory";
 const getStore = () => ChitChatFactory.getInstance().store;
 export const getSessionToken = () => {
     const backendFactory = BackendFactory.getInstance();
     return getStore().getState().stalkReducer.stalkToken;
-};
-export const getRoomDAL = () => {
-    const backendFactory = BackendFactory.getInstance();
-    return backendFactory.dataManager.roomDAL;
 };
 const onGetContactProfileFail = (contact_id) => { };
 export const STALK_INIT = "STALK_INIT";
@@ -49,8 +46,11 @@ export function stalkLogin(user) {
                             backendFactory.getServerListener();
                             backendFactory.subscriptions();
                             StalkNotificationAction.regisNotifyNewMessageEvent();
-                            StalkPushActions.stalkPushInit();
-                            getStore().dispatch({ type: STALK_INIT_SUCCESS, payload: { token: result.token, user: user } });
+                            StalkPushActions.stalkPushInit(PushHandler);
+                            getStore().dispatch({
+                                type: STALK_INIT_SUCCESS,
+                                payload: { token: result.token, user: user }
+                            });
                         }
                         else {
                             console.warn("Stalk subscription fail: ");

@@ -7,13 +7,7 @@
 import { BackendFactory } from "../../BackendFactory";
 import { Push } from "../../PushDataListener";
 
-export function stalkPushInit() {
+export function stalkPushInit(onPushHandler: (dataEvent: Push) => void) {
     const pushDataListener = BackendFactory.getInstance().pushDataListener;
-    pushDataListener.addPushEvents(onPush_handler);
-}
-
-function onPush_handler(dataEvent) {
-    let push = dataEvent as Push;
-
-    console.log(`onPush_handler :`, push);
+    pushDataListener.addPushEvents(onPushHandler);
 }

@@ -1,24 +1,22 @@
-import { combineReducers, createStore } from "redux";
+import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 
 import { stalkReducer, StalkInitState } from "./chat/chitchat/chats/redux/stalkBridge/stalkReducer";
+import { stalkUserReducer, StalkUserState } from "./chat/chitchat/actions/users/UserReducer";
 
 export function getInitialState() {
     const initState = {
         stalkReducer: new StalkInitState(),
+        stalkUserReducer: new StalkUserState(),
     };
     return initState;
 }
 
-function todos(state = [], action) {
-    switch (action.type) {
-        case "ADD_TODO":
-            return state;
-        case "COMPLETE_TODO":
-            return state;
-        default:
-            return state;
-    }
+const middlewares = [] as any[];
+
+if (process.env.NODE_ENV === `development`) {
+    const { logger } = require(`redux-logger`);
+    middlewares.push(logger);
 }
 
-const reducer = combineReducers({ todos, stalkReducer }, getInitialState);
-export const store = createStore(reducer);
+const reducer = combineReducers({ stalkReducer, stalkUserReducer }, getInitialState);
+export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer);
