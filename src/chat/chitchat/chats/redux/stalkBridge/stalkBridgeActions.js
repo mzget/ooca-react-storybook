@@ -15,7 +15,7 @@ import { createAction } from "redux-actions";
 import { BackendFactory } from "../../BackendFactory";
 import * as StalkNotificationAction from "./stalkNotificationActions";
 import * as StalkPushActions from "./stalkPushActions";
-import { PushHandler } from "../../../actions/PushHandler";
+import { OnPushHandler, OnDataHandler } from "../../../actions/DataHandler";
 import { ChitChatFactory } from "../../ChitChatFactory";
 const getStore = () => ChitChatFactory.getInstance().store;
 export const getSessionToken = () => {
@@ -46,7 +46,8 @@ export function stalkLogin(user) {
                             backendFactory.getServerListener();
                             backendFactory.subscriptions();
                             StalkNotificationAction.regisNotifyNewMessageEvent();
-                            StalkPushActions.stalkPushInit(PushHandler);
+                            StalkPushActions.stalkPushInit(OnPushHandler);
+                            backendFactory.dataListener.addUserEvents(OnDataHandler);
                             getStore().dispatch({
                                 type: STALK_INIT_SUCCESS,
                                 payload: { token: result.token, user: user }

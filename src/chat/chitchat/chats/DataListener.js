@@ -26,6 +26,8 @@ export class DataListener {
             let id = this.onAddRoomAccessEventListeners.indexOf(listener);
             this.onAddRoomAccessEventListeners.splice(id, 1);
         };
+        //#region User.
+        this.userEventListeners = [];
         this.dataManager = dataManager;
     }
     addOnChatListener(listener) {
@@ -96,13 +98,25 @@ export class DataListener {
             });
         }
     }
-    //#region User.
+    addUserEvents(fx) {
+        this.userEventListeners.push(fx);
+    }
+    removeUserEvents(fx) {
+        let id = this.userEventListeners.indexOf(fx);
+        this.userEventListeners.splice(id, 1);
+    }
     onUserLogin(dataEvent) {
         console.log("user loged In", JSON.stringify(dataEvent));
         this.dataManager.onUserLogin(dataEvent);
+        this.userEventListeners.map((fx) => {
+            fx(dataEvent);
+        });
     }
     onUserLogout(dataEvent) {
         console.log("user loged Out", JSON.stringify(dataEvent));
+        this.userEventListeners.map((fx) => {
+            fx(dataEvent);
+        });
     }
     onUserUpdateImageProfile(dataEvent) {
         let jsonObj = JSON.parse(JSON.stringify(dataEvent));

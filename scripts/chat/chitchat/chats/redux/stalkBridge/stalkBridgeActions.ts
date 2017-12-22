@@ -12,7 +12,8 @@ import * as StalkPushActions from "./stalkPushActions";
 
 import { StalkAccount, RoomAccessData } from "../../../shared/Stalk";
 
-import { PushHandler } from "../../../actions/PushHandler";
+import { OnPushHandler, OnDataHandler } from "../../../actions/DataHandler";
+
 import { ChitChatFactory } from "../../ChitChatFactory";
 const getStore = () => ChitChatFactory.getInstance().store;
 
@@ -49,7 +50,8 @@ export function stalkLogin(user: StalkAccount) {
                             backendFactory.getServerListener();
                             backendFactory.subscriptions();
                             StalkNotificationAction.regisNotifyNewMessageEvent();
-                            StalkPushActions.stalkPushInit(PushHandler);
+                            StalkPushActions.stalkPushInit(OnPushHandler);
+                            backendFactory.dataListener.addUserEvents(OnDataHandler);
 
                             getStore().dispatch({
                                 type: STALK_INIT_SUCCESS,

@@ -6,6 +6,8 @@ import { Room } from "./models/Room";
 import { DataManager } from "./DataManager";
 import { ServerListener } from "./ServerEventListener";
 
+export type DataEvent = (data: any) => void;
+
 export class DataListener implements ServerListener, ChatEvents.IChatServerEvents {
     private dataManager: DataManager;
 
@@ -128,12 +130,28 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
 
     //#region User.
 
-    onUserLogin(dataEvent) {
+    public userEventListeners = [] as DataEvent[];
+    public addUserEvents(fx: DataEvent) {
+        this.userEventListeners.push(fx);
+    }
+    public removeUserEvents(fx: DataEvent) {
+        let id = this.userEventListeners.indexOf(fx);
+        this.userEventListeners.splice(id, 1);
+    }
+
+    private onUserLogin(dataEvent) {
         console.log("user loged In", JSON.stringify(dataEvent));
         this.dataManager.onUserLogin(dataEvent);
+
+        this.userEventListeners.map((fx) => {
+            fx(dataEvent);
+        });
     }
-    onUserLogout(dataEvent) {
+    private onUserLogout(dataEvent) {
         console.log("user loged Out", JSON.stringify(dataEvent));
+        this.userEventListeners.map((fx) => {
+            fx(dataEvent);
+        });
     }
 
     onUserUpdateImageProfile(dataEvent) {
