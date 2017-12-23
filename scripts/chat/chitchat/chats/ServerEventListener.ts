@@ -4,7 +4,9 @@
  * Support by@ nattapon.r@live.com
  */
 
-import { StalkEvents, ChatEvents, PushEvents, IPomelo } from "stalk-js";
+import { IPomelo } from "stalk-js";
+import { StalkEvents, ChatEvents, PushEvents, CallingEvents } from "stalk-js/lib/browser/";
+
 export abstract class ServerListener implements StalkEvents.IServerListener, StalkEvents.BaseEvents {
     onUserLogin;
     onUserLogout;
@@ -115,8 +117,8 @@ export class ServerEventListener {
      * @type {StalkEvents.IRTCListener}
      * @memberof ServerEventListener
      */
-    private rtcCallListener: StalkEvents.IRTCListener;
-    public addRTCListener(obj: StalkEvents.IRTCListener): void {
+    private rtcCallListener: CallingEvents.ICallingListener;
+    public addRTCListener(obj: CallingEvents.ICallingListener): void {
         this.rtcCallListener = obj;
 
         let self = this;

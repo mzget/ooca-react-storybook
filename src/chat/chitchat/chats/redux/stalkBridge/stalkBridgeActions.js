@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
@@ -11,28 +12,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { createAction } from "redux-actions";
-import { BackendFactory } from "../../BackendFactory";
-import * as StalkNotificationAction from "./stalkNotificationActions";
-import * as StalkPushActions from "./stalkPushActions";
-import { OnPushHandler, OnDataHandler } from "../../../actions/DataHandler";
-import { ChitChatFactory } from "../../ChitChatFactory";
-const getStore = () => ChitChatFactory.getInstance().store;
-export const getSessionToken = () => {
-    const backendFactory = BackendFactory.getInstance();
+Object.defineProperty(exports, "__esModule", { value: true });
+const redux_actions_1 = require("redux-actions");
+const BackendFactory_1 = require("../../BackendFactory");
+const StalkNotificationAction = require("./stalkNotificationActions");
+const StalkPushActions = require("./stalkPushActions");
+const DataHandler_1 = require("../../../actions/DataHandler");
+const ChitChatFactory_1 = require("../../ChitChatFactory");
+const getStore = () => ChitChatFactory_1.ChitChatFactory.getInstance().store;
+exports.getSessionToken = () => {
+    const backendFactory = BackendFactory_1.BackendFactory.getInstance();
     return getStore().getState().stalkReducer.stalkToken;
 };
 const onGetContactProfileFail = (contact_id) => { };
-export const STALK_INIT = "STALK_INIT";
-export const STALK_INIT_SUCCESS = "STALK_INIT_SUCCESS";
-export const STALK_INIT_FAILURE = "STALK_INIT_FAILURE";
-const stalkInitFailure = createAction(STALK_INIT_FAILURE, (payload) => payload);
-export function stalkLogin(user) {
+exports.STALK_INIT = "STALK_INIT";
+exports.STALK_INIT_SUCCESS = "STALK_INIT_SUCCESS";
+exports.STALK_INIT_FAILURE = "STALK_INIT_FAILURE";
+const stalkInitFailure = redux_actions_1.createAction(exports.STALK_INIT_FAILURE, (payload) => payload);
+function stalkLogin(user) {
     if (getStore().getState().stalkReducer.isInit) {
         return;
     }
-    getStore().dispatch({ type: STALK_INIT });
-    const backendFactory = BackendFactory.createInstance();
+    getStore().dispatch({ type: exports.STALK_INIT });
+    const backendFactory = BackendFactory_1.BackendFactory.createInstance();
     backendFactory.dataManager.addContactInfoFailEvents(onGetContactProfileFail);
     backendFactory.stalkInit().then(socket => {
         backendFactory.handshake(user._id).then((connector) => {
@@ -46,48 +48,49 @@ export function stalkLogin(user) {
                             backendFactory.getServerListener();
                             backendFactory.subscriptions();
                             StalkNotificationAction.regisNotifyNewMessageEvent();
-                            StalkPushActions.stalkPushInit(OnPushHandler);
-                            backendFactory.dataListener.addUserEvents(OnDataHandler);
+                            StalkPushActions.stalkPushInit(DataHandler_1.OnPushHandler);
+                            backendFactory.dataListener.addUserEvents(DataHandler_1.OnDataHandler);
                             getStore().dispatch({
-                                type: STALK_INIT_SUCCESS,
+                                type: exports.STALK_INIT_SUCCESS,
                                 payload: { token: result.token, user: user }
                             });
                         }
                         else {
                             console.warn("Stalk subscription fail: ");
-                            getStore().dispatch({ type: STALK_INIT_FAILURE, payload: "Realtime service unavailable." });
+                            getStore().dispatch({ type: exports.STALK_INIT_FAILURE, payload: "Realtime service unavailable." });
                         }
                     }).catch(err => {
                         console.warn("Stalk subscription fail: ", err);
-                        getStore().dispatch({ type: STALK_INIT_FAILURE, payload: err });
+                        getStore().dispatch({ type: exports.STALK_INIT_FAILURE, payload: err });
                     });
                 }
                 else {
                     console.warn("Joined chat-server fail: ", result);
-                    getStore().dispatch({ type: STALK_INIT_FAILURE });
+                    getStore().dispatch({ type: exports.STALK_INIT_FAILURE });
                 }
             }).catch(err => {
                 console.warn("Cannot checkIn", err);
-                getStore().dispatch({ type: STALK_INIT_FAILURE });
+                getStore().dispatch({ type: exports.STALK_INIT_FAILURE });
             });
         }).catch(err => {
             console.warn("Hanshake fail: ", err);
-            getStore().dispatch({ type: STALK_INIT_FAILURE });
+            getStore().dispatch({ type: exports.STALK_INIT_FAILURE });
         });
     }).catch(err => {
         console.log("StalkInit Fail.", err);
         getStore().dispatch(stalkInitFailure("Realtime service unavailable."));
     });
 }
-export const STALK_ON_SOCKET_RECONNECT = "STALK_ON_SOCKET_RECONNECT";
-export const STALK_ON_SOCKET_CLOSE = "STALK_ON_SOCKET_CLOSE";
-export const STALK_ON_SOCKET_DISCONNECTED = "STALK_ON_SOCKET_DISCONNECTED";
-const onStalkSocketReconnect = (data) => ({ type: STALK_ON_SOCKET_RECONNECT, payload: data });
-const onStalkSocketClose = (data) => ({ type: STALK_ON_SOCKET_CLOSE, payload: data });
-const onStalkSocketDisconnected = (data) => ({ type: STALK_ON_SOCKET_DISCONNECTED, payload: data });
+exports.stalkLogin = stalkLogin;
+exports.STALK_ON_SOCKET_RECONNECT = "STALK_ON_SOCKET_RECONNECT";
+exports.STALK_ON_SOCKET_CLOSE = "STALK_ON_SOCKET_CLOSE";
+exports.STALK_ON_SOCKET_DISCONNECTED = "STALK_ON_SOCKET_DISCONNECTED";
+const onStalkSocketReconnect = (data) => ({ type: exports.STALK_ON_SOCKET_RECONNECT, payload: data });
+const onStalkSocketClose = (data) => ({ type: exports.STALK_ON_SOCKET_CLOSE, payload: data });
+const onStalkSocketDisconnected = (data) => ({ type: exports.STALK_ON_SOCKET_DISCONNECTED, payload: data });
 function stalkManageConnection() {
     return __awaiter(this, void 0, void 0, function* () {
-        const backendFactory = BackendFactory.getInstance();
+        const backendFactory = BackendFactory_1.BackendFactory.getInstance();
         let server = backendFactory.getServer();
         if (!!server) {
             server.onSocketReconnect = (data) => {
@@ -103,9 +106,10 @@ function stalkManageConnection() {
         return yield server;
     });
 }
-export function stalkLogout() {
+function stalkLogout() {
     return __awaiter(this, void 0, void 0, function* () {
-        const backendFactory = BackendFactory.getInstance();
+        const backendFactory = BackendFactory_1.BackendFactory.getInstance();
         return yield backendFactory.logout();
     });
 }
+exports.stalkLogout = stalkLogout;

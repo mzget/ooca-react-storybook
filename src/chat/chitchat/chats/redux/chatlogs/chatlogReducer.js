@@ -1,12 +1,14 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
  * This is pure function for redux app.
  */
-import * as ChatlogsActions from "../chatlogs/chatlogsActions";
-import * as ChatlogRxActions from "../chatlogs/chatlogRxActions";
-import * as actions from "../../../../actions/";
-import { Record } from "immutable";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ChatlogsActions = require("../chatlogs/chatlogsActions");
+const ChatlogRxActions = require("../chatlogs/chatlogRxActions");
+const actions = require("../../../../actions/");
+const immutable_1 = require("immutable");
 // Define our record defaults
 const defaultChatlog = {
     isFetching: false,
@@ -16,7 +18,7 @@ const defaultChatlog = {
     error: ""
 };
 // Create our FruitRecord class
-export class ChatLogRecorder extends Record(defaultChatlog) {
+class ChatLogRecorder extends immutable_1.Record(defaultChatlog) {
     // Set the params. This will also typecheck when we instantiate a new FruitRecord
     constructor(params) {
         super(params);
@@ -28,8 +30,9 @@ export class ChatLogRecorder extends Record(defaultChatlog) {
         return super.get(value);
     }
 }
-export const chatlogInitRecord = new ChatLogRecorder(defaultChatlog);
-export function chatlogReducer(state = chatlogInitRecord, action) {
+exports.ChatLogRecorder = ChatLogRecorder;
+exports.chatlogInitRecord = new ChatLogRecorder(defaultChatlog);
+function chatlogReducer(state = exports.chatlogInitRecord, action) {
     switch (action.type) {
         case ChatlogsActions.ON_CHATLOG_CHANGE: {
             let prev = state.get("chatsLog");
@@ -86,3 +89,4 @@ export function chatlogReducer(state = chatlogInitRecord, action) {
             return state;
     }
 }
+exports.chatlogReducer = chatlogReducer;

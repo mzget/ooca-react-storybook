@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -6,17 +7,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { createAction } from "redux-actions";
-import { BackendFactory } from "../../chats/BackendFactory";
-import { chitchatFactory } from "../../../Chitchat";
-const getConfig = () => chitchatFactory.config;
-const store = () => chitchatFactory.getStore();
-export const FETCH_USERS_PAYLOAD = "FETCH_USERS_PAYLOAD";
-const fetchUsersPayloadSuccess = createAction(FETCH_USERS_PAYLOAD, payload => payload);
-export function getUsersPayload() {
+Object.defineProperty(exports, "__esModule", { value: true });
+const redux_actions_1 = require("redux-actions");
+const BackendFactory_1 = require("../../chats/BackendFactory");
+const Chitchat_1 = require("../../../Chitchat");
+const getConfig = () => Chitchat_1.chitchatFactory.config;
+const store = () => Chitchat_1.chitchatFactory.getStore();
+exports.FETCH_USERS_PAYLOAD = "FETCH_USERS_PAYLOAD";
+const fetchUsersPayloadSuccess = redux_actions_1.createAction(exports.FETCH_USERS_PAYLOAD, payload => payload);
+function getUsersPayload() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const backendFactory = BackendFactory.getInstance();
+            const backendFactory = BackendFactory_1.BackendFactory.getInstance();
             const server = backendFactory.getServer();
             const msg = {};
             msg["x-api-key"] = getConfig().Stalk.apiKey;
@@ -33,4 +35,5 @@ export function getUsersPayload() {
         }
     });
 }
-export default getUsersPayload;
+exports.getUsersPayload = getUsersPayload;
+exports.default = getUsersPayload;

@@ -1,4 +1,6 @@
-export const textType = /text.*/;
-export const imageType = /image.*/;
-export const videoType = /video.*/;
-export const file = /application.*/;
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.textType = /text.*/;
+exports.imageType = /image.*/;
+exports.videoType = /video.*/;
+exports.file = /application.*/;

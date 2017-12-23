@@ -1,10 +1,15 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 ;
-export class OnlineUser {
+class OnlineUser {
 }
+exports.OnlineUser = OnlineUser;
 ;
-export class UserTransaction {
+class UserTransaction {
 }
+exports.UserTransaction = UserTransaction;
 ;
-export class ChitChatAccount {
+class ChitChatAccount {
 }
+exports.ChitChatAccount = ChitChatAccount;
 ;

@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
@@ -11,20 +12,21 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import * as async from "async";
-import * as Rx from "rxjs";
-import { BackendFactory } from "./BackendFactory";
-import { ChatEvents } from "stalk-js";
-import * as CryptoHelper from "./utils/CryptoHelper";
-import * as chatroomService from "./services/chatroomService";
-import { SecureServiceFactory } from "./secure/secureServiceFactory";
-import { MessageType } from "../shared/Message";
+Object.defineProperty(exports, "__esModule", { value: true });
+const async = require("async");
+const Rx = require("rxjs");
+const BackendFactory_1 = require("./BackendFactory");
+const stalk_js_1 = require("stalk-js");
+const CryptoHelper = require("./utils/CryptoHelper");
+const chatroomService = require("./services/chatroomService");
+const secureServiceFactory_1 = require("./secure/secureServiceFactory");
+const Message_1 = require("../shared/Message");
 // import { imagesPath } from "../consts/StickerPath";
-import { ChitChatFactory } from "./ChitChatFactory";
-const getConfig = () => ChitChatFactory.getInstance().config;
-const getStore = () => ChitChatFactory.getInstance().store;
-export const ON_MESSAGE_CHANGE = "ON_MESSAGE_CHANGE";
-export class ChatRoomComponent {
+const ChitChatFactory_1 = require("./ChitChatFactory");
+const getConfig = () => ChitChatFactory_1.ChitChatFactory.getInstance().config;
+const getStore = () => ChitChatFactory_1.ChitChatFactory.getInstance().store;
+exports.ON_MESSAGE_CHANGE = "ON_MESSAGE_CHANGE";
+class ChatRoomComponent {
     constructor() {
         this.updateMessageQueue = new Array();
         this.saveMessages = (chatMessages, message) => {
@@ -33,14 +35,14 @@ export class ChatRoomComponent {
             self.dataManager.messageDAL.saveData(self.roomId, chatMessages)
                 .then(chats => {
                 if (!!self.chatroomDelegate) {
-                    self.chatroomDelegate(ChatEvents.ON_CHAT, message);
-                    self.chatroomDelegate(ON_MESSAGE_CHANGE, chatMessages);
+                    self.chatroomDelegate(stalk_js_1.ChatEvents.ON_CHAT, message);
+                    self.chatroomDelegate(exports.ON_MESSAGE_CHANGE, chatMessages);
                 }
             });
         };
         console.log("ChatRoomComponent: constructor");
-        this.secure = SecureServiceFactory.getService();
-        let backendFactory = BackendFactory.getInstance();
+        this.secure = secureServiceFactory_1.SecureServiceFactory.getService();
+        let backendFactory = BackendFactory_1.BackendFactory.getInstance();
         this.dataManager = backendFactory.dataManager;
         this.dataListener = backendFactory.dataListener;
         this.dataListener.addOnChatListener(this.onChat.bind(this));
@@ -73,7 +75,7 @@ export class ChatRoomComponent {
         this.dataManager.messageDAL.getData(this.roomId)
             .then((chats) => {
             let chatMessages = (!!chats && Array.isArray(chats)) ? chats : new Array();
-            if (message.type === MessageType[MessageType.Text]) {
+            if (message.type === Message_1.MessageType[Message_1.MessageType.Text]) {
                 CryptoHelper.decryptionText(message)
                     .then(decoded => {
                     self.saveMessages(chatMessages, message);
@@ -95,7 +97,7 @@ export class ChatRoomComponent {
         else {
             console.log("this msg come from other room.");
             if (!!this.outsideRoomDelegete) {
-                this.outsideRoomDelegete(ChatEvents.ON_CHAT, message);
+                this.outsideRoomDelegete(stalk_js_1.ChatEvents.ON_CHAT, message);
             }
         }
     }
@@ -116,7 +118,7 @@ export class ChatRoomComponent {
             });
             let results = yield this.dataManager.messageDAL.saveData(room_id, chatMessages);
             if (!!this.chatroomDelegate) {
-                this.chatroomDelegate(ON_MESSAGE_CHANGE, results);
+                this.chatroomDelegate(exports.ON_MESSAGE_CHANGE, results);
             }
         });
     }
@@ -128,7 +130,7 @@ export class ChatRoomComponent {
         let self = this;
         let myMessagesArr = JSON.parse(JSON.stringify(dataEvent.data));
         self.chatMessages.forEach((originalMsg, id, arr) => {
-            if (BackendFactory.getInstance().dataManager.isMySelf(originalMsg.sender)) {
+            if (BackendFactory_1.BackendFactory.getInstance().dataManager.isMySelf(originalMsg.sender)) {
                 myMessagesArr.some((myMsg, index, array) => {
                     if (originalMsg._id === myMsg._id) {
                         originalMsg.readers = myMsg.readers;
@@ -147,7 +149,7 @@ export class ChatRoomComponent {
                 let prom = new Promise((resolve, reject) => {
                     let chats = messages.slice(0);
                     async.forEach(chats, function iterator(chat, result) {
-                        if (chat.type === MessageType[MessageType.Text]) {
+                        if (chat.type === Message_1.MessageType[Message_1.MessageType.Text]) {
                             if (getConfig().appConfig.encryption === true) {
                                 self.secure.decryption(chat.body).then(function (res) {
                                     chat.body = res;
@@ -247,7 +249,7 @@ export class ChatRoomComponent {
                         histories = value.result;
                         if (histories.length > 0) {
                             async.forEach(histories, function (chat, cb) {
-                                if (chat.type === MessageType[MessageType.Text]) {
+                                if (chat.type === Message_1.MessageType[Message_1.MessageType.Text]) {
                                     if (getConfig().appConfig.encryption === true) {
                                         self.secure.decryption(chat.body).then(function (res) {
                                             chat.body = res;
@@ -393,7 +395,7 @@ export class ChatRoomComponent {
     }
     updateReadMessages() {
         let self = this;
-        let backendFactory = BackendFactory.getInstance();
+        let backendFactory = BackendFactory_1.BackendFactory.getInstance();
         async.map(self.chatMessages, function itorator(message, resultCb) {
             if (!backendFactory.dataManager.isMySelf(message.sender)) {
                 let chatroomApi = backendFactory.getServer().getChatRoomAPI();
@@ -408,13 +410,13 @@ export class ChatRoomComponent {
         return __awaiter(this, void 0, void 0, function* () {
             let self = this;
             let res = yield self.getTopEdgeMessageTime();
-            let backendFactory = BackendFactory.getInstance();
+            let backendFactory = BackendFactory_1.BackendFactory.getInstance();
             let chatroomApi = backendFactory.getServer().getChatRoomAPI();
             chatroomApi.getMessagesReaders(res.toString());
         });
     }
     getMemberProfile(member, callback) {
-        let server = BackendFactory.getInstance().getServer();
+        let server = BackendFactory_1.BackendFactory.getInstance().getServer();
         if (server) {
             server.getMemberProfile(member._id, callback);
         }
@@ -431,3 +433,4 @@ export class ChatRoomComponent {
         ChatRoomComponent.instance = null;
     }
 }
+exports.ChatRoomComponent = ChatRoomComponent;

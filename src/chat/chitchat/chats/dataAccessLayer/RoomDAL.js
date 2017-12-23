@@ -1,10 +1,12 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
  *  RoomDAL.ts
  */
-import * as localForage from "localforage";
-export class RoomDAL {
+Object.defineProperty(exports, "__esModule", { value: true });
+const localForage = require("localforage");
+class RoomDAL {
     constructor() {
         this.store = localForage.createInstance({
             name: "rooms"
@@ -26,3 +28,4 @@ export class RoomDAL {
         return this.store.keys();
     }
 }
+exports.RoomDAL = RoomDAL;

@@ -1,2 +1,5 @@
-export class MessageImp {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class MessageImp {
 }
+exports.MessageImp = MessageImp;

@@ -1,4 +1,4 @@
-import { IDictionary, StalkFactory, ServerImplemented } from "stalk-js";
+import { IDictionary, ServerImp } from "stalk-js";
 import { BackendFactory } from "../../chats/BackendFactory";
 import { ChitChatFactory } from "../../chats/ChitChatFactory";
 const getConfig = () => ChitChatFactory.getInstance().config;
@@ -14,7 +14,7 @@ export async function updateUser(user: any) {
         msg["x-api-version"] = getConfig().Stalk.apiVersion;
         msg["x-app-id"] = getConfig().Stalk.appId;
 
-        return await (server as ServerImplemented).getLobby().updateUser(msg);
+        return await (server as ServerImp).getLobby().updateUser(msg);
     } catch (ex) {
         return ex.message;
     }

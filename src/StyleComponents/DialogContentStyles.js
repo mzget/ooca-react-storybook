@@ -1,6 +1,8 @@
+"use strict";
 /* eslint-disable */
-import styled from "styled-components";
-export const PrimaryDialogButton = styled.div.attrs({
+Object.defineProperty(exports, "__esModule", { value: true });
+const styled_components_1 = require("styled-components");
+exports.PrimaryDialogButton = styled_components_1.default.div.attrs({
     className: props => props.provider ? 'provider-button-primary no-bottom-space' : 'button-primary no-bottom-space'
 }) `
     flex:1;
@@ -10,7 +12,7 @@ export const PrimaryDialogButton = styled.div.attrs({
     text-align: center;
     font-family: 'Prompt', sans-serif;
 `;
-export const SecondaryDialogButton = styled.div.attrs({
+exports.SecondaryDialogButton = styled_components_1.default.div.attrs({
     className: 'bottom-space-micro'
 }) `
     flex:1;
@@ -21,18 +23,18 @@ export const SecondaryDialogButton = styled.div.attrs({
     font-family: 'Prompt', sans-serif;
     color: #0057b8;
 `;
-export const DialogHeader = styled.h2.attrs({ className: 'text-center' }) `
+exports.DialogHeader = styled_components_1.default.h2.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
     color: black;
 `;
-export const LableDialog = styled.label.attrs({
+exports.LableDialog = styled_components_1.default.label.attrs({
     className: 'MSG-Lable'
 }) ``;
-export const ContentDialog = styled.p.attrs({
+exports.ContentDialog = styled_components_1.default.p.attrs({
     className: 'MSG-Lable'
 }) `
     font-size: ${props => props.fontsize ? `${props.fontsize}px` : '17px'};
 `;
-export const ListDialogItem = styled.div.attrs({ className: 'text-center' }) `
+exports.ListDialogItem = styled_components_1.default.div.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
 `;

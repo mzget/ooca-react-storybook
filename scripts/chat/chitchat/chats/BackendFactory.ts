@@ -3,7 +3,7 @@
  *
  */
 
-import { Stalk, IDictionary, API, Utils, StalkEvents, StalkFactory, ServerImplemented } from "stalk-js";
+import { stalkjs, ServerImp, IDictionary, ServerParam } from "stalk-js";
 import { DataManager } from "./DataManager";
 import { DataListener } from "./DataListener";
 import { PushDataListener } from "./PushDataListener";
@@ -26,7 +26,7 @@ export class BackendFactory {
         return BackendFactory.instance;
     }
 
-    stalk: ServerImplemented;
+    stalk: ServerImp;
     serverEventsListener: ServerEventListener;
     pushDataListener: PushDataListener;
     dataManager: DataManager;
@@ -34,7 +34,7 @@ export class BackendFactory {
     // chatLogComp: ChatsLogComponent;
 
     constructor() {
-        console.log("BackendFactory:");
+        console.log("BackendFactory:", stalkjs);
 
         this.pushDataListener = new PushDataListener();
         this.dataManager = new DataManager();
@@ -52,8 +52,8 @@ export class BackendFactory {
     }
 
     async stalkInit() {
-        this.stalk = StalkFactory.create(getConfig().Stalk.chat, getConfig().Stalk.port);
-        let socket = await StalkFactory.init(this.stalk);
+        this.stalk = stalkjs.create(getConfig().Stalk.chat, getConfig().Stalk.port);
+        let socket = await stalkjs.init(this.stalk);
         return socket;
     }
 
@@ -65,10 +65,10 @@ export class BackendFactory {
             msg["x-api-key"] = getConfig().Stalk.apiKey;
             msg["x-api-version"] = getConfig().Stalk.apiVersion;
             msg["x-app-id"] = getConfig().Stalk.appId;
-            const connector = await StalkFactory.geteEnter(this.stalk, msg);
+            const connector = await stalkjs.geteEnter(this.stalk, msg);
 
-            let params = { host: connector.host, port: connector.port, reconnect: false } as Stalk.ServerParam;
-            await StalkFactory.handshake(this.stalk, params);
+            let params = { host: connector.host, port: connector.port, reconnect: false } as ServerParam;
+            await stalkjs.handshake(this.stalk, params);
 
             return await connector;
         } catch (ex) {
@@ -82,12 +82,12 @@ export class BackendFactory {
         msg["x-api-key"] = getConfig().Stalk.apiKey;
         msg["x-api-version"] = getConfig().Stalk.apiVersion;
         msg["x-app-id"] = getConfig().Stalk.appId;
-        let result = await StalkFactory.checkIn(this.stalk, msg);
+        let result = await stalkjs.checkIn(this.stalk, msg);
         return result;
     }
 
     private async checkOut() {
-        await StalkFactory.checkOut(this.stalk);
+        await stalkjs.checkOut(this.stalk);
     }
 
     /**
@@ -100,11 +100,11 @@ export class BackendFactory {
         const promise = new Promise(function exe(resolve, reject) {
             self.checkOut();
 
-            if (!!self.pushDataListener) { self.pushDataListener = null; }
-            if (!!self.dataManager) { self.dataManager = null; }
-            if (!!self.dataListener) { self.dataListener = null; }
+            if (!!self.pushDataListener) { delete self.pushDataListener; }
+            if (!!self.dataManager) { delete self.dataManager; }
+            if (!!self.dataListener) { delete self.dataListener; }
 
-            BackendFactory.instance = null;
+            delete BackendFactory.instance;
             resolve();
         });
 

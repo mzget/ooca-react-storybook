@@ -4,6 +4,8 @@
  * This is pure function for redux app.
  */
 
+///<reference path='../../../../../../node_modules/immutable/dist/immutable.d.ts'/>
+
 import * as StalkBridgeActions from "./stalkBridgeActions";
 import * as StalkNotificationActions from "./stalkNotificationActions";
 
@@ -20,7 +22,7 @@ import { Record } from "immutable";
 export const StalkInitState = Record({
     isInit: false,
     isFetching: false,
-    state: null,
+    state: "",
     notiMessage: null,
     stalkToken: "",
     user: null,

@@ -1,10 +1,12 @@
-import * as Rx from "rxjs/Rx";
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Rx = require("rxjs/Rx");
 const { ajax } = Rx.Observable;
-import { ChitChatFactory } from "../ChitChatFactory";
-import { chitchat_headers } from "../utils/chitchatServiceUtils";
-const getConfig = () => ChitChatFactory.getInstance().config;
-const authReducer = () => ChitChatFactory.getInstance().authStore;
-export function getTeamProfile(token, team_id) {
+const ChitChatFactory_1 = require("../ChitChatFactory");
+const chitchatServiceUtils_1 = require("../utils/chitchatServiceUtils");
+const getConfig = () => ChitChatFactory_1.ChitChatFactory.getInstance().config;
+const authReducer = () => ChitChatFactory_1.ChitChatFactory.getInstance().authStore;
+function getTeamProfile(token, team_id) {
     return Rx.Observable.ajax({
         url: `${getConfig().api.user}/teamProfile?team_id=${team_id}`,
         method: "GET",
@@ -14,7 +16,8 @@ export function getTeamProfile(token, team_id) {
         }
     });
 }
-export function setOrgChartId(token, user, team_id, orgChartId) {
+exports.getTeamProfile = getTeamProfile;
+function setOrgChartId(token, user, team_id, orgChartId) {
     return Rx.Observable.ajax({
         method: "POST",
         url: `${getConfig().api.user}/setOrgChartId`,
@@ -30,27 +33,31 @@ export function setOrgChartId(token, user, team_id, orgChartId) {
         }
     });
 }
-export function updateTeamProfile(user_id, team_id, profile) {
+exports.setOrgChartId = setOrgChartId;
+function updateTeamProfile(user_id, team_id, profile) {
     return Rx.Observable.ajax({
         method: "POST",
         url: `${getConfig().api.user}/teamProfile/${team_id}/${user_id}`,
         body: JSON.stringify({
             profile: profile
         }),
-        headers: chitchat_headers()
+        headers: chitchatServiceUtils_1.chitchat_headers()
     });
 }
-export function fetchUser(username) {
+exports.updateTeamProfile = updateTeamProfile;
+function fetchUser(username) {
     return ajax({
         method: "GET",
         url: `${getConfig().api.user}/?username=${username}`,
-        headers: chitchat_headers()
+        headers: chitchatServiceUtils_1.chitchat_headers()
     });
 }
-export function suggestUser(username, team_id) {
+exports.fetchUser = fetchUser;
+function suggestUser(username, team_id) {
     return ajax({
         method: "GET",
         url: `${getConfig().api.user}/suggest/?username=${username}&team_id=${team_id}`,
-        headers: chitchat_headers()
+        headers: chitchatServiceUtils_1.chitchat_headers()
     });
 }
+exports.suggestUser = suggestUser;

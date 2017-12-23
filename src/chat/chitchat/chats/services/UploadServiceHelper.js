@@ -1,9 +1,11 @@
-import { queue } from "async";
-import { ChitChatFactory } from "../ChitChatFactory";
-const config = ChitChatFactory.getInstance().config;
-export function manageUploadQueue(files, target_api, onFinished, speedCallBack = false, onSpeedCallBack) {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const async_1 = require("async");
+const ChitChatFactory_1 = require("../ChitChatFactory");
+const config = ChitChatFactory_1.ChitChatFactory.getInstance().config;
+function manageUploadQueue(files, target_api, onFinished, speedCallBack = false, onSpeedCallBack) {
     let results = [];
-    let q = queue(function (task, callback) {
+    let q = async_1.queue(function (task, callback) {
         console.log("queue worker");
         uploadFile(task, target_api).then(url => {
             results.push(url);
@@ -27,6 +29,7 @@ export function manageUploadQueue(files, target_api, onFinished, speedCallBack =
     //     console.log('finished processing bar');
     // });
 }
+exports.manageUploadQueue = manageUploadQueue;
 function uploadFile(file, target_api) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
@@ -78,7 +81,7 @@ function uploadFile(file, target_api) {
         xhr.send(formdata);
     });
 }
-export function uploadImageChat(formdata) {
+function uploadImageChat(formdata) {
     return new Promise((resolve, reject) => {
         let xhr = new XMLHttpRequest();
         xhr.open('POST', config.api.fileUpload);
@@ -127,3 +130,4 @@ export function uploadImageChat(formdata) {
         xhr.send(formdata);
     });
 }
+exports.uploadImageChat = uploadImageChat;

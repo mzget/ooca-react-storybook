@@ -1,13 +1,15 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
  * This is pure function for redux app.
  */
-import * as immutable from "immutable";
-import { ON_EARLY_MESSAGE_READY, SEND_MESSAGE_FAILURE, GET_NEWER_MESSAGE_SUCCESS, ON_MESSAGE_CHANGED } from "./chatroomActions";
-import * as chatroomRxActions from "./chatroomRxEpic";
-import * as chatroomActions from "./chatroomActions";
-import { GET_ALL_CHATROOM_SUCCESS } from "../../../../actions/chatlistsRx";
+Object.defineProperty(exports, "__esModule", { value: true });
+const immutable = require("immutable");
+const chatroomActions_1 = require("./chatroomActions");
+const chatroomRxActions = require("./chatroomRxEpic");
+const chatroomActions = require("./chatroomActions");
+const chatlistsRx_1 = require("../../../../actions/chatlistsRx");
 // Define our record defaults
 const chatroomDefaults = {
     isFetching: false,
@@ -24,7 +26,7 @@ const chatroomDefaults = {
     chatrooms: []
 };
 // Create our FruitRecord class
-export class ChatRoomRecoder extends immutable.Record(chatroomDefaults) {
+class ChatRoomRecoder extends immutable.Record(chatroomDefaults) {
     // Set the params. This will also typecheck when we instantiate a new FruitRecord
     constructor(params) {
         super(params);
@@ -36,10 +38,11 @@ export class ChatRoomRecoder extends immutable.Record(chatroomDefaults) {
         return super.get(value);
     }
 }
-export const chatRoomRecoder = new ChatRoomRecoder(chatroomDefaults);
-export const chatroomReducer = (state = chatRoomRecoder, action) => {
+exports.ChatRoomRecoder = ChatRoomRecoder;
+exports.chatRoomRecoder = new ChatRoomRecoder(chatroomDefaults);
+exports.chatroomReducer = (state = exports.chatRoomRecoder, action) => {
     switch (action.type) {
-        case GET_ALL_CHATROOM_SUCCESS: {
+        case chatlistsRx_1.GET_ALL_CHATROOM_SUCCESS: {
             return state.set("chatrooms", action.payload);
         }
         case chatroomActions.JOIN_ROOM_FAILURE: {
@@ -71,20 +74,20 @@ export const chatroomReducer = (state = chatRoomRecoder, action) => {
             return state.set("state", chatroomRxActions.CHATROOM_UPLOAD_FILE_SUCCESS)
                 .set("responseFile", action.payload);
         }
-        case SEND_MESSAGE_FAILURE: {
+        case chatroomActions_1.SEND_MESSAGE_FAILURE: {
             let payload = action.payload;
-            let nextState = state.set("state", SEND_MESSAGE_FAILURE)
+            let nextState = state.set("state", chatroomActions_1.SEND_MESSAGE_FAILURE)
                 .set("isFetching", false)
                 .set("error", payload);
             return nextState;
         }
-        case ON_MESSAGE_CHANGED: {
+        case chatroomActions_1.ON_MESSAGE_CHANGED: {
             let payload = action.payload;
             return state.set("messages", payload);
         }
-        case ON_EARLY_MESSAGE_READY: {
+        case chatroomActions_1.ON_EARLY_MESSAGE_READY: {
             let payload = action.payload;
-            return state.set("state", ON_EARLY_MESSAGE_READY)
+            return state.set("state", chatroomActions_1.ON_EARLY_MESSAGE_READY)
                 .set("earlyMessageReady", payload);
         }
         case chatroomActions.LOAD_EARLY_MESSAGE_SUCCESS: {
@@ -96,7 +99,7 @@ export const chatroomReducer = (state = chatRoomRecoder, action) => {
             let payload = action.payload;
             return state.set("messages", payload);
         }
-        case GET_NEWER_MESSAGE_SUCCESS: {
+        case chatroomActions_1.GET_NEWER_MESSAGE_SUCCESS: {
             let payload = action.payload;
             return state.set("messages", payload);
         }

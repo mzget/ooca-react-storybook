@@ -1,4 +1,6 @@
-export class ChitChatFactory {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+class ChitChatFactory {
     constructor() {
         this.appStore = { appState: "active" }; // active, background, inactive
     }
@@ -37,3 +39,4 @@ export class ChitChatFactory {
         this.appStore = store;
     }
 }
+exports.ChitChatFactory = ChitChatFactory;

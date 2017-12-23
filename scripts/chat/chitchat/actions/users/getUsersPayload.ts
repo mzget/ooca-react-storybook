@@ -1,5 +1,6 @@
 import { createAction } from "redux-actions";
-import { IDictionary, StalkFactory, ServerImplemented } from "stalk-js";
+import { IDictionary, ServerImp } from "stalk-js";
+
 import { BackendFactory } from "../../chats/BackendFactory";
 import { chitchatFactory } from "../../../Chitchat";
 const getConfig = () => chitchatFactory.config;
@@ -18,7 +19,7 @@ export async function getUsersPayload() {
         msg["x-api-version"] = getConfig().Stalk.apiVersion;
         msg["x-app-id"] = getConfig().Stalk.appId;
 
-        const result = await (server as ServerImplemented).getLobby().getUsersPayload(msg);
+        const result = await (server as ServerImp).getLobby().getUsersPayload(msg);
         if (result.code == 200) {
             store().dispatch(fetchUsersPayloadSuccess(result.data.value));
         }

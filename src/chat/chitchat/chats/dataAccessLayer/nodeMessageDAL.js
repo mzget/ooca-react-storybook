@@ -1,5 +1,7 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 const store = require("react-native-simple-store");
-export class NodeMessageDAL {
+class NodeMessageDAL {
     getData(rid) {
         return store.get(rid);
     }
@@ -13,3 +15,4 @@ export class NodeMessageDAL {
     clearData(next) {
     }
 }
+exports.NodeMessageDAL = NodeMessageDAL;

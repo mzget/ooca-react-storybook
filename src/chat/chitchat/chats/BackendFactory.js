@@ -1,3 +1,4 @@
+"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
@@ -10,15 +11,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { StalkFactory } from "stalk-js";
-import { DataManager } from "./DataManager";
-import { DataListener } from "./DataListener";
-import { PushDataListener } from "./PushDataListener";
+Object.defineProperty(exports, "__esModule", { value: true });
+const stalk_js_1 = require("stalk-js");
+const DataManager_1 = require("./DataManager");
+const DataListener_1 = require("./DataListener");
+const PushDataListener_1 = require("./PushDataListener");
 // import { ChatsLogComponent } from "./ChatslogComponent";
-import { ServerEventListener } from "./ServerEventListener";
-import { ChitChatFactory } from "./ChitChatFactory";
-const getConfig = () => ChitChatFactory.getInstance().config;
-export class BackendFactory {
+const ServerEventListener_1 = require("./ServerEventListener");
+const ChitChatFactory_1 = require("./ChitChatFactory");
+const getConfig = () => ChitChatFactory_1.ChitChatFactory.getInstance().config;
+class BackendFactory {
     static getInstance() {
         return BackendFactory.instance;
     }
@@ -30,10 +32,10 @@ export class BackendFactory {
     }
     // chatLogComp: ChatsLogComponent;
     constructor() {
-        console.log("BackendFactory:");
-        this.pushDataListener = new PushDataListener();
-        this.dataManager = new DataManager();
-        this.dataListener = new DataListener(this.dataManager);
+        console.log("BackendFactory:", stalk_js_1.stalkjs);
+        this.pushDataListener = new PushDataListener_1.PushDataListener();
+        this.dataManager = new DataManager_1.DataManager();
+        this.dataListener = new DataListener_1.DataListener(this.dataManager);
     }
     getServer() {
         if (this.stalk._isConnected) {
@@ -46,8 +48,8 @@ export class BackendFactory {
     }
     stalkInit() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.stalk = StalkFactory.create(getConfig().Stalk.chat, getConfig().Stalk.port);
-            let socket = yield StalkFactory.init(this.stalk);
+            this.stalk = stalk_js_1.stalkjs.create(getConfig().Stalk.chat, getConfig().Stalk.port);
+            let socket = yield stalk_js_1.stalkjs.init(this.stalk);
             return socket;
         });
     }
@@ -60,9 +62,9 @@ export class BackendFactory {
                 msg["x-api-key"] = getConfig().Stalk.apiKey;
                 msg["x-api-version"] = getConfig().Stalk.apiVersion;
                 msg["x-app-id"] = getConfig().Stalk.appId;
-                const connector = yield StalkFactory.geteEnter(this.stalk, msg);
+                const connector = yield stalk_js_1.stalkjs.geteEnter(this.stalk, msg);
                 let params = { host: connector.host, port: connector.port, reconnect: false };
-                yield StalkFactory.handshake(this.stalk, params);
+                yield stalk_js_1.stalkjs.handshake(this.stalk, params);
                 return yield connector;
             }
             catch (ex) {
@@ -77,13 +79,13 @@ export class BackendFactory {
             msg["x-api-key"] = getConfig().Stalk.apiKey;
             msg["x-api-version"] = getConfig().Stalk.apiVersion;
             msg["x-app-id"] = getConfig().Stalk.appId;
-            let result = yield StalkFactory.checkIn(this.stalk, msg);
+            let result = yield stalk_js_1.stalkjs.checkIn(this.stalk, msg);
             return result;
         });
     }
     checkOut() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield StalkFactory.checkOut(this.stalk);
+            yield stalk_js_1.stalkjs.checkOut(this.stalk);
         });
     }
     /**
@@ -96,15 +98,15 @@ export class BackendFactory {
         const promise = new Promise(function exe(resolve, reject) {
             self.checkOut();
             if (!!self.pushDataListener) {
-                self.pushDataListener = null;
+                delete self.pushDataListener;
             }
             if (!!self.dataManager) {
-                self.dataManager = null;
+                delete self.dataManager;
             }
             if (!!self.dataListener) {
-                self.dataListener = null;
+                delete self.dataListener;
             }
-            BackendFactory.instance = null;
+            delete BackendFactory.instance;
             resolve();
         });
         return promise;
@@ -115,7 +117,7 @@ export class BackendFactory {
     // }
     getServerListener() {
         if (!this.serverEventsListener) {
-            this.serverEventsListener = new ServerEventListener(this.stalk.getSocket());
+            this.serverEventsListener = new ServerEventListener_1.ServerEventListener(this.stalk.getSocket());
         }
         return this.serverEventsListener;
     }
@@ -125,3 +127,4 @@ export class BackendFactory {
         this.serverEventsListener.addPushListener(this.pushDataListener);
     }
 }
+exports.BackendFactory = BackendFactory;

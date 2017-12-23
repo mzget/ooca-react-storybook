@@ -86,47 +86,6 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
         this.onAddRoomAccessEventListeners.map(value => value(dataEvent));
     }
 
-    onCreateGroupSuccess(dataEvent) {
-        let group: Room = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.addGroup(group);
-    }
-
-    onEditedGroupMember(dataEvent) {
-        let jsonObj: Room = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.updateGroupMembers(jsonObj);
-
-        if (!!this.roomAccessListenerImps) {
-            this.roomAccessListenerImps.map(value => {
-                value.onEditedGroupMember(dataEvent);
-            });
-        }
-    }
-
-    onEditedGroupName(dataEvent) {
-        let jsonObj = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.updateGroupName(jsonObj);
-    }
-
-    onEditedGroupImage(dataEvent) {
-        let obj = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.updateGroupImage(obj);
-    }
-
-    onNewGroupCreated(dataEvent) {
-        let jsonObj = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.addGroup(jsonObj);
-    }
-
-    onUpdateMemberInfoInProjectBase(dataEvent) {
-        let jsonObj = JSON.parse(JSON.stringify(dataEvent));
-        this.dataManager.updateGroupMemberDetail(jsonObj);
-        if (!!this.roomAccessListenerImps) {
-            this.roomAccessListenerImps.map(value => {
-                value.onUpdateMemberInfoInProjectBase(dataEvent);
-            });
-        }
-    }
-
 
     //#region User.
 

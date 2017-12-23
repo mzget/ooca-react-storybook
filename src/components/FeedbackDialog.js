@@ -1,12 +1,14 @@
-import * as React from 'react';
-import Dialog from 'material-ui/Dialog';
-import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader } from '../StyleComponents/DialogContentStyles';
-import { getDialogWidth } from '../UxUtils';
-import { MSGSteate } from '../AppUtils';
-import { TextArea } from '../StyleComponents/Styles';
-import { WordingInfo } from '../Localized/WordingInfo';
-import { MSGSteateInfo, FeedbackInfo } from '../Localized/MessageInfo';
-export class FeedbackDialog extends React.Component {
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const Dialog_1 = require("material-ui/Dialog");
+const DialogContentStyles_1 = require("../StyleComponents/DialogContentStyles");
+const UxUtils_1 = require("../UxUtils");
+const AppUtils_1 = require("../AppUtils");
+const Styles_1 = require("../StyleComponents/Styles");
+const WordingInfo_1 = require("../Localized/WordingInfo");
+const MessageInfo_1 = require("../Localized/MessageInfo");
+class FeedbackDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -15,34 +17,35 @@ export class FeedbackDialog extends React.Component {
     }
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog_1.default contentStyle={{ maxWidth: UxUtils_1.getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <div>
-            <SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
+            <DialogContentStyles_1.SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
                 SendFeedback();
-                handMSGState(MSGSteate.SendMSG);
+                handMSGState(AppUtils_1.MSGSteate.SendMSG);
                 this.setState({ open: false });
             }}>
-              {WordingInfo.Skip[_isLocal]}
-            </SecondaryDialogButton>
-            <PrimaryDialogButton provider={_isProvider} style={{ width: '100%' }} onClick={() => {
+              {WordingInfo_1.WordingInfo.Skip[_isLocal]}
+            </DialogContentStyles_1.SecondaryDialogButton>
+            <DialogContentStyles_1.PrimaryDialogButton provider={_isProvider} style={{ width: '100%' }} onClick={() => {
                 SendFeedback();
-                handMSGState(MSGSteate.SendMSG);
+                handMSGState(AppUtils_1.MSGSteate.SendMSG);
                 this.setState({ open: false });
             }}>
-              {WordingInfo.Submit[_isLocal]}
-            </PrimaryDialogButton>
+              {WordingInfo_1.WordingInfo.Submit[_isLocal]}
+            </DialogContentStyles_1.PrimaryDialogButton>
           </div>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
         <div>
-          <DialogHeader>
-            {MSGSteateInfo.Feedback[_isLocal]}
-          </DialogHeader>
+          <DialogContentStyles_1.DialogHeader>
+            {MessageInfo_1.MSGSteateInfo.Feedback[_isLocal]}
+          </DialogContentStyles_1.DialogHeader>
           <div style={{ textAlign: "left" }}>
-            <TextArea placeholder={WordingInfo.Recommend[_isLocal]} onChange={(e) => {
-            FeedbackInfo.feedback = e.target.value;
+            <Styles_1.TextArea placeholder={WordingInfo_1.WordingInfo.Recommend[_isLocal]} onChange={(e) => {
+            MessageInfo_1.FeedbackInfo.feedback = e.target.value;
         }}/>
           </div>
         </div>
-      </Dialog>);
+      </Dialog_1.default>);
     }
 }
+exports.FeedbackDialog = FeedbackDialog;

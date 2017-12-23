@@ -1,3 +1,4 @@
+"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -6,13 +7,14 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-import { BackendFactory } from "../../chats/BackendFactory";
-import { ChitChatFactory } from "../../chats/ChitChatFactory";
-const getConfig = () => ChitChatFactory.getInstance().config;
-export function updateUser(user) {
+Object.defineProperty(exports, "__esModule", { value: true });
+const BackendFactory_1 = require("../../chats/BackendFactory");
+const ChitChatFactory_1 = require("../../chats/ChitChatFactory");
+const getConfig = () => ChitChatFactory_1.ChitChatFactory.getInstance().config;
+function updateUser(user) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const backendFactory = BackendFactory.getInstance();
+            const backendFactory = BackendFactory_1.BackendFactory.getInstance();
             const server = backendFactory.getServer();
             const msg = {};
             msg.user = user;
@@ -26,3 +28,4 @@ export function updateUser(user) {
         }
     });
 }
+exports.updateUser = updateUser;

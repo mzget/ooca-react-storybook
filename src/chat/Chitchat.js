@@ -1,12 +1,14 @@
-import { ChitChatFactory } from "./chitchat/chats/ChitChatFactory";
-export const chitchatFactory = ChitChatFactory.createInstance();
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const ChitChatFactory_1 = require("./chitchat/chats/ChitChatFactory");
+exports.chitchatFactory = ChitChatFactory_1.ChitChatFactory.createInstance();
 const apiStalk = "wss://chitchats.ga"; // wss://chitchats.ga
 const stalkPort = 3020;
 const stalkKey = "ooca1234";
 const stalkApiVersion = "0.2";
 const stalkAppId = "ooca";
 const chatapi = "http://chitchats.ga:8998"; // "http://localhost:9000"; "http://git.animation-genius.com:9000"
-export const config = {
+exports.config = {
     Stalk: {
         apiKey: stalkKey,
         apiVersion: stalkApiVersion,

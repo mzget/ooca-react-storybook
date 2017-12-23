@@ -1,11 +1,14 @@
-import * as React from 'react';
-import { FollowUpPlanDialog } from './FollowUpPlanDialog';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const FollowUpPlanDialog_1 = require("./FollowUpPlanDialog");
 // const FollowUpPlanDialogWithTheme = withMuiTheme(FollowUpPlanDialog);
-export class FollowUp extends React.Component {
+class FollowUp extends React.Component {
     render() {
         const { onSubmit } = this.props;
         return (<div>
-                <FollowUpPlanDialog isLocal={this.props.isLocal} onSubmit={(value) => onSubmit(value)}/>
+                <FollowUpPlanDialog_1.FollowUpPlanDialog isLocal={this.props.isLocal} onSubmit={(value) => onSubmit(value)}/>
             </div>);
     }
 }
+exports.FollowUp = FollowUp;

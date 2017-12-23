@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./components/MaterialUtils";
-import ThankyouDialog from './components/ThankyouDialog';
+import { ThankyouDialog } from './components/ThankyouDialog';
 import { ThumbUpDialog } from "./components/ThumbUpDialog";
 import { PleaseNoteDialog } from "./components/PleaseNoteDialog";
 

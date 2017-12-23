@@ -1,5 +1,7 @@
+"use strict";
 /* eslint-disable */
-export const MSGSteate = {
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.MSGSteate = {
     Quality: 'Quality',
     Feedback: 'Feedback',
     Problem: 'Problem',

@@ -1,11 +1,13 @@
+"use strict";
 /* eslint-disable */
-import * as React from 'react';
-import Dialog from 'material-ui/Dialog';
-import { getDialogWidth } from "../UxUtils";
-import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
-import { MSGSteateInfo } from '../Localized/MessageInfo';
-import { WordingInfo } from '../Localized/WordingInfo';
-export class ThankyouDialog extends React.Component {
+Object.defineProperty(exports, "__esModule", { value: true });
+const React = require("react");
+const Dialog_1 = require("material-ui/Dialog");
+const UxUtils_1 = require("../UxUtils");
+const DialogContentStyles_1 = require("../StyleComponents/DialogContentStyles");
+const MessageInfo_1 = require("../Localized/MessageInfo");
+const WordingInfo_1 = require("../Localized/WordingInfo");
+class ThankyouDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -17,12 +19,12 @@ export class ThankyouDialog extends React.Component {
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
         let buttons = [
             <div style={{ display: 'flex' }}>
-                <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
+                <DialogContentStyles_1.PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
                 handleClose();
             }}>
-                    {WordingInfo.Continue[isLocal]}
-                </PrimaryDialogButton>
+                    {WordingInfo_1.WordingInfo.Continue[isLocal]}
+                </DialogContentStyles_1.PrimaryDialogButton>
                 
 
             </div>
@@ -31,12 +33,13 @@ export class ThankyouDialog extends React.Component {
     }
     render() {
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+        return (<Dialog_1.default contentStyle={{ maxWidth: UxUtils_1.getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                    <ContentDialog fontsize={17}>
-                        {MSGSteateInfo.Thank[isLocal]}
-                    </ContentDialog>
+                    <DialogContentStyles_1.ContentDialog fontsize={17}>
+                        {MessageInfo_1.MSGSteateInfo.Thank[isLocal]}
+                    </DialogContentStyles_1.ContentDialog>
                 </div>
-            </Dialog>);
+            </Dialog_1.default>);
     }
 }
+exports.ThankyouDialog = ThankyouDialog;
