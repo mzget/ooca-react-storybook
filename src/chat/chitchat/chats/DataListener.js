@@ -2,8 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 class DataListener {
     constructor(dataManager) {
-        this.onChatEventListeners = new Array();
-        this.onLeaveRoomListeners = new Array();
         this.onRoomAccessEventListeners = new Array();
         this.addOnRoomAccessListener = (listener) => {
             this.onRoomAccessEventListeners.push(listener);
@@ -30,21 +28,11 @@ class DataListener {
         };
         //#region User.
         this.userEventListeners = [];
+        //#endregion
+        //#region Ichatserver events.
+        this.onChatEventListeners = new Array();
+        this.onLeaveRoomListeners = new Array();
         this.dataManager = dataManager;
-    }
-    addOnChatListener(listener) {
-        this.onChatEventListeners.push(listener);
-    }
-    removeOnChatListener(listener) {
-        let id = this.onChatEventListeners.indexOf(listener);
-        this.onChatEventListeners.splice(id, 1);
-    }
-    addOnLeaveRoomListener(listener) {
-        this.onLeaveRoomListeners.push(listener);
-    }
-    removeOnLeaveRoomListener(listener) {
-        let id = this.onLeaveRoomListeners.indexOf(listener);
-        this.onLeaveRoomListeners.splice(id, 1);
     }
     onAccessRoom(dataEvent) {
         if (Array.isArray(dataEvent) && dataEvent.length > 0) {
@@ -98,8 +86,13 @@ class DataListener {
         let _id = jsonobj._id;
         this.dataManager.updateContactProfile(_id, params);
     }
-    //#endregion
-    /*******************************************************************************/
+    addOnChatListener(listener) {
+        this.onChatEventListeners.push(listener);
+    }
+    removeOnChatListener(listener) {
+        let id = this.onChatEventListeners.indexOf(listener);
+        this.onChatEventListeners.splice(id, 1);
+    }
     // <!-- chat room data listener.
     onChat(data) {
         let chatMessageImp = data;
@@ -108,6 +101,13 @@ class DataListener {
         });
     }
     ;
+    addOnLeaveRoomListener(listener) {
+        this.onLeaveRoomListeners.push(listener);
+    }
+    removeOnLeaveRoomListener(listener) {
+        let id = this.onLeaveRoomListeners.indexOf(listener);
+        this.onLeaveRoomListeners.splice(id, 1);
+    }
     onLeaveRoom(data) {
         this.onLeaveRoomListeners.map(value => value(data));
     }
@@ -115,6 +115,7 @@ class DataListener {
     onRoomJoin(data) {
     }
     ;
+    //#endregion
     onGetMessagesReaders(dataEvent) {
         if (!!this.chatListenerImps && this.chatListenerImps.length !== 0) {
             this.chatListenerImps.forEach(value => {

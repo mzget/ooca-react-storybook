@@ -7,14 +7,6 @@
 import { IPomelo } from "stalk-js";
 import { StalkEvents, ChatEvents, PushEvents, CallingEvents } from "stalk-js/lib/browser/";
 
-export abstract class ServerListener implements StalkEvents.IServerListener, StalkEvents.BaseEvents {
-    onUserLogin;
-    onUserLogout;
-    onAccessRoom;
-    onAddRoomAccess;
-    onUpdatedLastAccessTime;
-}
-
 export class ServerEventListener {
     public static ON_VIDEO_CALL: string = "onVideoCall";
     public static ON_VOICE_CALL: string = "onVoiceCall";
@@ -32,14 +24,12 @@ export class ServerEventListener {
     }
 
     /**
-     * 
-     * 
      * @private
      * @type {StalkEvents.IServerListener}
      * @memberof ServerEventListener
      */
-    private serverListener: ServerListener;
-    public addServerListener(obj: ServerListener): void {
+    private serverListener: StalkEvents.IServerListener;
+    public addServerListener(obj: StalkEvents.IServerListener) {
         this.serverListener = obj;
 
         let self = this;

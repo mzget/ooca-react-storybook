@@ -17,6 +17,5 @@ if (process.env.NODE_ENV === `development`) {
     const { logger } = require(`redux-logger`);
     middlewares.push(logger);
 }
-
-const reducer = combineReducers({ stalkReducer, stalkUserReducer }, getInitialState);
-export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer);
+const reducer = combineReducers({ stalkReducer, stalkUserReducer });
+export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer, getInitialState);

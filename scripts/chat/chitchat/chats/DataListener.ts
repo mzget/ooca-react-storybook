@@ -1,33 +1,15 @@
-﻿import { ChatEvents } from "stalk-js";
+﻿
+import { DataEvent, StalkEvents, ChatEvents } from "stalk-js/lib/browser";
 import { StalkAccount, RoomAccessData } from "../shared/Stalk";
 import { IMessage } from "../shared/Message";
 import { Room } from "./models/Room";
 
 import { DataManager } from "./DataManager";
-import { ServerListener } from "./ServerEventListener";
 
-export type DataEvent = (data: any) => void;
-
-export class DataListener implements ServerListener, ChatEvents.IChatServerEvents {
+export class DataListener implements ChatEvents.IChatServerEvents, StalkEvents.IServerListener {
     private dataManager: DataManager;
 
-    private onChatEventListeners = new Array<(message: IMessage) => void>();
-    public addOnChatListener(listener: (message: IMessage) => void) {
-        this.onChatEventListeners.push(listener);
-    }
-    public removeOnChatListener(listener: (message: IMessage) => void) {
-        let id = this.onChatEventListeners.indexOf(listener);
-        this.onChatEventListeners.splice(id, 1);
-    }
 
-    private onLeaveRoomListeners = new Array();
-    public addOnLeaveRoomListener(listener: (message: IMessage) => void) {
-        this.onLeaveRoomListeners.push(listener);
-    }
-    public removeOnLeaveRoomListener(listener: (message: IMessage) => void) {
-        let id = this.onLeaveRoomListeners.indexOf(listener);
-        this.onLeaveRoomListeners.splice(id, 1);
-    }
     private onRoomAccessEventListeners = new Array<(data: StalkAccount) => void>();
     public addOnRoomAccessListener = (listener: (data: StalkAccount) => void) => {
         this.onRoomAccessEventListeners.push(listener);
@@ -98,7 +80,7 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
         this.userEventListeners.splice(id, 1);
     }
 
-    private onUserLogin(dataEvent) {
+    onUserLogin(dataEvent) {
         console.log("user loged In", JSON.stringify(dataEvent));
         this.dataManager.onUserLogin(dataEvent);
 
@@ -106,7 +88,7 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
             fx(dataEvent);
         });
     }
-    private onUserLogout(dataEvent) {
+    onUserLogout(dataEvent) {
         console.log("user loged Out", JSON.stringify(dataEvent));
         this.userEventListeners.map((fx) => {
             fx(dataEvent);
@@ -131,7 +113,17 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
 
     //#endregion
 
-    /*******************************************************************************/
+    //#region Ichatserver events.
+
+    private onChatEventListeners = new Array<(message: IMessage) => void>();
+    public addOnChatListener(listener: (message: IMessage) => void) {
+        this.onChatEventListeners.push(listener);
+    }
+    public removeOnChatListener(listener: (message: IMessage) => void) {
+        let id = this.onChatEventListeners.indexOf(listener);
+        this.onChatEventListeners.splice(id, 1);
+    }
+
     // <!-- chat room data listener.
     onChat(data) {
         let chatMessageImp = data as IMessage;
@@ -140,6 +132,15 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
         });
     };
 
+    private onLeaveRoomListeners = new Array();
+    public addOnLeaveRoomListener(listener: (message: IMessage) => void) {
+        this.onLeaveRoomListeners.push(listener);
+    }
+    public removeOnLeaveRoomListener(listener: (message: IMessage) => void) {
+        let id = this.onLeaveRoomListeners.indexOf(listener);
+        this.onLeaveRoomListeners.splice(id, 1);
+    }
+
     onLeaveRoom(data) {
         this.onLeaveRoomListeners.map(value => value(data));
     };
@@ -147,6 +148,8 @@ export class DataListener implements ServerListener, ChatEvents.IChatServerEvent
     onRoomJoin(data) {
 
     };
+
+    //#endregion
 
     onGetMessagesReaders(dataEvent) {
         if (!!this.chatListenerImps && this.chatListenerImps.length !== 0) {

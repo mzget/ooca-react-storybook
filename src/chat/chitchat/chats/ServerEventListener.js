@@ -6,9 +6,6 @@
  */
 Object.defineProperty(exports, "__esModule", { value: true });
 const _1 = require("stalk-js/lib/browser/");
-class ServerListener {
-}
-exports.ServerListener = ServerListener;
 class ServerEventListener {
     constructor(socket) {
         this.socket = socket;
