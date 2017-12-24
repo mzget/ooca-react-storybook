@@ -34,7 +34,7 @@ export class BackendFactory {
     // chatLogComp: ChatsLogComponent;
 
     constructor() {
-        console.log("BackendFactory:", stalkjs);
+        console.log("BackendFactory:");
 
         this.pushDataListener = new PushDataListener();
         this.dataManager = new DataManager();

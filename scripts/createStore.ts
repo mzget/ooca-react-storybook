@@ -18,4 +18,4 @@ if (process.env.NODE_ENV === `development`) {
     middlewares.push(logger);
 }
 const reducer = combineReducers({ stalkReducer, stalkUserReducer });
-export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer, getInitialState);
+export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer);

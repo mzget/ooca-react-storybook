@@ -32,7 +32,7 @@ class BackendFactory {
     }
     // chatLogComp: ChatsLogComponent;
     constructor() {
-        console.log("BackendFactory:", stalk_js_1.stalkjs);
+        console.log("BackendFactory:");
         this.pushDataListener = new PushDataListener_1.PushDataListener();
         this.dataManager = new DataManager_1.DataManager();
         this.dataListener = new DataListener_1.DataListener(this.dataManager);
