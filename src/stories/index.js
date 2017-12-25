@@ -12,7 +12,7 @@ import { FollowUpPlanDialog } from "../components/Providers/FollowUpPlanDialog";
 import { FollowUpSuccessDialog } from "../components/Providers/FollowUpSuccessDialog";
 import ProviderIndex from "../containers/ProviderIndex";
 import TestRSModal from "../TestRSModal";
-import { TestStory } from "../TestStory";
+import TestStory from "../TestStory";
 const TestStoryWithTheme = withMuiTheme(TestStory);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);

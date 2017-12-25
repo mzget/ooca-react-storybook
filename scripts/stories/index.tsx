@@ -25,7 +25,7 @@ import { FollowUpSuccessDialog } from "../components/Providers/FollowUpSuccessDi
 import ProviderIndex from "../containers/ProviderIndex";
 
 import TestRSModal from "../TestRSModal";
-import { TestStory } from "../TestStory";
+import TestStory from "../TestStory";
 
 const TestStoryWithTheme = withMuiTheme(TestStory);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
