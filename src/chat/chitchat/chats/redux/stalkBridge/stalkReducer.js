@@ -45,6 +45,9 @@ function stalkReducer(state = initialState, action) {
             return state.set("isInit", true)
                 .set("error", action.payload);
         }
+        case StalkBridgeActions.STALK_LOGOUT_SUCCESS: {
+            return initialState;
+        }
         case StalkBridgeActions.STALK_ON_SOCKET_CLOSE: {
             return state.set("error", action.payload);
         }

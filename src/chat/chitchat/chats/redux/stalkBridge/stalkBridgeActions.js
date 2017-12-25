@@ -29,6 +29,10 @@ exports.STALK_INIT = "STALK_INIT";
 exports.STALK_INIT_SUCCESS = "STALK_INIT_SUCCESS";
 exports.STALK_INIT_FAILURE = "STALK_INIT_FAILURE";
 const stalkInitFailure = redux_actions_1.createAction(exports.STALK_INIT_FAILURE, (payload) => payload);
+exports.STALK_LOGOUT = "STALK_LOGOUT";
+exports.STALK_LOGOUT_SUCCESS = "STALK_LOGOUT_SUCCESS";
+exports.STALK_LOGOUT_FAILURE = "STALK_LOGOUT_FAILURE";
+const stalkLogoutSuccess = redux_actions_1.createAction(exports.STALK_LOGOUT_SUCCESS);
 function stalkLogin(user) {
     if (getStore().getState().stalkReducer.isInit) {
         return;
@@ -109,6 +113,7 @@ function stalkManageConnection() {
 function stalkLogout() {
     return __awaiter(this, void 0, void 0, function* () {
         const backendFactory = BackendFactory_1.BackendFactory.getInstance();
+        getStore().dispatch(stalkLogoutSuccess());
         return yield backendFactory.logout();
     });
 }

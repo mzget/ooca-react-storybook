@@ -3,6 +3,7 @@ import { combineReducers, createStore, applyMiddleware, compose } from "redux";
 import { stalkReducer, StalkInitState } from "./chat/chitchat/chats/redux/stalkBridge/stalkReducer";
 import { stalkUserReducer, StalkUserState } from "./chat/chitchat/actions/users/UserReducer";
 
+/*
 export function getInitialState() {
     const initState = {
         stalkReducer: new StalkInitState(),
@@ -10,7 +11,7 @@ export function getInitialState() {
     };
     return initState;
 }
-
+*/
 const middlewares = [] as any[];
 
 if (process.env.NODE_ENV === `development`) {
@@ -19,3 +20,5 @@ if (process.env.NODE_ENV === `development`) {
 }
 const reducer = combineReducers({ stalkReducer, stalkUserReducer });
 export const store = compose(applyMiddleware(...middlewares))(createStore)(reducer);
+
+// export default store;

@@ -28,6 +28,11 @@ export const STALK_INIT_SUCCESS = "STALK_INIT_SUCCESS";
 export const STALK_INIT_FAILURE = "STALK_INIT_FAILURE";
 const stalkInitFailure = createAction(STALK_INIT_FAILURE, (payload: string) => payload);
 
+export const STALK_LOGOUT = "STALK_LOGOUT";
+export const STALK_LOGOUT_SUCCESS = "STALK_LOGOUT_SUCCESS";
+export const STALK_LOGOUT_FAILURE = "STALK_LOGOUT_FAILURE";
+const stalkLogoutSuccess = createAction(STALK_LOGOUT_SUCCESS);
+
 export function stalkLogin(user: StalkAccount) {
     if (getStore().getState().stalkReducer.isInit) {
         return;
@@ -111,6 +116,6 @@ async function stalkManageConnection() {
 
 export async function stalkLogout() {
     const backendFactory = BackendFactory.getInstance();
-
+    getStore().dispatch(stalkLogoutSuccess());
     return await backendFactory.logout();
 }
