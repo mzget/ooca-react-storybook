@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
@@ -11,16 +10,15 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
-const stalk_js_1 = require("stalk-js");
-const DataManager_1 = require("./DataManager");
-const DataListener_1 = require("./DataListener");
-const PushDataListener_1 = require("./PushDataListener");
+import { stalkjs } from "stalk-js";
+import { DataManager } from "./DataManager";
+import { DataListener } from "./DataListener";
+import { PushDataListener } from "./PushDataListener";
 // import { ChatsLogComponent } from "./ChatslogComponent";
-const ServerEventListener_1 = require("./ServerEventListener");
-const ChitChatFactory_1 = require("./ChitChatFactory");
-const getConfig = () => ChitChatFactory_1.ChitChatFactory.getInstance().config;
-class BackendFactory {
+import { ServerEventListener } from "./ServerEventListener";
+import { ChitChatFactory } from "./ChitChatFactory";
+const getConfig = () => ChitChatFactory.getInstance().config;
+export class BackendFactory {
     static getInstance() {
         return BackendFactory.instance;
     }
@@ -33,9 +31,9 @@ class BackendFactory {
     // chatLogComp: ChatsLogComponent;
     constructor() {
         console.log("BackendFactory:");
-        this.pushDataListener = new PushDataListener_1.PushDataListener();
-        this.dataManager = new DataManager_1.DataManager();
-        this.dataListener = new DataListener_1.DataListener(this.dataManager);
+        this.pushDataListener = new PushDataListener();
+        this.dataManager = new DataManager();
+        this.dataListener = new DataListener(this.dataManager);
     }
     getServer() {
         if (this.stalk._isConnected) {
@@ -48,8 +46,8 @@ class BackendFactory {
     }
     stalkInit() {
         return __awaiter(this, void 0, void 0, function* () {
-            this.stalk = stalk_js_1.stalkjs.create(getConfig().Stalk.chat, getConfig().Stalk.port);
-            let socket = yield stalk_js_1.stalkjs.init(this.stalk);
+            this.stalk = stalkjs.create(getConfig().Stalk.chat, getConfig().Stalk.port);
+            let socket = yield stalkjs.init(this.stalk);
             return socket;
         });
     }
@@ -62,9 +60,9 @@ class BackendFactory {
                 msg["x-api-key"] = getConfig().Stalk.apiKey;
                 msg["x-api-version"] = getConfig().Stalk.apiVersion;
                 msg["x-app-id"] = getConfig().Stalk.appId;
-                const connector = yield stalk_js_1.stalkjs.geteEnter(this.stalk, msg);
+                const connector = yield stalkjs.geteEnter(this.stalk, msg);
                 let params = { host: connector.host, port: connector.port, reconnect: false };
-                yield stalk_js_1.stalkjs.handshake(this.stalk, params);
+                yield stalkjs.handshake(this.stalk, params);
                 return yield connector;
             }
             catch (ex) {
@@ -79,13 +77,13 @@ class BackendFactory {
             msg["x-api-key"] = getConfig().Stalk.apiKey;
             msg["x-api-version"] = getConfig().Stalk.apiVersion;
             msg["x-app-id"] = getConfig().Stalk.appId;
-            let result = yield stalk_js_1.stalkjs.checkIn(this.stalk, msg);
+            let result = yield stalkjs.checkIn(this.stalk, msg);
             return result;
         });
     }
     checkOut() {
         return __awaiter(this, void 0, void 0, function* () {
-            yield stalk_js_1.stalkjs.checkOut(this.stalk);
+            yield stalkjs.checkOut(this.stalk);
         });
     }
     /**
@@ -117,7 +115,7 @@ class BackendFactory {
     // }
     getServerListener() {
         if (!this.serverEventsListener) {
-            this.serverEventsListener = new ServerEventListener_1.ServerEventListener(this.stalk.getSocket());
+            this.serverEventsListener = new ServerEventListener(this.stalk.getSocket());
         }
         return this.serverEventsListener;
     }
@@ -127,4 +125,3 @@ class BackendFactory {
         this.serverEventsListener.addPushListener(this.pushDataListener);
     }
 }
-exports.BackendFactory = BackendFactory;

@@ -1,39 +1,37 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const Message_1 = require("../../chitchat/shared/Message");
-const MessageImp_1 = require("../../chitchat/chats/models/MessageImp");
-const ChitChatFactory_1 = require("../../chitchat/chats/ChitChatFactory");
-const getStore = () => ChitChatFactory_1.ChitChatFactory.getInstance().store;
-const getAuth = () => ChitChatFactory_1.ChitChatFactory.getInstance().authStore;
-function decorateMessage(msg) {
+import { MessageType } from "../../chitchat/shared/Message";
+import { MessageImp } from "../../chitchat/chats/models/MessageImp";
+import { ChitChatFactory } from "../../chitchat/chats/ChitChatFactory";
+const getStore = () => ChitChatFactory.getInstance().store;
+const getAuth = () => ChitChatFactory.getInstance().authStore;
+export function decorateMessage(msg) {
     let { chatroomReducer } = getStore().getState();
     let { user } = getAuth();
     console.log(user);
     let { userid, fullName, picLink } = user;
-    let message = new MessageImp_1.MessageImp();
+    let message = new MessageImp();
     if (!!msg.image) {
         message.body = msg.image;
         message.src = msg.src;
-        message.type = Message_1.MessageType[Message_1.MessageType.Image];
+        message.type = MessageType[MessageType.Image];
     }
     else if (!!msg.text) {
         message.body = msg.text;
-        message.type = Message_1.MessageType[Message_1.MessageType.Text];
+        message.type = MessageType[MessageType.Text];
     }
     else if (!!msg.position) {
         message.body = msg.position;
-        message.type = Message_1.MessageType[Message_1.MessageType.Location];
+        message.type = MessageType[MessageType.Location];
     }
     else if (!!msg.video) {
         message.body = msg.video;
         message.src = msg.src;
-        message.type = Message_1.MessageType[Message_1.MessageType.Video];
+        message.type = MessageType[MessageType.Video];
     }
     else if (!!msg.file) {
         message.body = msg.file;
         message.meta = { mimetype: msg.mimetype, size: msg.size };
         message.src = msg.src;
-        message.type = Message_1.MessageType[Message_1.MessageType.File];
+        message.type = MessageType[MessageType.File];
     }
     else {
         throw new Error("What the fuck!");
@@ -51,5 +49,4 @@ function decorateMessage(msg) {
     message.status = "Sending...";
     return message;
 }
-exports.decorateMessage = decorateMessage;
-exports.getDateTime = (time) => (`${time.getFullYear()}/${time.getMonth()}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}`);
+export const getDateTime = (time) => (`${time.getFullYear()}/${time.getMonth()}/${time.getDate()} ${time.getHours()}:${time.getMinutes()}`);

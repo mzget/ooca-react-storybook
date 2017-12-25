@@ -1,4 +1,3 @@
-"use strict";
 /**
  *  NotificationManager
  *
@@ -7,29 +6,28 @@
  * The NotificationManager for react.js.
  *
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-const BackendFactory_1 = require("../../BackendFactory");
-const Message_1 = require("../../../shared/Message");
-const ChitChatFactory_1 = require("../../ChitChatFactory");
-const getStore = () => ChitChatFactory_1.ChitChatFactory.getInstance().store;
-exports.STALK_NOTICE_NEW_MESSAGE = "STALK_NOTICE_NEW_MESSAGE";
-const stalkNotiNewMessage = (payload) => ({ type: exports.STALK_NOTICE_NEW_MESSAGE, payload });
+import { BackendFactory } from "../../BackendFactory";
+import { MessageType } from "../../../shared/Message";
+import { ChitChatFactory } from "../../ChitChatFactory";
+const getStore = () => ChitChatFactory.getInstance().store;
+export const STALK_NOTICE_NEW_MESSAGE = "STALK_NOTICE_NEW_MESSAGE";
+const stalkNotiNewMessage = (payload) => ({ type: STALK_NOTICE_NEW_MESSAGE, payload });
 const init = (onSuccess) => {
     console.log("Initialize NotificationManager.");
 };
-exports.regisNotifyNewMessageEvent = () => {
+export const regisNotifyNewMessageEvent = () => {
     console.log("subscribe global notify message event");
-    BackendFactory_1.BackendFactory.getInstance().dataListener.addOnChatListener(exports.notify);
+    BackendFactory.getInstance().dataListener.addOnChatListener(notify);
 };
-exports.unsubscribeGlobalNotifyMessageEvent = () => {
-    BackendFactory_1.BackendFactory.getInstance().dataListener.removeOnChatListener(exports.notify);
+export const unsubscribeGlobalNotifyMessageEvent = () => {
+    BackendFactory.getInstance().dataListener.removeOnChatListener(notify);
 };
-exports.notify = (messageImp) => {
+export const notify = (messageImp) => {
     let message = {
         title: messageImp.user.username,
         image: messageImp.user.avatar
     };
-    if (messageImp.type === Message_1.MessageType[Message_1.MessageType.Text]) {
+    if (messageImp.type === MessageType[MessageType.Text]) {
         message.body = messageImp.body;
         getStore().dispatch(stalkNotiNewMessage(message));
     }

@@ -1,7 +1,5 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const immutable_1 = require("immutable");
-const getUsersPayload_1 = require("./getUsersPayload");
+import { Record } from "immutable";
+import { FETCH_USERS_PAYLOAD } from "./getUsersPayload";
 /**
  * ## Initial State
  */
@@ -10,19 +8,18 @@ const getUsersPayload_1 = require("./getUsersPayload");
  * This Record contains the state of the form and the
  * fields it contains.
  */
-exports.StalkUserState = immutable_1.Record({
+export const StalkUserState = Record({
     isFetching: false,
     users: null,
     error: "",
 });
-const stalkUserInitState = new exports.StalkUserState();
-function stalkUserReducer(state = stalkUserInitState, action) {
+const stalkUserInitState = new StalkUserState();
+export function stalkUserReducer(state = stalkUserInitState, action) {
     switch (action.type) {
-        case getUsersPayload_1.FETCH_USERS_PAYLOAD: {
+        case FETCH_USERS_PAYLOAD: {
             return state.set("users", action.payload);
         }
         default:
             return state;
     }
 }
-exports.stalkUserReducer = stalkUserReducer;

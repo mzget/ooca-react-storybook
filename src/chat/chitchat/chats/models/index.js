@@ -1,9 +1,4 @@
-"use strict";
-function __export(m) {
-    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
-}
-Object.defineProperty(exports, "__esModule", { value: true });
-__export(require("./MessageImp"));
-__export(require("./Room"));
-__export(require("./User"));
-__export(require("./UserRole"));
+export * from "./MessageImp";
+export * from "./Room";
+export * from "./User";
+export * from "./UserRole";

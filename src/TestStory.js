@@ -1,18 +1,16 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
 /*eslint-disable*/
-const React = require("react");
-const MuiThemeProvider_1 = require("material-ui/styles/MuiThemeProvider");
-const MaterialUtils_1 = require("./components/MaterialUtils");
-const PleaseNoteDialog_1 = require("./components/PleaseNoteDialog");
+import * as React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import { defaultMuiTheme } from "./components/MaterialUtils";
+import { PleaseNoteDialog } from "./components/PleaseNoteDialog";
 class TestStory extends React.Component {
     constructor(props) {
         super(props);
     }
     render() {
-        return (<MuiThemeProvider_1.default muiTheme={MaterialUtils_1.defaultMuiTheme}>
-                <PleaseNoteDialog_1.PleaseNoteDialog _isLocal={"EN"} isProvider={false}/>
-            </MuiThemeProvider_1.default>);
+        return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
+                <PleaseNoteDialog _isLocal={"EN"} isProvider={false}/>
+            </MuiThemeProvider>);
     }
 }
-exports.default = TestStory;
+export default TestStory;

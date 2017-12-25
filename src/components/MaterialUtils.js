@@ -1,25 +1,22 @@
-"use strict";
 /* eslint-disable */
-Object.defineProperty(exports, "__esModule", { value: true });
-const React = require("react");
-const MuiThemeProvider_1 = require("material-ui/styles/MuiThemeProvider");
-const getMuiTheme_1 = require("material-ui/styles/getMuiTheme");
-const colors_1 = require("material-ui/styles/colors");
-exports.defaultMuiTheme = getMuiTheme_1.default({
+import * as React from 'react';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { blue500, blue100 } from 'material-ui/styles/colors';
+export const defaultMuiTheme = getMuiTheme({
     palette: {
         primary1Color: '#0478d7',
-        primary2Color: colors_1.blue500,
-        primary3Color: colors_1.blue100,
+        primary2Color: blue500,
+        primary3Color: blue100,
     },
     fontFamily: 'Prompt',
 });
-function withMuiTheme(Comp) {
+export function withMuiTheme(Comp) {
     return class withMuiTheme extends React.Component {
         render() {
-            return (<MuiThemeProvider_1.default muiTheme={exports.defaultMuiTheme}>
+            return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
                     <Comp {...this.props}/>
-                </MuiThemeProvider_1.default>);
+                </MuiThemeProvider>);
         }
     };
 }
-exports.withMuiTheme = withMuiTheme;

@@ -1,8 +1,6 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const immutable_1 = require("immutable");
+import { Record } from "immutable";
 // const FB = window.FB;
-function logPageView() {
+export function logPageView() {
     if (window.FB) {
         window.FB.AppEvents.logPageView();
     }
@@ -10,8 +8,7 @@ function logPageView() {
         console.warn("Have no fb.init...");
     }
 }
-exports.logPageView = logPageView;
-exports.AnalyticConst = {
+export const AnalyticConst = {
     LOG_APPOINTMENT: "appointment",
     LOG_APPOINTMENT_DETAILS: "appointment_details",
     LOG_APPOINTMENT_ID: "appointment_id",
@@ -22,9 +19,9 @@ exports.AnalyticConst = {
     LOG_DOCTOR_NAME: "doctor_name",
     LOG_PAYMENT_CHANNEL: "payment_channel",
 };
-const LogRecord = immutable_1.Record({
+const LogRecord = Record({
     category: "",
-    content_id: exports.AnalyticConst.LOG_APPOINTMENT,
+    content_id: AnalyticConst.LOG_APPOINTMENT,
     coupon: 0,
     currency: "THB",
     doctor: "",
@@ -35,57 +32,49 @@ const LogRecord = immutable_1.Record({
 });
 const initLogRecord = new LogRecord();
 let newlog;
-function logVisitDuration(duration) {
+export function logVisitDuration(duration) {
     newlog = initLogRecord.set("visitDuration", duration);
 }
-exports.logVisitDuration = logVisitDuration;
-function logDoctor(doctorId, doctorName) {
+export function logDoctor(doctorId, doctorName) {
     newlog = newlog.set("doctor", doctorId)
         .set("doctorName", doctorName);
 }
-exports.logDoctor = logDoctor;
-function logCoupon(coupon) {
+export function logCoupon(coupon) {
     newlog = newlog.set("coupon", coupon);
 }
-exports.logCoupon = logCoupon;
-function logPrice(price) {
+export function logPrice(price) {
     newlog = newlog.set("price", price);
 }
-exports.logPrice = logPrice;
-function logTag(topics) {
+export function logTag(topics) {
     newlog = newlog.set("topics", JSON.stringify(topics));
 }
-exports.logTag = logTag;
-function logCategory(category) {
+export function logCategory(category) {
     newlog = newlog.set("category", category);
 }
-exports.logCategory = logCategory;
-function submitLog() {
+export function submitLog() {
     if (window.FB) {
         const params = {};
         params[window.FB.AppEvents.ParameterNames.CONTENT_ID] = newlog.get("content_id");
         params[window.FB.AppEvents.ParameterNames.CONTENT_TYPE] = newlog.get("visitDuration");
         params[window.FB.AppEvents.ParameterNames.CURRENCY] = newlog.get("currency");
-        params[exports.AnalyticConst.LOG_DOCTOR_ID] = newlog.get("doctor");
-        params[exports.AnalyticConst.LOG_DOCTOR_NAME] = newlog.get("doctorName");
-        params[exports.AnalyticConst.LOG_COUPON] = newlog.get("coupon");
-        params[exports.AnalyticConst.LOG_APPOINTMENT_TAG] = newlog.get("topics");
-        params[exports.AnalyticConst.LOG_CATEGORY] = newlog.get("category");
+        params[AnalyticConst.LOG_DOCTOR_ID] = newlog.get("doctor");
+        params[AnalyticConst.LOG_DOCTOR_NAME] = newlog.get("doctorName");
+        params[AnalyticConst.LOG_COUPON] = newlog.get("coupon");
+        params[AnalyticConst.LOG_APPOINTMENT_TAG] = newlog.get("topics");
+        params[AnalyticConst.LOG_CATEGORY] = newlog.get("category");
         logAddedToCartEvent(newlog.get("price"), params);
     }
 }
-exports.submitLog = submitLog;
-function purchase(amount, productId, channel) {
+export function purchase(amount, productId, channel) {
     if (window.FB) {
         const params = {};
-        params[window.FB.AppEvents.ParameterNames.CONTENT_ID] = exports.AnalyticConst.LOG_APPOINTMENT;
-        params[exports.AnalyticConst.LOG_APPOINTMENT_ID] = productId;
-        params[exports.AnalyticConst.LOG_PAYMENT_CHANNEL] = channel;
+        params[window.FB.AppEvents.ParameterNames.CONTENT_ID] = AnalyticConst.LOG_APPOINTMENT;
+        params[AnalyticConst.LOG_APPOINTMENT_ID] = productId;
+        params[AnalyticConst.LOG_PAYMENT_CHANNEL] = channel;
         logPurchase(amount, "THB", params);
     }
 }
-exports.purchase = purchase;
-function logTopics(topics, doctorId, doctorName) {
+export function logTopics(topics, doctorId, doctorName) {
     topics.map((value) => {
         const params = {};
         const topic = withTopic(value.id, value.name.th)(params);
@@ -93,11 +82,9 @@ function logTopics(topics, doctorId, doctorName) {
         log_topicEvent(doctor);
     });
 }
-exports.logTopics = logTopics;
-function logTopup(channel, price) {
+export function logTopup(channel, price) {
     logTopupEvent(channel, price);
 }
-exports.logTopup = logTopup;
 /**
  * This function will log AddedToCart App Event
  * @param {string} contentData
@@ -120,7 +107,7 @@ function logPurchase(purchaseAmount, currency = "THB", parameters) {
  * @param {string} reservedDuration
  * @param {string} startedTime
  */
-function logVideoCallEvent(appointmentId, reservedDuration, type) {
+export function logVideoCallEvent(appointmentId, reservedDuration, type) {
     if (window.FB) {
         const params = {};
         params.appointment_id = appointmentId;
@@ -130,7 +117,6 @@ function logVideoCallEvent(appointmentId, reservedDuration, type) {
         window.FB.AppEvents.logEvent("videoCall", null, params);
     }
 }
-exports.logVideoCallEvent = logVideoCallEvent;
 function withDoctor(doctorId, dockerName) {
     return (params) => {
         params.doctor_id = doctorId;

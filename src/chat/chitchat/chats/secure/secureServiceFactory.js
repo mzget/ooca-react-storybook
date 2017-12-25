@@ -1,17 +1,14 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-const nodeSecureService_1 = require("./nodeSecureService");
+import { NodeSecureService } from "./nodeSecureService";
 /**
  * SecureServiceFactory
  */
-class SecureServiceFactory {
+export class SecureServiceFactory {
     static createService(secret_key) {
         if (!SecureServiceFactory.service)
-            SecureServiceFactory.service = new nodeSecureService_1.NodeSecureService(secret_key);
+            SecureServiceFactory.service = new NodeSecureService(secret_key);
         return SecureServiceFactory.service;
     }
     static getService() {
         return SecureServiceFactory.service;
     }
 }
-exports.SecureServiceFactory = SecureServiceFactory;

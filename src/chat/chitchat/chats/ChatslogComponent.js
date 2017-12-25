@@ -1,4 +1,3 @@
-"use strict";
 var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
     return new (P || (P = Promise))(function (resolve, reject) {
         function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
@@ -7,26 +6,24 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-Object.defineProperty(exports, "__esModule", { value: true });
 /**
  * Copyright 2016 Ahoo Studio.co.th.
  *
  * ChatRoomComponent for handle some business logic of chat room.
  */
-const async = require("async");
-const ChitChatFactory_1 = require("./ChitChatFactory");
-const authReducer = () => ChitChatFactory_1.ChitChatFactory.getInstance().authStore;
-const chatLog_1 = require("./models/chatLog");
-const BackendFactory_1 = require("./BackendFactory");
-const CryptoHelper = require("./utils/CryptoHelper");
-const Message_1 = require("../shared/Message");
-const Room_1 = require("./models/Room");
-const chatroomService = require("./services/chatroomService");
-const chatlogActionsHelper = require("./redux/chatlogs/chatlogActionsHelper");
-class Unread {
+import * as async from "async";
+import { ChitChatFactory } from "./ChitChatFactory";
+const authReducer = () => ChitChatFactory.getInstance().authStore;
+import ChatLog from "./models/chatLog";
+import { BackendFactory } from "./BackendFactory";
+import * as CryptoHelper from "./utils/CryptoHelper";
+import { MessageType } from "../shared/Message";
+import { RoomType } from "./models/Room";
+import * as chatroomService from "./services/chatroomService";
+import * as chatlogActionsHelper from "./redux/chatlogs/chatlogActionsHelper";
+export class Unread {
 }
-exports.Unread = Unread;
-function getUnreadMessage(user_id, roomAccess) {
+export function getUnreadMessage(user_id, roomAccess) {
     return __awaiter(this, void 0, void 0, function* () {
         let response = yield chatroomService.getUnreadMessage(roomAccess.roomId, user_id, roomAccess.accessTime.toString());
         let value = yield response.json();
@@ -41,15 +38,14 @@ function getUnreadMessage(user_id, roomAccess) {
         }
     });
 }
-exports.getUnreadMessage = getUnreadMessage;
-class ChatsLogComponent {
+export class ChatsLogComponent {
     constructor() {
         this.chatlog_count = 0;
         this.chatslog = new Map();
         this.unreadMessageMap = new Map();
         this.chatListeners = new Array();
         this._isReady = false;
-        let backendFactory = BackendFactory_1.BackendFactory.getInstance();
+        let backendFactory = BackendFactory.getInstance();
         this.dataListener = backendFactory.dataListener;
         this.dataListener.addOnRoomAccessListener(this.onAccessRoom.bind(this));
         this.dataListener.addOnChatListener(this.onChat.bind(this));
@@ -178,7 +174,7 @@ class ChatsLogComponent {
     }
     decorateRoomInfoData(roomInfo) {
         return __awaiter(this, void 0, void 0, function* () {
-            if (roomInfo.type === Room_1.RoomType.privateChat) {
+            if (roomInfo.type === RoomType.privateChat) {
                 if (Array.isArray(roomInfo.members)) {
                     let others = roomInfo.members.filter((value) => value._id !== authReducer().user._id);
                     if (others.length > 0) {
@@ -296,7 +292,7 @@ class ChatsLogComponent {
     organizeChatLogMap(unread, roomInfo, done) {
         return __awaiter(this, void 0, void 0, function* () {
             let self = this;
-            let log = new chatLog_1.default(roomInfo);
+            let log = new ChatLog(roomInfo);
             log.setNotiCount(unread.count);
             if (!!unread.message) {
                 log.setLastMessageTime(unread.message.createTime.toString());
@@ -313,7 +309,7 @@ class ChatsLogComponent {
                 if (unread.message.body !== null) {
                     let displayMsg = unread.message.body;
                     switch (`${unread.message.type}`) {
-                        case Message_1.MessageType[Message_1.MessageType.Text]:
+                        case MessageType[MessageType.Text]:
                             /*
                                 self.main.decodeService(displayMsg, function (err, res) {
                                     if (!err) {
@@ -325,37 +321,37 @@ class ChatsLogComponent {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.Sticker]:
+                        case MessageType[MessageType.Sticker]:
                             displayMsg = sender + " sent a sticker.";
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.Voice]:
+                        case MessageType[MessageType.Voice]:
                             displayMsg = sender + " sent a voice message.";
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.Image]:
+                        case MessageType[MessageType.Image]:
                             displayMsg = sender + " sent a image.";
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.Video]:
+                        case MessageType[MessageType.Video]:
                             displayMsg = sender + " sent a video.";
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.Location]:
+                        case MessageType[MessageType.Location]:
                             displayMsg = sender + " sent a location.";
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
                             break;
-                        case Message_1.MessageType[Message_1.MessageType.File]:
+                        case MessageType[MessageType.File]:
                             self.setLogProp(log, displayMsg, function (log) {
                                 self.addChatLog(log, done);
                             });
@@ -429,4 +425,3 @@ class ChatsLogComponent {
         });
     }
 }
-exports.ChatsLogComponent = ChatsLogComponent;

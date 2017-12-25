@@ -1,7 +1,5 @@
-"use strict";
 /* eslint-disable */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.WordingInfo = {
+export const WordingInfo = {
     Skip: { TH: 'ข้าม', EN: 'Skip', },
     Submit: { TH: 'ส่ง', EN: 'Submit', },
     Continue: { TH: 'ดำเนินการต่อ', EN: 'Continue', },
@@ -14,7 +12,7 @@ exports.WordingInfo = {
     Close: { TH: "ปิด", EN: "Close" },
     Success: { TH: "สำเร็จ", EN: "Success" },
 };
-exports.Loc = {
+export const Loc = {
     Quality: { TH: "โปรดให้คะแนนคุณภาพบริการ", EN: "Please rate our service" },
     Feedback: { TH: "โปรดแสดงความคิดเห็นของคุณ", EN: "Please give us some feedback" },
     Problem: { TH: "โปรดระบุปัญหาที่พบ", EN: "What was the worst problem" },
@@ -36,7 +34,7 @@ exports.Loc = {
         EN: "Your recommendation has been submitted",
     },
 };
-exports.ProviderLocalized = {
+export const ProviderLocalized = {
     PleaseNote: {
         TH: "โปรดทราบ",
         EN: "Please note",
@@ -84,7 +82,7 @@ exports.ProviderLocalized = {
     กรุณาเข้าใช้งานจาก เบราว์เซอร์ Chrome, Firefox บน คอมพิวเตอร์`,
     },
 };
-exports.SumaryAppointmet = {};
+export const SumaryAppointmet = {};
 // const MSGSteateInfo={Quality:{TH:'โปรดให้คะแนนคุณภาพบริการ',EN:'Please rate our service.',isActive:true},
 //                      Feedback:{TH:'โปรดแสดงความคิดเห็นของคุณ',EN:'Please give us some feedback.',isActive:false},
 //                      Problem:{TH:'โปรดระบุปัญหาที่พบ',EN:'What was the worst problem.',isActive:false},
