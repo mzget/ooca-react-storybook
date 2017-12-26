@@ -11,12 +11,7 @@
     "react-collapse": "^4.0.3",
     "react-dom": "16.2.0",
     "react-motion": "^0.5.2",
-    "react-redux": "^5.0.6",
     "react-scripts": "1.0.14",
-    "redux": "^3.7.2",
-    "redux-actions": "^2.2.1",
-    "rxjs": "^5.5.5",
-    "stalk-js": "git+https://git@github.com/mzget/s-talk-js-client.git#develop",
     "styled-components": "^2.2.1"
   },
   "scripts": {
@@ -39,12 +34,8 @@
     "@types/material-ui": "^0.18.3",
     "@types/node": "^8.0.45",
     "@types/react": "^16.0.17",
-    "@types/redux": "^3.6.0",
-    "@types/redux-actions": "^2.2.3",
     "@types/storybook__react": "^3.0.5",
     "jest": "^22.0.3",
-    "redux-devtools": "^3.4.1",
-    "redux-logger": "^3.0.6",
     "typescript-styled-plugin": "^0.1.0"
   }
 }
