@@ -20,7 +20,7 @@ export const SendInfo = {
 export const FeedbackInfo = {
     rating: true,
     problem: null,
-    problem_other: null,
+    problem_other: "",
     feedback: null,
 }
 

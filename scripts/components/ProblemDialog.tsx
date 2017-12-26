@@ -14,6 +14,7 @@ import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
 
 import { MSGSteate } from '../AppUtils';
+import straighten from 'material-ui/svg-icons/image/straighten';
 
 const InputRadio = (props: any) => {
     return (
@@ -36,6 +37,7 @@ const InputRadio = (props: any) => {
 interface IProblemState {
     anchorOrigin: any;
     open: boolean;
+    problemDetail: string;
 }
 export class ProblemDialog extends React.Component<{
     _isLocal: string,
@@ -48,7 +50,8 @@ export class ProblemDialog extends React.Component<{
 
         this.state = {
             anchorOrigin: {},
-            open: true
+            open: true,
+            problemDetail: "",
         }
 
         this.setAnchor = this.setAnchor.bind(this);
@@ -61,6 +64,10 @@ export class ProblemDialog extends React.Component<{
         FeedbackInfo.problem = anchorOrigin.vertical;
         this.setState({ anchorOrigin: anchorOrigin, });
     };
+    setProblemDetail(event: any) {
+        this.setState({ problemDetail: event.target.value },
+            () => FeedbackInfo.problem_other = this.state.problemDetail);
+    }
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
 
@@ -73,17 +80,25 @@ export class ProblemDialog extends React.Component<{
                     <div>
                         <SecondaryDialogButton style={{ width: '100%' }}
                             onClick={() => {
-                                this.setState({ open: false });
-                                SendFeedback();
-                                handMSGState(MSGSteate.SendMSG);
-                            }} >
+                                if (this.state.anchorOrigin.vertical !== options.other || this.state.problemDetail !== "") {
+                                    this.setState({ open: false });
+                                    SendFeedback();
+                                    handMSGState(MSGSteate.SendMSG);
+                                }
+                            }}
+                            disabled={(this.state.anchorOrigin.vertical !== options.other || this.state.problemDetail !== "") ? false : true}
+                        >
                             {WordingInfo.Skip[_isLocal]}
                         </SecondaryDialogButton>
-                        <PrimaryDialogButton provider={_isProvider} style={{ width: '100%' }}
+                        <PrimaryDialogButton provider={_isProvider}
+                            style={{ width: '100%' }}
+                            disabled={(this.state.anchorOrigin.vertical !== options.other || this.state.problemDetail !== "") ? false : true}
                             onClick={() => {
-                                this.setState({ open: false });
-                                SendFeedback();
-                                handMSGState(MSGSteate.SendMSG);
+                                if (this.state.anchorOrigin.vertical !== options.other || this.state.problemDetail !== "") {
+                                    this.setState({ open: false });
+                                    SendFeedback();
+                                    handMSGState(MSGSteate.SendMSG);
+                                }
                             }} >
                             {WordingInfo.Submit[_isLocal]}
                         </PrimaryDialogButton>
@@ -121,9 +136,9 @@ export class ProblemDialog extends React.Component<{
                                     floatingLabelText={WordingInfo.Feedback[_isLocal]}
                                     fullWidth={true}
                                     rows={2}
-                                    onChange={(_event: any) => {
-                                        FeedbackInfo.problem_other = _event.target.value;
-                                    }} />
+                                    placeholder={"Request"}
+                                    value={this.state.problemDetail}
+                                    onChange={this.setProblemDetail.bind(this)} />
                                 :
                                 undefined
                         }

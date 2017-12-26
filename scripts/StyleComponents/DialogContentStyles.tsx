@@ -12,7 +12,7 @@ export const PrimaryDialogButton = styled.div.attrs({
     display: inline-block;
     text-align: center;
     font-family: 'Prompt', sans-serif;
-` as React.ComponentClass<{ provider: boolean, style: any, onClick: () => void }>;
+` as React.ComponentClass<{ provider: boolean, style: any, disabled: boolean, onClick: () => void }>;
 
 export const SecondaryDialogButton = styled.div.attrs({
     className: 'bottom-space-micro'
