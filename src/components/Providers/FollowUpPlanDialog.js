@@ -63,7 +63,7 @@ export class FollowUpPlanDialog extends React.Component {
     }
     submitFollowUp() {
         const { onSubmit } = this.props;
-        if (this.state.value === '') {
+        if (this.state.value === '' || this.state.value === "follow0") {
             return;
         }
         this.setState({ open: false });
@@ -72,7 +72,7 @@ export class FollowUpPlanDialog extends React.Component {
     render() {
         const { isLocal } = this.props;
         return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
-            <PrimaryDialogButton disabled={(this.state.value !== '') ? false : true} provider={true} style={{ width: '100%' }} onClick={this.submitFollowUp}>
+            <PrimaryDialogButton disabled={(this.state.value !== '' && this.state.value !== "follow0") ? false : true} provider={true} style={{ width: '100%' }} onClick={this.submitFollowUp}>
                         {WordingInfo.Submit[isLocal]}
                     </PrimaryDialogButton>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }} autoScrollBodyContent={true}>

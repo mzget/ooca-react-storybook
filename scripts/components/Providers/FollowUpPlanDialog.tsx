@@ -98,7 +98,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSub
 
     submitFollowUp() {
         const { onSubmit } = this.props;
-        if (this.state.value === '') {
+        if (this.state.value === '' || this.state.value === "follow0") {
             return;
         }
 
@@ -115,7 +115,7 @@ export class FollowUpPlanDialog extends React.Component<{ isLocal: string, onSub
                 actionsContainerStyle={{ padding: 0 }}
                 actions={[
                     <PrimaryDialogButton
-                        disabled={(this.state.value !== '') ? false : true}
+                        disabled={(this.state.value !== '' && this.state.value !== "follow0") ? false : true}
                         provider={true}
                         style={{ width: '100%' }}
                         onClick={this.submitFollowUp}>
