@@ -155,3 +155,9 @@ function logTopupEvent(topupChannel, valToSum = 0) {
         window.FB.AppEvents.logEvent("topup", valToSum, params);
     }
 }
+function logStessTestEvent(params, valToSum = 1) {
+    if (window.FB) {
+        console.log("log_stress_test", params);
+        window.FB.AppEvents.logEvent("log_stress_test", valToSum, params);
+    }
+}
