@@ -27,7 +27,14 @@ export class NetworkInfoDialog extends React.Component<{
 
     shouldComponentUpdate(nextProps, nextState) {
         console.warn(nextProps, nextState);
-        return true;
+
+        if (this.props.active != nextProps.active) {
+            this.setState({ open: nextProps.active });
+
+            return true;
+        }
+
+        return false;
     }
 
     render() {
