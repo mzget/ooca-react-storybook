@@ -115,11 +115,9 @@ class TestRSModal extends React.Component<any, any> {
     let visibleState = [MSGSteate.Quality, MSGSteate.Feedback, MSGSteate.SendMSG, MSGSteate.SendFail];
     if (_isProvider) {
       visibleState.push(MSGSteate.Note);
-      visibleState.push(MSGSteate.FollowUp);
+      // visibleState.push(MSGSteate.FollowUp);
     }
     let _isActive = visibleState.indexOf(_state) != -1;
-    //1 (_state===MSGSteate.Feedback)||(_state===MSGSteate.SendMSG)||(_state===MSGSteate.Quality)
-    //2 (_state===MSGSteate.Problem)||(_state===MSGSteate.Thank)
 
     return this.ActiveOnState(_state);
   }
@@ -204,10 +202,10 @@ class TestRSModal extends React.Component<any, any> {
       case MSGSteate.Note: {
         return (<PleaseNoteDialogWithTheme _isLocal={_isLocal} isProvider={_isProvider} onClose={() => {
           if (_isProvider) {
-            this.handMSGState(MSGSteate.FollowUp);
+            this.handMSGState("");
           }
           else {
-            this.handMSGState('');
+            this.handMSGState("");
           }
         }} />);
       }
