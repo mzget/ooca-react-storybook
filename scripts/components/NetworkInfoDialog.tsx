@@ -25,15 +25,17 @@ export class NetworkInfoDialog extends React.Component<{
         }
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.warn(nextProps, nextState);
-
-        if (this.props.active != nextProps.active) {
-            this.setState({ open: nextProps.active });
-
-            return true;
+    static getDerivedStateFromProps(nextProps, prevState) {
+        console.warn("getDerivedStateFromProps", nextProps, prevState);
+        if (nextProps.active !== prevState.open) {
+            return { open: nextProps.active };
         }
 
+        return null;
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.warn("shouldComponentUpdate", nextProps, nextState);
         return false;
     }
 
