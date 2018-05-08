@@ -74,4 +74,4 @@ export const SumaryAppointmet = {};
 //                    VideoProblem:{TH:'Video Call ยังไม่เสร็จสมบูรณ์',EN:'Video Call session wasn’t completed',},
 //                    VideoConnection:{TH:'มีปัญหาการเชื่อมต่อ Video Call',EN:'Video Call has unstable connection',},
 //                    Others:{TH:'อื่นๆ',EN:'Others',},
-//                   } 
+//                   }

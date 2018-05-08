@@ -54,7 +54,17 @@ const SubmitAndSkipButtons = (props) => {
                 <a>{props.skipText}</a>
             </SecondaryDialogButton>
             {submitButton}
-        </div>);
+        </div>
+    // Larger size (innerWidth>768)
+    // (<div style={{ display: 'flex' }}>
+    //     {submitButton}
+    //     <SecondaryDialogButton
+    //         style={{ width: '100%', minHeight: "0.75rem", display: "inline-block" }}
+    //         onClick={props.onSkipClick} >
+    //         {props.skipText}
+    //     </SecondaryDialogButton>
+    // </div>);
+    );
 };
 const ButtonLines = (props) => {
     let widthPerButton = 100.0 / props.buttons.length;
