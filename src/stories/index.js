@@ -24,7 +24,7 @@ storiesOf("Welcome", module)
 storiesOf("OOCA-Storybook", module)
     .add("user-payment-summary-modal", () => <TestRSModal Local={"TH"} isProvider={false} AppointmentID={"1"}/>)
     .add("provider-payment-summary-modal", () => <TestRSModal Local={"TH"} isProvider={true} AppointmentID={"1"}/>)
-    .add('NetworkInfo-Modal', () => <Components.NetworkInfoDialogWithTheme isLocal={"TH"} isProvider={false}/>);
+    .add('NetworkInfo-Modal', () => <Components.NetworkInfoDialogWithTheme isLocal={"TH"} isProvider={false} active={true}/>);
 storiesOf("OOCA-user-modals", module)
     .add("thumbup-dialog", () => <ThumbUpDialog isLocal={"EN"} isProvider={false} handMSGState={action("Thumb")}/>)
     .add("thumbup-dialog-TH", () => <ThumbUpDialog isLocal={"TH"} isProvider={false} handMSGState={action("Thumb")}/>)

@@ -9,8 +9,12 @@ export class NetworkInfoDialog extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            open: true
+            open: this.props.active
         };
+    }
+    shouldComponentUpdate(nextProps, nextState) {
+        console.warn(nextProps, nextState);
+        return true;
     }
     render() {
         const { isLocal, isProvider, onClose } = this.props;

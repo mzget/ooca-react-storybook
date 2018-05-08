@@ -11,13 +11,23 @@ import Localized from "../Localized/index";
 
 const { reformated, DialogMessages } = Localized;
 
-export class NetworkInfoDialog extends React.Component<{ isLocal: string, isProvider: boolean, onClose: () => void }, { open: boolean }> {
+export class NetworkInfoDialog extends React.Component<{
+    isLocal: string,
+    isProvider: boolean,
+    active: boolean,
+    onClose: () => void
+}, { open: boolean }> {
     constructor(props: any) {
         super(props);
 
         this.state = {
-            open: true
+            open: this.props.active
         }
+    }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        console.warn(nextProps, nextState);
+        return true;
     }
 
     render() {
