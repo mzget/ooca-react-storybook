@@ -3,7 +3,7 @@ import Dialog from 'material-ui/Dialog';
 import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
 import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 import { WordingInfo } from '../Localized/WordingInfo';
-import { DialogMessages } from "../Localized/MessageInfo";
+import { DialogMessages, reformated } from "../Localized/index";
 export class NetworkInfoDialog extends React.Component {
     constructor(props) {
         super(props);
@@ -19,15 +19,15 @@ export class NetworkInfoDialog extends React.Component {
                 this.setState({ open: false });
                 onClose();
             }}>
-                        {WordingInfo.Close[isLocal]}
+                        {WordingInfo.Close[reformated(isLocal)]}
                     </PrimaryDialogButton>,
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div>
                     <DialogHeader>
-                        {DialogMessages.NetworkWarning[isLocal]}
+                        {DialogMessages.NetworkWarning[reformated(isLocal)]}
                     </DialogHeader>
                     <ContentDialog fontsize={getFontSize()}>
-                        {DialogMessages.NetworkSpeed[isLocal]}
+                        {DialogMessages.NetworkSpeed[reformated(isLocal)]}
                     </ContentDialog>
                 </div>
             </Dialog>);

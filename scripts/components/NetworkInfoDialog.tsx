@@ -7,7 +7,7 @@ import { } from '../StyleComponents/Styles';
 import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 
 import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
-import { DialogMessages } from "../Localized/MessageInfo";
+import { DialogMessages, reformated } from "../Localized/index";
 
 export class NetworkInfoDialog extends React.Component<{ isLocal: string, isProvider: boolean, onClose: () => void }, { open: boolean }> {
     constructor(props: any) {
@@ -35,7 +35,7 @@ export class NetworkInfoDialog extends React.Component<{ isLocal: string, isProv
                             onClose();
                         }}
                     >
-                        {WordingInfo.Close[isLocal]}
+                        {WordingInfo.Close[reformated(isLocal)]}
                     </PrimaryDialogButton>,
                 ]}
                 modal={true}
@@ -45,12 +45,12 @@ export class NetworkInfoDialog extends React.Component<{ isLocal: string, isProv
                 <div>
                     <DialogHeader>
                         {
-                            DialogMessages.NetworkWarning[isLocal]
+                            DialogMessages.NetworkWarning[reformated(isLocal)]
                         }
                     </DialogHeader>
                     <ContentDialog fontsize={getFontSize()}>
                         {
-                            DialogMessages.NetworkSpeed[isLocal]
+                            DialogMessages.NetworkSpeed[reformated(isLocal)]
                         }
                     </ContentDialog>
                 </div>
