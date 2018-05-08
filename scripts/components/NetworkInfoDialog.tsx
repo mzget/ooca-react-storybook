@@ -34,11 +34,6 @@ export class NetworkInfoDialog extends React.Component<{
         return null;
     }
 
-    shouldComponentUpdate(nextProps, nextState) {
-        console.warn("shouldComponentUpdate", nextProps, nextState);
-        return false;
-    }
-
     render() {
         const { isLocal, isProvider, onClose } = this.props;
         const msgLabelFont = calcFontSize();
