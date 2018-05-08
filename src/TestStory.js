@@ -9,7 +9,7 @@ class TestStory extends React.Component {
     }
     render() {
         return (<MuiThemeProvider muiTheme={defaultMuiTheme}>
-                <NetworkInfoDialog _isLocal={"EN"} isProvider={false}/>
+                <NetworkInfoDialog isLocal={"EN"} isProvider={false}/>
             </MuiThemeProvider>);
     }
 }

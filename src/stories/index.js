@@ -8,12 +8,13 @@ import { linkTo } from "@storybook/addon-links";
 import { storiesOf } from "@storybook/react";
 import { Button, Welcome } from "@storybook/react/demo";
 import { FeedbackDialog, PleaseNoteDialog, ProblemDialog, ThankyouDialog, ThumbUpDialog, withMuiTheme, } from "../components/index";
+import Components from "../index";
 import { FollowUpPlanDialog } from "../components/Providers/FollowUpPlanDialog";
 import { FollowUpSuccessDialog } from "../components/Providers/FollowUpSuccessDialog";
 import ProviderIndex from "../containers/ProviderIndex";
-import { NetworkInfoDialog } from "../components/NetworkInfoDialog";
+// import { NetworkInfoDialog } from "../components/NetworkInfoDialog";
 import TestRSModal from "../TestRSModal";
-const NetworkInfoDialogWithTheme = withMuiTheme(NetworkInfoDialog);
+// const NetworkInfoDialogWithTheme = withMuiTheme(NetworkInfoDialog);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
@@ -25,7 +26,7 @@ storiesOf("Welcome", module)
 storiesOf("OOCA-Storybook", module)
     .add("user-payment-summary-modal", () => <TestRSModal Local={"TH"} isProvider={false} AppointmentID={"1"}/>)
     .add("provider-payment-summary-modal", () => <TestRSModal Local={"TH"} isProvider={true} AppointmentID={"1"}/>)
-    .add('NetworkInfo-Modal', () => <NetworkInfoDialogWithTheme isLocal={"TH"} isProvider={false}/>);
+    .add('NetworkInfo-Modal', () => <Components.NetworkInfoDialogWithTheme isLocal={"TH"} isProvider={false}/>);
 storiesOf("OOCA-user-modals", module)
     .add("thumbup-dialog", () => <ThumbUpDialog isLocal={"EN"} isProvider={false} handMSGState={action("Thumb")}/>)
     .add("thumbup-dialog-TH", () => <ThumbUpDialog isLocal={"TH"} isProvider={false} handMSGState={action("Thumb")}/>)
