@@ -3,7 +3,8 @@ import Dialog from 'material-ui/Dialog';
 import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
 import { PrimaryDialogButton, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 import { WordingInfo } from '../Localized/WordingInfo';
-import { DialogMessages, reformated } from "../Localized/index";
+import Localized from "../Localized/index";
+const { reformated, DialogMessages } = Localized;
 export class NetworkInfoDialog extends React.Component {
     constructor(props) {
         super(props);

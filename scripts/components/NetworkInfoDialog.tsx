@@ -7,7 +7,9 @@ import { } from '../StyleComponents/Styles';
 import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 
 import { WordingInfo, Loc, ProviderLocalized } from '../Localized/WordingInfo';
-import { DialogMessages, reformated } from "../Localized/index";
+import Localized from "../Localized/index";
+
+const { reformated, DialogMessages } = Localized;
 
 export class NetworkInfoDialog extends React.Component<{ isLocal: string, isProvider: boolean, onClose: () => void }, { open: boolean }> {
     constructor(props: any) {

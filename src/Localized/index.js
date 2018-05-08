@@ -1,2 +1,3 @@
-export { reformated } from "./LocalizedUtil";
-export { DialogMessages } from "./MessageInfo";
+import { reformated } from "./LocalizedUtil";
+import { DialogMessages } from "./MessageInfo";
+export default { reformated, DialogMessages };
