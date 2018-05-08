@@ -1,4 +1,3 @@
-/* eslint-disable */
 export const MSGSteateInfo = {
     Quality: { TH: 'โปรดให้คะแนนคุณภาพบริการ', EN: 'Please rate our service.', isActive: true },
     Feedback: { TH: 'โปรดแสดงความคิดเห็นของคุณ', EN: 'Please give us some feedback.', isActive: false },
@@ -20,5 +19,15 @@ export const FeedbackInfo = {
     problem: null,
     problem_other: "",
     feedback: null,
+};
+export const DialogMessages = {
+    NetworkWarning: {
+        TH: `Internet connection!`,
+        EN: `Internet connection!`
+    },
+    NetworkSpeed: {
+        TH: `ความเร็วอินเตอร์เน็ตของคุณอาจมีผลกระทบต่อการใช้งาน video-call`,
+        EN: `Your internet speed may effect bad video-call experience.`
+    }
 };
 export const options = { not_completed: 'not_completed', unstable: 'unstable', other: 'other' };
