@@ -3,19 +3,21 @@ import * as React from 'react';
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./components/MaterialUtils";
-import ThankyouDialog from './components/ThankyouDialog';
+import { ThankyouDialog } from './components/ThankyouDialog';
 import { ThumbUpDialog } from "./components/ThumbUpDialog";
 import { PleaseNoteDialog } from "./components/PleaseNoteDialog";
 
-export class TestStory extends React.Component {
+class TestStory extends React.Component {
     constructor(props: any) {
         super(props);
     }
-    render() {
+    public render() {
         return (
-            // <ThumbUpDialog _isLocal={'EN'} _isProvider={false} handMSGState={() => { }} />
-
-            <PleaseNoteDialog _isLocal={'EN'} isProvider={false} />
+            <MuiThemeProvider muiTheme={defaultMuiTheme}>
+                <PleaseNoteDialog _isLocal={"EN"} isProvider={false} />
+            </MuiThemeProvider>
         );
     }
 }
+
+export default TestStory;

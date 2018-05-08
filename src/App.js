@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+// import logo from './logo.svg';
 
 
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <MuiThemeProvider>
         <header className="App-header">
-          <img src={logo} width={128} alt="logo" />
+          {/* <img src={logo} width={128} alt="logo" /> */}
           <h1 className="App-title">Welcome to React</h1>
         </header>
         <p className="App-intro">

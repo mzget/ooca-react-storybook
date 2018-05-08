@@ -4,11 +4,13 @@ import Dialog from 'material-ui/Dialog';
 
 import {
   PrimaryDialogButton,
-  SecondaryDialogButton
+  SecondaryDialogButton,
+  DialogHeader
 } from '../StyleComponents/DialogContentStyles';
 
+import { getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
-import { TextArea, PaddingBox, Header, Panel } from '../StyleComponents/Styles';
+import { TextArea, PaddingBox, Panel } from '../StyleComponents/Styles';
 
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, options, FeedbackInfo } from '../Localized/MessageInfo';
@@ -32,8 +34,8 @@ export class FeedbackDialog extends React.Component<{
 
     return (
       <Dialog
-        contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
-        bodyStyle={{ textAlign: 'center', padding: 0 }}
+        contentStyle={{ maxWidth: getDialogWidth() }}
+        bodyStyle={{ textAlign: 'center' }}
         actionsContainerStyle={{ padding: 0 }}
         actions={[
           <div>
@@ -59,18 +61,18 @@ export class FeedbackDialog extends React.Component<{
         open={this.state.open}
         onRequestClose={() => { this.setState({ open: false }) }}
       >
-        <PaddingBox>
-          <Header className="no-bottom-space">{MSGSteateInfo.Feedback[_isLocal]}</Header>
-          <Panel style={{ paddingBottom: 0 }}>
-            <div style={{ textAlign: "left" }}>
-              <TextArea
-                placeholder={WordingInfo.Recommend[_isLocal]}
-                onChange={(e: any) => {
-                  FeedbackInfo.feedback = e.target.value;
-                }} />
-            </div>
-          </Panel>
-        </PaddingBox>
+        <div>
+          <DialogHeader>
+            {MSGSteateInfo.Feedback[_isLocal]}
+          </DialogHeader>
+          <div style={{ textAlign: "left" }}>
+            <TextArea
+              placeholder={WordingInfo.Recommend[_isLocal]}
+              onChange={(e: any) => {
+                FeedbackInfo.feedback = e.target.value;
+              }} />
+          </div>
+        </div>
       </Dialog>
     );
   }

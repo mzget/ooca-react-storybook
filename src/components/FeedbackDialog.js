@@ -1,8 +1,9 @@
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { PrimaryDialogButton, SecondaryDialogButton } from '../StyleComponents/DialogContentStyles';
+import { PrimaryDialogButton, SecondaryDialogButton, DialogHeader } from '../StyleComponents/DialogContentStyles';
+import { getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
-import { TextArea, PaddingBox, Header, Panel } from '../StyleComponents/Styles';
+import { TextArea } from '../StyleComponents/Styles';
 import { WordingInfo } from '../Localized/WordingInfo';
 import { MSGSteateInfo, FeedbackInfo } from '../Localized/MessageInfo';
 export class FeedbackDialog extends React.Component {
@@ -14,7 +15,7 @@ export class FeedbackDialog extends React.Component {
     }
     render() {
         const { _isLocal, _isProvider, SendFeedback, handMSGState } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center', padding: 0 }} actionsContainerStyle={{ padding: 0 }} actions={[
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <div>
             <SecondaryDialogButton style={{ width: '100%' }} onClick={() => {
                 SendFeedback();
@@ -32,16 +33,16 @@ export class FeedbackDialog extends React.Component {
             </PrimaryDialogButton>
           </div>
         ]} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
-        <PaddingBox>
-          <Header className="no-bottom-space">{MSGSteateInfo.Feedback[_isLocal]}</Header>
-          <Panel style={{ paddingBottom: 0 }}>
-            <div style={{ textAlign: "left" }}>
-              <TextArea placeholder={WordingInfo.Recommend[_isLocal]} onChange={(e) => {
+        <div>
+          <DialogHeader>
+            {MSGSteateInfo.Feedback[_isLocal]}
+          </DialogHeader>
+          <div style={{ textAlign: "left" }}>
+            <TextArea placeholder={WordingInfo.Recommend[_isLocal]} onChange={(e) => {
             FeedbackInfo.feedback = e.target.value;
         }}/>
-            </div>
-          </Panel>
-        </PaddingBox>
+          </div>
+        </div>
       </Dialog>);
     }
 }

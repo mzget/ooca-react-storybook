@@ -18,7 +18,7 @@ export const SendInfo = {
 export const FeedbackInfo = {
     rating: true,
     problem: null,
-    problem_other: null,
+    problem_other: "",
     feedback: null,
 };
 export const options = { not_completed: 'not_completed', unstable: 'unstable', other: 'other' };

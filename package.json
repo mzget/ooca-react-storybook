@@ -5,10 +5,11 @@
   "dependencies": {
     "axios": "^0.17.0",
     "bulma": "^0.6.0",
+    "immutable": "^4.0.0-rc.9",
     "material-ui": "^0.19.4",
-    "react": "^16.0.0",
+    "react": "16.2.0",
     "react-collapse": "^4.0.3",
-    "react-dom": "^16.0.0",
+    "react-dom": "16.2.0",
     "react-motion": "^0.5.2",
     "react-scripts": "1.0.14",
     "styled-components": "^2.2.1"
@@ -16,7 +17,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
+    "test": "jest",
     "eject": "react-scripts eject",
     "storybook": "start-storybook -p 9009 -s public",
     "build-storybook": "build-storybook -c .storybook -o .out",
@@ -28,12 +29,15 @@
     "@storybook/addon-links": "3.2.12",
     "@storybook/addon-notes": "3.2.12",
     "@storybook/react": "3.2.12",
+    "@types/axios": "^0.14.0",
+    "@types/immutable": "^3.8.7",
+    "@types/jest": "^21.1.9",
     "@types/material-ui": "^0.18.3",
-    "@types/node": "^8.0.45",
+    "@types/node": "^8.9.4",
     "@types/react": "^16.0.17",
     "@types/storybook__react": "^3.0.5",
-    "tslint": "^5.8.0",
-    "typescript": "^2.5.3",
+    "jest": "^22.0.3",
+    "typescript": "^2.8.3",
     "typescript-styled-plugin": "^0.1.0"
   }
 }

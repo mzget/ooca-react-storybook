@@ -6,6 +6,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { defaultMuiTheme } from "./MaterialUtils";
 import Dialog from 'material-ui/Dialog';
 
+import { getFontSize, getDialogWidth } from '../UxUtils';
 import { MSGSteate } from '../AppUtils';
 import { PaddingBox } from '../StyleComponents/Styles';
 import { DialogHeader } from '../StyleComponents/DialogContentStyles';
@@ -15,7 +16,7 @@ import IconUp from '../../Images/up_icon.png';
 import { MSGSteateInfo, SendInfo, FeedbackInfo, options } from '../Localized/MessageInfo';
 
 let thumbGap = 50;
-let isSmall = window.innerWidth < 800;
+let isSmall = window.innerWidth < 840;
 const msgLabelFont = { fontSize: isSmall ? '17px' : '24px' }
 let size = isSmall ? 80 : 120;
 //   background: #0478d7;
@@ -69,7 +70,7 @@ export class ThumbUpDialog extends React.Component<{ handMSGState: (data: string
         return (
             <MuiThemeProvider muiTheme={defaultMuiTheme}>
                 <Dialog
-                    contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                    contentStyle={{ maxWidth: getDialogWidth() }}
                     bodyStyle={{ textAlign: 'center', padding: 0 }}
                     actionsContainerStyle={{ padding: 0 }}
                     actions={[
@@ -79,11 +80,9 @@ export class ThumbUpDialog extends React.Component<{ handMSGState: (data: string
                     onRequestClose={() => { this.setState({ open: false }) }}
                 >
                     <PaddingBox>
-                        <div style={{ paddingTop: '20px', marginBottom: '40px' }}>
-                            <DialogHeader>
-                                {MSGSteateInfo.Quality[isLocal]}
-                            </DialogHeader>
-                        </div>
+                        <DialogHeader fontsize={getFontSize()}>
+                            {MSGSteateInfo.Quality[isLocal]}
+                        </DialogHeader>
                         <div>
                             {
                                 this.renderThumb(isProvider)

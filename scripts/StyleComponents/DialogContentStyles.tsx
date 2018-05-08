@@ -12,7 +12,7 @@ export const PrimaryDialogButton = styled.div.attrs({
     display: inline-block;
     text-align: center;
     font-family: 'Prompt', sans-serif;
-` as React.ComponentClass<{ provider: boolean, style: any, onClick: () => void }>;
+` as React.ComponentClass<{ provider: boolean, style: any, disabled: boolean, onClick: () => void }>;
 
 export const SecondaryDialogButton = styled.div.attrs({
     className: 'bottom-space-micro'
@@ -34,8 +34,9 @@ export const LableDialog = styled.label.attrs({
 }) ``;
 export const ContentDialog = styled.p.attrs({
     className: 'MSG-Lable'
-}) ``;
+}) `
+    font-size: ${props => props.fontsize ? `${props.fontsize}px` : '17px'};
+`;
 export const ListDialogItem = styled.div.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
-    font-size: 14px;
 `;

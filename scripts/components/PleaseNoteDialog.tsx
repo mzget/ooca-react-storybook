@@ -3,7 +3,7 @@ import * as React from 'react';
 
 import Dialog from 'material-ui/Dialog';
 
-import { calcFontSize } from "../UxUtils";
+import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
 import { } from '../StyleComponents/Styles';
 import { PrimaryDialogButton, LableDialog, ContentDialog, DialogHeader } from '../StyleComponents/DialogContentStyles';
 
@@ -24,7 +24,7 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 titleStyle={{ fontWeight: 'bold', textAlign: 'center' }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
@@ -40,17 +40,15 @@ export class PleaseNoteDialog extends React.Component<{ _isLocal: string, isProv
                 ]}
                 modal={true}
                 open={this.state.open}
-                onRequestClose={() => { console.log('request close') }}
+                onRequestClose={() => { this.setState({ open: false }) }}
             >
                 <div>
-                    <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                        <DialogHeader>
-                            {(isProvider == true)
-                                ? ProviderLocalized.PleaseNote[_isLocal]
-                                : Loc.PleaseNote[_isLocal]}
-                        </DialogHeader>
-                    </div>
-                    <ContentDialog>
+                    <DialogHeader>
+                        {(isProvider == true)
+                            ? ProviderLocalized.PleaseNote[_isLocal]
+                            : Loc.PleaseNote[_isLocal]}
+                    </DialogHeader>
+                    <ContentDialog fontsize={getFontSize()}>
                         {
                             (isProvider == true) ?
                                 ProviderLocalized.PleaseNoteDetail[_isLocal] :

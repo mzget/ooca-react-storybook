@@ -1,8 +1,8 @@
 /* eslint-disable */
 import * as React from 'react';
 import Dialog from 'material-ui/Dialog';
-import { calcFontSize } from "../UxUtils";
-import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
+import { getDialogWidth } from "../UxUtils";
+import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
 import { MSGSteateInfo } from '../Localized/MessageInfo';
 import { WordingInfo } from '../Localized/WordingInfo';
 export class ThankyouDialog extends React.Component {
@@ -23,26 +23,19 @@ export class ThankyouDialog extends React.Component {
             }}>
                     {WordingInfo.Continue[isLocal]}
                 </PrimaryDialogButton>
-                {(isProvider) ?
-                <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
-                    this.setState({ open: false });
-                    handCallBack();
-                }}>
-                            {WordingInfo.CallBack[isLocal]}
-                        </PrimaryDialogButton> : null}
+                
 
             </div>
         ];
         return buttons;
     }
     render() {
-        const msgLabelFont = calcFontSize();
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
-        return (<Dialog contentStyle={{ maxWidth: '500px', minWidth: '400px' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
+        return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={this.getButton()} modal={true} open={this.state.open} onRequestClose={() => { this.setState({ open: false }); }}>
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                    <LableDialog style={msgLabelFont}>
+                    <ContentDialog fontsize={17}>
                         {MSGSteateInfo.Thank[isLocal]}
-                    </LableDialog>
+                    </ContentDialog>
                 </div>
             </Dialog>);
     }

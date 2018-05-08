@@ -3,9 +3,10 @@
 import * as React from 'react';
 
 import Dialog from 'material-ui/Dialog';
+import { white, black } from 'material-ui/styles/colors';
 
-import { calcFontSize } from "../UxUtils";
-import { PrimaryDialogButton, LableDialog } from '../StyleComponents/DialogContentStyles';
+import { calcFontSize, getFontSize, getDialogWidth } from "../UxUtils";
+import { PrimaryDialogButton, ContentDialog } from '../StyleComponents/DialogContentStyles';
 import { } from '../StyleComponents/Styles';
 
 import { MSGSteateInfo, SendInfo, FeedbackInfo, options } from '../Localized/MessageInfo';
@@ -34,14 +35,15 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
                     {WordingInfo.Continue[isLocal]}
                 </PrimaryDialogButton>
                 {
-                    (isProvider) ?
-                        <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }}
-                            onClick={() => {
-                                this.setState({ open: false });
-                                handCallBack();
-                            }} >
-                            {WordingInfo.CallBack[isLocal]}
-                        </PrimaryDialogButton> : null
+                    // (isProvider) ?
+                    //     <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }}
+                    //         onClick={() => {
+                    //             this.setState({ open: false });
+                    //             handCallBack();
+                    //         }} >
+                    //         {WordingInfo.CallBack[isLocal]}
+                    //     </PrimaryDialogButton>
+                    //     : null
                 }
 
             </div>
@@ -51,12 +53,11 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
     }
 
     render() {
-        const msgLabelFont = calcFontSize();
         const { isLocal, isProvider, handCallBack, handleClose } = this.props;
 
         return (
             <Dialog
-                contentStyle={{ maxWidth: '500px', minWidth: '400px' }}
+                contentStyle={{ maxWidth: getDialogWidth() }}
                 bodyStyle={{ textAlign: 'center' }}
                 actionsContainerStyle={{ padding: 0 }}
                 actions={this.getButton()}
@@ -65,9 +66,9 @@ export class ThankyouDialog extends React.Component<{ isLocal: string, isProvide
                 onRequestClose={() => { this.setState({ open: false }) }}
             >
                 <div style={{ paddingTop: '20px', marginBottom: '30px' }}>
-                    <LableDialog style={msgLabelFont}>
+                    <ContentDialog fontsize={17}>
                         {MSGSteateInfo.Thank[isLocal]}
-                    </LableDialog>
+                    </ContentDialog>
                 </div>
             </Dialog>
         );
