@@ -25,7 +25,9 @@ export class NetworkInfoDialog extends React.Component {
         return (<Dialog contentStyle={{ maxWidth: getDialogWidth() }} titleStyle={{ fontWeight: 'bold', textAlign: 'center' }} bodyStyle={{ textAlign: 'center' }} actionsContainerStyle={{ padding: 0 }} actions={[
             <PrimaryDialogButton provider={isProvider} style={{ width: '100%', textAlign: 'center' }} onClick={() => {
                 this.setState({ open: false });
-                onClose();
+                if (onClose) {
+                    onClose();
+                }
             }}>
                         {WordingInfo.Close[reformated(isLocal)]}
                     </PrimaryDialogButton>,
