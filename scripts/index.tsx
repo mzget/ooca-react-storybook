@@ -1,7 +1,7 @@
 
 import {
     withMuiTheme,
-} from "./components/index";
+} from "./components/MaterialUtils";
 
 import { NetworkInfoDialog } from "./components/NetworkInfoDialog";
 

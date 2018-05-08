@@ -24,12 +24,9 @@ import { FollowUp } from "../components/Providers/FollowUp";
 import { FollowUpPlanDialog } from "../components/Providers/FollowUpPlanDialog";
 import { FollowUpSuccessDialog } from "../components/Providers/FollowUpSuccessDialog";
 import ProviderIndex from "../containers/ProviderIndex";
-// import { NetworkInfoDialog } from "../components/NetworkInfoDialog";
 
 import TestRSModal from "../TestRSModal";
-import TestStory from "../TestStory";
 
-// const NetworkInfoDialogWithTheme = withMuiTheme(NetworkInfoDialog);
 const ProblemDialogWithTheme = withMuiTheme(ProblemDialog);
 const FeedbackDialogWithTheme = withMuiTheme(FeedbackDialog);
 const ThankyouDialogWithTheme = withMuiTheme(ThankyouDialog);
