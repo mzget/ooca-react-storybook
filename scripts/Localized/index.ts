@@ -1,2 +1,2 @@
-export * from "./LocalizedUtil";
-export * from "./MessageInfo";
+export { reformated } from "./LocalizedUtil";
+export { DialogMessages } from "./MessageInfo";
