@@ -37,6 +37,12 @@ export const ContentDialog = styled.p.attrs({
 }) `
     font-size: ${props => props.fontsize ? `${props.fontsize}px` : '17px'};
 `;
+
+export const DefaultParagraph = styled.p.attrs() `
+    font-family: 'Prompt', sans-serif;
+    font-size: ${props => props.fontsize ? `${props.fontsize}px` : '17px'};
+    color: black;
+`;
 export const ListDialogItem = styled.div.attrs({ className: 'text-center' }) `
     font-family: 'Prompt', sans-serif;
 `;
