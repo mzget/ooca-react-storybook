@@ -28,6 +28,10 @@ export const DialogMessages = {
     NetworkSpeed: {
         TH: `ความเร็วอินเตอร์เน็ตของคุณอาจมีผลกระทบต่อการใช้งาน video-call`,
         EN: `Your internet speed may effect bad video-call experience.`
+    },
+    VideoSpeedWarning: {
+        TH: `ความเร็วอินเตอร์เน็ตของคุณ ไม่สามารถใช้งาน video ได้`,
+        EN: `Your internet speed cannot use video track.`
     }
 };
 export const options = { not_completed: 'not_completed', unstable: 'unstable', other: 'other' };

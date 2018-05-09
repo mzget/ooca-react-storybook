@@ -15,10 +15,16 @@ const style = {
     backgroundColor: "#f5a623",
 };
 
+export enum NetworkMessageEnum {
+    networkSpeed = 0,
+    disableVideo,
+}
+
 export class NetworkInfoToolbar extends React.Component<{
     isLocal: string,
     isProvider: boolean,
     active: boolean,
+    case: string,
     onClose: () => void
 }> {
     constructor(props) {
@@ -34,7 +40,13 @@ export class NetworkInfoToolbar extends React.Component<{
             <div>
                 {(this.props.active) ?
                     <Paper style={style} zDepth={1}>
-                        <DefaultParagraph fontsize={14} fontColor={`white`} style={{ marginTop: 10 }}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
+                        <DefaultParagraph fontsize={14} fontColor={`white`} style={{ marginTop: 10 }}>
+                            {
+                                (this.props.case === NetworkMessageEnum[NetworkMessageEnum.networkSpeed]) ?
+                                    DialogMessages.NetworkSpeed[reformated(this.props.isLocal)] :
+                                    DialogMessages.VideoSpeedWarning[reformated(this.props.isLocal)]
+                            }
+                        </DefaultParagraph>
                     </Paper> : null
                 }
             </div>
