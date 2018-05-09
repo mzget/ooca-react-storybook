@@ -34,7 +34,7 @@ export class NetworkInfoToolbar extends React.Component<{
             <div>
                 {(this.props.active) ?
                     <Paper style={style} zDepth={1}>
-                        <DefaultParagraph fontsize={16} fontColor={`white`} style={{ marginTop: 10 }}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
+                        <DefaultParagraph fontsize={14} fontColor={`white`} style={{ marginTop: 10 }}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
                     </Paper> : null
                 }
             </div>
