@@ -31,9 +31,11 @@ export class NetworkInfoToolbar extends React.Component<{
     render() {
         return (
             <div>
-                <Paper style={style} zDepth={1}>
-                    <ContentDialog>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</ContentDialog>
-                </Paper>
+                {(this.props.active) ?
+                    <Paper style={style} zDepth={1}>
+                        <ContentDialog>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</ContentDialog>
+                    </Paper> : null
+                }
             </div>
         );
     }
