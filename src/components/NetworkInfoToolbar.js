@@ -4,7 +4,7 @@ import Localized from "../Localized/index";
 import { DefaultParagraph } from '../StyleComponents/DialogContentStyles';
 const { reformated, DialogMessages } = Localized;
 const style = {
-    height: "100%",
+    height: 50,
     width: "100%",
     // margin: 20,
     textAlign: 'center',
