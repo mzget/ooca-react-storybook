@@ -9,7 +9,7 @@ const style = {
     // margin: 20,
     textAlign: 'center',
     display: 'inline-block',
-    backgroundColor: "#E65100",
+    backgroundColor: "#f5a623",
 };
 export class NetworkInfoToolbar extends React.Component {
     constructor(props) {
@@ -20,7 +20,7 @@ export class NetworkInfoToolbar extends React.Component {
         return (<div>
                 {(this.props.active) ?
             <Paper style={style} zDepth={1}>
-                        <DefaultParagraph fontsize={16} fontColor={`white`}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
+                        <DefaultParagraph fontsize={16} fontColor={`white`} style={{ marginTop: 10 }}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
                     </Paper> : null}
             </div>);
     }
