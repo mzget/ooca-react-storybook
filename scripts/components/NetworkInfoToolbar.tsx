@@ -12,6 +12,7 @@ const style = {
     // margin: 20,
     textAlign: 'center',
     display: 'inline-block',
+    backgroundColor: "#E65100",
 };
 
 export class NetworkInfoToolbar extends React.Component<{
@@ -33,7 +34,7 @@ export class NetworkInfoToolbar extends React.Component<{
             <div>
                 {(this.props.active) ?
                     <Paper style={style} zDepth={1}>
-                        <DefaultParagraph fontsize={16}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
+                        <DefaultParagraph fontsize={16} fontColor={`white`}>{DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]}</DefaultParagraph>
                     </Paper> : null
                 }
             </div>
