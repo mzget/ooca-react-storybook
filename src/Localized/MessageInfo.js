@@ -26,7 +26,7 @@ export const DialogMessages = {
         EN: `Internet connection!`
     },
     NetworkSpeed: {
-        TH: `ความเร็วอินเตอร์เน็ตของคุณอาจมีผลกระทบต่อการใช้งาน video-call`,
+        TH: `ความเร็วอินเตอร์เน็ตของคุณ ไม่เหมาะต่อการใช้งาน video-call`,
         EN: `Your internet speed may effect bad video-call experience.`
     },
     VideoSpeedWarning: {

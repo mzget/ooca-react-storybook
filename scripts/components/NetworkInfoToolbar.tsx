@@ -42,9 +42,10 @@ export class NetworkInfoToolbar extends React.Component<{
                     <Paper style={style} zDepth={1}>
                         <DefaultParagraph fontsize={14} fontColor={`white`} style={{ marginTop: 10 }}>
                             {
-                                (this.props.case === NetworkMessageEnum[NetworkMessageEnum.networkSpeed]) ?
-                                    DialogMessages.NetworkSpeed[reformated(this.props.isLocal)] :
-                                    DialogMessages.VideoSpeedWarning[reformated(this.props.isLocal)]
+                                // (this.props.case === NetworkMessageEnum[NetworkMessageEnum.networkSpeed]) ?
+                                //     DialogMessages.NetworkSpeed[reformated(this.props.isLocal)] :
+                                //     DialogMessages.VideoSpeedWarning[reformated(this.props.isLocal)]
+                                DialogMessages.NetworkSpeed[reformated(this.props.isLocal)]
                             }
                         </DefaultParagraph>
                     </Paper> : null
